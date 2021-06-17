@@ -21,25 +21,25 @@ if ( !$wpml ) $wpml_pages = true;
 		
 		<?php 
 		$sortable = apply_filters('nestedpages_post_sortable', true, $this->post, $this->post_type);
-		if ( $this->user->canSortPages() && !$this->listing_repo->isSearch() && !$this->post_type_settings->disable_sorting && $wpml_current_language !== 'all' && !$this->listing_repo->isOrdered($this->post_type->name) && $sortable ) : ?>
+		if ( $this->user->canSortPosts($this->post_type->name) && !$this->listing_repo->isSearch() && !$this->post_type_settings->disable_sorting && $wpml_current_language !== 'all' && !$this->listing_repo->isOrdered($this->post_type->name) && $sortable ) : ?>
 		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="handle np-icon-menu"><path d="M0 0h24v24H0z" fill="none" /><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" class="bars" /></svg>
 		<?php endif; ?>
 
 		<a href="<?php echo apply_filters('nestedpages_edit_link', get_edit_post_link(), $this->post); ?>" class="page-link page-title">
 			<span class="title">
 				<?php 
-					echo apply_filters( 'the_title', $this->post->title, $this->post->id, $view = 'nestedpages_title' ); 
-					if ( !$assigned_pt ) :
-						if ( $this->post->id == get_option('page_on_front') ) echo ' <em class="np-page-type"><strong>&ndash; ' . __('Front Page', 'wp-nested-pages') . '</strong></em>';
-						if ( $this->post->id == get_option('page_for_posts') ) echo ' <em class="np-page-type"><strong>&ndash; ' . __('Posts Page', 'wp-nested-pages') . '</strong></em>';
-					endif;
-					echo $this->postStates();
+					$title = apply_filters( 'the_title', $this->post->title, $this->post->id ); 
+					echo apply_filters('nestedpages_post_title', $title, $this->post);
+					echo $this->postStates($assigned_pt);
 				?>
 			</span>
 			<?php 
 				// Post Status
 				echo '<span class="status">';
-				if ( $this->post->status !== 'publish' )	echo '(' . __(ucfirst($this->post->status)) . ')';
+				if ( $this->post->status !== 'publish' ) : 
+					global $wp_post_statuses;
+					echo '(' . $wp_post_statuses[$this->post->status]->label . ')';
+				endif;
 				if ( post_password_required($this->post->id) ) {
 					echo '<span class="locked password-required">';
 					echo ' <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>';
@@ -73,10 +73,10 @@ if ( !$wpml ) $wpml_pages = true;
 
 				// Sticky
 				echo '<span class="sticky"';
+				$sticky_text = apply_filters('nestedpages_make_sticky_text_row', __('(Sticky)', 'wp-nested-pages'), $this->post, $this->post_type);
 				if ( !in_array($this->post->id, $this->sticky_posts) ) echo ' style="display:none;"';
-				echo '>(' . __('Sticky', 'wp-nested-pages') . ')<span>';
+				echo '>' . $sticky_text . '<span>';
 
-				if ( $this->post->status !== 'publish' )	echo '(' . __(ucfirst($this->post->status)) . ')';
 				if ( post_password_required($this->post->id) ) {
 					echo ' <span class="status-icon-locked"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg></span>';
 				}
@@ -134,12 +134,15 @@ if ( !$wpml ) $wpml_pages = true;
 					<?php else : $cs = 'closed'; endif; ?>
 
 					<?php 
-					if ( current_user_can('publish_pages') && $this->post_type->hierarchical && !$this->listing_repo->isSearch() && $wpml_pages ) :  
+					$include_link_dropdown = ( $this->post_type->name == 'page' ) ? true : false;
+					$include_link_dropdown = apply_filters('nestedpages_include_links_dropdown', $include_link_dropdown, $this->post_type);
+
+					if ( (current_user_can('publish_pages') || $this->user->canSubmitPending($this->post_type->name)) && $this->post_type->hierarchical && !$this->listing_repo->isSearch() && $wpml_pages ) :  
 
 					// Link
-					if (!$this->settings->menusDisabled() && !$this->integrations->plugins->wpml->installed && in_array('add_child_link', $this->post_type_settings->row_actions)) : ?>
+					if ( !$this->settings->menusDisabled() && !$this->integrations->plugins->wpml->installed && in_array('add_child_link', $this->post_type_settings->row_actions) && $include_link_dropdown ) : ?>
 					<li>
-						<a href="#" class="open-redirect-modal" data-parentid="<?php echo esc_attr($this->post->id); ?>">
+						<a href="#" class="open-redirect-modal" data-parentid="<?php esc_attr_e($this->post->id); ?>">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path class="primary" d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
 						<?php _e('Add Child Link', 'wp-nested-pages'); ?></a>
 					</li>
@@ -147,7 +150,7 @@ if ( !$wpml ) $wpml_pages = true;
 			
 					<?php if ( in_array('add_child_page', $this->post_type_settings->row_actions) ) : ?>
 					<li>
-						<a href="#" class="add-new-child" data-id="<?php echo esc_attr(get_the_id()); ?>" data-parentname="<?php echo esc_html($this->post->title); ?>">
+						<a href="#" class="add-new-child" data-id="<?php esc_attr_e(get_the_id()); ?>" data-parentname="<?php esc_html_e($this->post->title); ?>">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path class="primary" d="M3 21h18v-2H3v2zM3 8v8l4-4-4-4zm8 9h10v-2H11v2zM3 3v2h18V3H3zm8 6h10V7H11v2zm0 4h10v-2H11v2z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
 						<?php echo sprintf(__('Add Child %s', 'wp-nested-pages'), $this->post_type->labels->singular_name); ?></a>
 					</li>
@@ -155,11 +158,11 @@ if ( !$wpml ) $wpml_pages = true;
 
 					<?php endif; ?>
 
-					<?php if ( current_user_can('publish_pages') && !$this->listing_repo->isSearch() && !$this->listing_repo->isOrdered($this->post_type->name) ) : ?>
+					<?php if ( (current_user_can('publish_pages') || $this->user->canSubmitPending($this->post_type->name) ) && !$this->listing_repo->isSearch() && !$this->listing_repo->isOrdered($this->post_type->name) ) : ?>
 
 					<?php if ( in_array('insert_before', $this->post_type_settings->row_actions) ) : ?>
 					<li>
-						<a href="#" data-insert-before="<?php echo esc_attr(get_the_id()); ?>" data-parentname="<?php echo esc_html($this->post->title); ?>">
+						<a href="#" data-insert-before="<?php esc_attr_e(get_the_id()); ?>" data-parentname="<?php esc_html_e($this->post->title); ?>">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path class="primary" d="M8 11h3v10h2V11h3l-4-4-4 4zM4 3v2h16V3H4z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
 						<?php printf(esc_html__('Insert %s Before', 'wp-nested-pages'), $this->post_type->labels->singular_name); ?></a>
 					</li>
@@ -167,7 +170,7 @@ if ( !$wpml ) $wpml_pages = true;
 
 					<?php if ( in_array('insert_after', $this->post_type_settings->row_actions) ) : ?>
 					<li>
-						<a href="#" data-insert-after="<?php echo esc_attr(get_the_id()); ?>" data-parentname="<?php echo esc_html($this->post->title); ?>">
+						<a href="#" data-insert-after="<?php echo esc_attr(get_the_id()); ?>" data-parentname="<?php esc_html_e($this->post->title); ?>">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path class="primary" d="M16 13h-3V3h-2v10H8l4 4 4-4zM4 19v2h16v-2H4z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
 						<?php printf(esc_html__('Insert %s After', 'wp-nested-pages'), $this->post_type->labels->singular_name); ?></a>
 					</li>
@@ -175,7 +178,7 @@ if ( !$wpml ) $wpml_pages = true;
 
 					<?php endif; ?>
 
-					<?php if ( $this->user->canSortPages() && !$this->listing_repo->isSearch() && !$this->post_type_settings->disable_sorting && $wpml_current_language !== 'all' && !$this->listing_repo->isOrdered($this->post_type->name) ) : ?>
+					<?php if ( $this->user->canSortPosts($this->post_type->name) && !$this->listing_repo->isSearch() && !$this->post_type_settings->disable_sorting && $wpml_current_language !== 'all' && !$this->listing_repo->isOrdered($this->post_type->name) ) : ?>
 
 					<?php if ( in_array('push_to_top', $this->post_type_settings->row_actions) ) : ?>
 					<li>
@@ -203,7 +206,7 @@ if ( !$wpml ) $wpml_pages = true;
 
 					<?php if ( current_user_can('edit_pages') && current_user_can('edit_posts') && $wpml_pages && in_array('clone', $this->post_type_settings->row_actions) ) : ?>
 					<li>
-						<a href="#" class="clone-post" data-id="<?php echo esc_attr(get_the_id()); ?>" data-parentname="<?php echo esc_html($this->post->title); ?>">
+						<a href="#" class="clone-post" data-id="<?php echo esc_attr(get_the_id()); ?>" data-parentname="<?php esc_html_e($this->post->title); ?>">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"/><path class="primary" d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm-1 4l6 6v10c0 1.1-.9 2-2 2H7.99C6.89 23 6 22.1 6 21l.01-14c0-1.1.89-2 1.99-2h7zm-1 7h5.5L14 6.5V12z"/></svg>
 						<?php _e('Clone', 'wp-nested-pages'); ?></a>
 					</li>
@@ -255,18 +258,53 @@ if ( !$wpml ) $wpml_pages = true;
 			</a>
 			<?php endif; endif; ?>
 
-			<?php if ( in_array('view', $this->post_type_settings->row_actions) ) : ?>
-			<a href="<?php echo apply_filters('nestedpages_view_link', get_the_permalink(), $this->post); ?>" class="np-btn np-view-button" target="_blank">
+			<?php
+			/**
+			* View/Preview Link
+			*/
+			if ( in_array('view', $this->post_type_settings->row_actions) ) : 
+			if ( $this->post->status == 'publish' ) : 
+			$link = apply_filters('nestedpages_view_link', get_the_permalink(), $this->post);
+			$link = ( $this->post_type->name !== 'post' ) 
+				? apply_filters('page_link', $link, $this->post->ID, false) 
+				: apply_filters('post_link', $link, $this->post, false);
+			?>
+			<a href="<?php echo $link; ?>" class="np-btn np-view-button" target="_blank">
 				<?php echo apply_filters('nestedpages_view_link_text', __('View', 'wp-nested-pages'), $this->post); ?>
 			</a>
-			<?php endif; ?>
+			<?php 
+			else :
+			$link = apply_filters('nestedpages_preview_link', get_the_permalink(), $this->post);
+			$link = apply_filters('preview_post_link', $link, $this->post);
+			?>
+			<a href="<?php echo $link; ?>" class="np-btn np-view-button" target="_blank">
+				<?php echo apply_filters('nestedpages_preview_link_text', __('Preview', 'wp-nested-pages'), $this->post); ?>
+			</a>
+			<?php
+			endif; // status
+			endif; // View in row actions
+			?>
 			
 			<?php if ( current_user_can('delete_pages') && $this->integrations->plugins->editorial_access_manager->hasAccess($this->post->id)  && in_array('trash', $this->post_type_settings->row_actions) ) : ?>
-			<a href="<?php echo get_delete_post_link(get_the_id()); ?>" class="np-btn np-btn-trash">
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="np-icon-remove"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" class="icon"/><path d="M0 0h24v24H0z" fill="none"/></svg>
-			</a>
+			<?php if ( $this->post_type->hierarchical && $this->publishedChildrenCount($this->post) > 0 ) : ?>
+			<div class="nestedpages-dropdown" data-dropdown>
+				<a href="#" class="np-btn np-btn-trash" data-dropdown-toggle>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="np-icon-remove"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" class="icon"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+				</a>
+				<ul class="nestedpages-dropdown-content" data-dropdown-content>
+					<li>
+						<a href="<?php echo get_delete_post_link(get_the_id()); ?>"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="np-icon-remove"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" class="icon"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+						<?php printf(__('Trash %s', 'wp-nested-pages'), $this->post_type->labels->singular_name); ?></a>
+					</li>
+					<li>
+						<a href="#" data-nestedpages-trash-children data-post-id="<?php echo $this->post->ID; ?>"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve"><path d="M19,4h-3.5l-1-1h-5l-1,1H5v2h14V4z M6,7v12c0,1.1,0.9,2,2,2h8c1.1,0,2-0.9,2-2V7H6z M10,14v-4h4v4h2l-4,4l-4-4H10z"/><path style="fill:none;" d="M0,0h24v24H0V0z"/></svg><?php printf(__('Trash %s & Children', 'wp-nested-pages'), $this->post_type->labels->singular_name); ?></a>
+					</li>
+				</ul>
+			</div>
+			<?php else : ?>
+				<a href="<?php echo get_delete_post_link(get_the_id()); ?>" class="np-btn np-btn-trash"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" class="icon"/><path d="M0 0h24v24H0z" fill="none"/></svg></a>
 			<?php endif; ?>
-
+			<?php endif; ?>
 		</div><!-- .action-buttons -->
 	</div><!-- .row-inner -->
 

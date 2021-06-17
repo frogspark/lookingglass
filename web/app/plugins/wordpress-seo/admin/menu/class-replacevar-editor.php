@@ -9,46 +9,81 @@
  * Renders a replacement variable editor.
  */
 class WPSEO_Replacevar_Editor {
+
 	/**
-	 * @var Yoast_Form Yoast Forms instance.
+	 * Yoast Forms instance.
+	 *
+	 * @var Yoast_Form
 	 */
 	private $yform;
 
 	/**
-	 * @var string The id for the hidden title field.
+	 * The arguments required for the div to render.
+	 *
+	 * @var array {
+	 *      @type string $title                   The title field id.
+	 *      @type string $description             The description field id.
+	 *      @type string $page_type_recommended   The page type for the context of the recommended replace vars.
+	 *      @type string $page_type_specific      The page type for the context of the editor specific replace vars.
+	 *      @type bool   $paper_style             Optional. Whether the editor has paper style.
+	 *      @type string $label_title             Optional. The label to use for the title field.
+	 *      @type string $label_description       Optional. The label to use for the description field.
+	 *      @type string $description_placeholder Optional. The placeholder text to use for the description field.
+	 *      @type bool   $has_new_badge           Optional. Whether to show the "New" badge.
+	 *      @type bool   $has_premium_badge       Optional. Whether to show the "Premium" badge.
+	 * }
 	 */
-	private $title;
-
-	/**
-	 * @var string The id for the hidden description field.
-	 */
-	private $description;
-
-	/**
-	 * @var string The page type for context.
-	 */
-	private $page_type;
-
-	/**
-	 * @var bool Whether the editor has paper style.
-	 */
-	private $paper_style;
+	private $arguments;
 
 	/**
 	 * Constructs the object.
 	 *
-	 * @param Yoast_Form $yform       Yoast forms.
-	 * @param string     $title       The title field id.
-	 * @param string     $description The description field id.
-	 * @param string     $page_type   The page type for context.
-	 * @param bool       $paper_style Whether the editor has paper style.
+	 * @param Yoast_Form $yform     Yoast forms.
+	 * @param array      $arguments {
+	 *      The arguments that can be given.
+	 *
+	 *      @type string $title                   The title field id.
+	 *      @type string $description             The description field id.
+	 *      @type string $page_type_recommended   The page type for the context of the recommended replace vars.
+	 *      @type string $page_type_specific      The page type for the context of the editor specific replace vars.
+	 *      @type bool   $paper_style             Optional. Whether the editor has paper style.
+	 *      @type string $label_title             Optional. The label to use for the title field.
+	 *      @type string $label_description       Optional. The label to use for the description field.
+	 *      @type string $description_placeholder Optional. The placeholder text to use for the description field.
+	 *      @type bool   $has_new_badge           Optional. Whether to show the "New" badge.
+	 *      @type bool   $has_premium_badge       Optional. Whether to show the "Premium" badge.
+	 * }
 	 */
-	public function __construct( Yoast_Form $yform, $title, $description, $page_type, $paper_style = true ) {
-		$this->yform       = $yform;
-		$this->title       = (string) $title;
-		$this->description = (string) $description;
-		$this->page_type   = (string) $page_type;
-		$this->paper_style = (bool) $paper_style;
+	public function __construct( Yoast_Form $yform, $arguments ) {
+		$arguments = wp_parse_args(
+			$arguments,
+			[
+				'paper_style'             => true,
+				'label_title'             => '',
+				'label_description'       => '',
+				'description_placeholder' => '',
+				'has_new_badge'           => false,
+				'is_disabled'             => false,
+				'has_premium_badge'       => false,
+			]
+		);
+
+		$this->validate_arguments( $arguments );
+
+		$this->yform     = $yform;
+		$this->arguments = [
+			'title'                   => (string) $arguments['title'],
+			'description'             => (string) $arguments['description'],
+			'page_type_recommended'   => (string) $arguments['page_type_recommended'],
+			'page_type_specific'      => (string) $arguments['page_type_specific'],
+			'paper_style'             => (bool) $arguments['paper_style'],
+			'label_title'             => (string) $arguments['label_title'],
+			'label_description'       => (string) $arguments['label_description'],
+			'description_placeholder' => (string) $arguments['description_placeholder'],
+			'has_new_badge'           => (bool) $arguments['has_new_badge'],
+			'is_disabled'             => (bool) $arguments['is_disabled'],
+			'has_premium_badge'       => (bool) $arguments['has_premium_badge'],
+		];
 	}
 
 	/**
@@ -59,19 +94,64 @@ class WPSEO_Replacevar_Editor {
 	 * @return void
 	 */
 	public function render() {
-		$this->yform->hidden( $this->title, $this->title );
-		$this->yform->hidden( $this->description, $this->description );
+		$this->yform->hidden( $this->arguments['title'], $this->arguments['title'] );
+		$this->yform->hidden( $this->arguments['description'], $this->arguments['description'] );
 
-		printf( '<div
+		printf(
+			'<div
 				data-react-replacevar-editor
 				data-react-replacevar-title-field-id="%1$s"
 				data-react-replacevar-metadesc-field-id="%2$s"
-				data-react-replacevar-page-type="%3$s"
-				data-react-replacevar-paper-style="%4$s"></div>',
-			esc_attr( $this->title ),
-			esc_attr( $this->description ),
-			esc_attr( $this->page_type ),
-			esc_attr( $this->paper_style )
+				data-react-replacevar-page-type-recommended="%3$s"
+				data-react-replacevar-page-type-specific="%4$s"
+				data-react-replacevar-paper-style="%5$s"
+				data-react-replacevar-label-title="%6$s"
+				data-react-replacevar-label-description="%7$s"
+				data-react-replacevar-description-placeholder="%8$s"
+				data-react-replacevar-has-new-badge="%9$s"
+				data-react-replacevar-is-disabled="%10$s"
+				data-react-replacevar-has-premium-badge="%11$s"
+			></div>',
+			esc_attr( $this->arguments['title'] ),
+			esc_attr( $this->arguments['description'] ),
+			esc_attr( $this->arguments['page_type_recommended'] ),
+			esc_attr( $this->arguments['page_type_specific'] ),
+			esc_attr( $this->arguments['paper_style'] ),
+			esc_attr( $this->arguments['label_title'] ),
+			esc_attr( $this->arguments['label_description'] ),
+			esc_attr( $this->arguments['description_placeholder'] ),
+			esc_attr( $this->arguments['has_new_badge'] ),
+			esc_attr( $this->arguments['is_disabled'] ),
+			esc_attr( $this->arguments['has_premium_badge'] )
 		);
+	}
+
+	/**
+	 * Validates the replacement variable editor arguments.
+	 *
+	 * @param array $arguments The arguments to validate.
+	 *
+	 * @throws InvalidArgumentException Thrown when not all required arguments are present.
+	 */
+	protected function validate_arguments( array $arguments ) {
+		$required_arguments = [
+			'title',
+			'description',
+			'page_type_recommended',
+			'page_type_specific',
+			'paper_style',
+		];
+
+		foreach ( $required_arguments as $field_name ) {
+			if ( ! array_key_exists( $field_name, $arguments ) ) {
+				throw new InvalidArgumentException(
+					sprintf(
+						/* translators: %1$s expands to the missing field name.  */
+						__( 'Not all required fields are given. Missing field %1$s', 'wordpress-seo' ),
+						$field_name
+					)
+				);
+			}
+		}
 	}
 }

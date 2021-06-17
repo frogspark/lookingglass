@@ -6,7 +6,7 @@ $post_type_object = get_post_type_object( 'page' );
 $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 ?>
 <div class="nestedpages-modal-backdrop" data-nestedpages-modal="np-link-modal"></div>
-<div class="nestedpages-modal-content <?php if ( $this->integrations->plugins->dark_mode->installed ) echo 'np-dark-mode'; ?>" id="np-link-modal" data-nestedpages-modal="np-link-modal">
+<div class="nestedpages-modal-content np-link-modal-content <?php if ( $this->integrations->plugins->dark_mode->installed ) echo 'np-dark-mode'; ?>" id="np-link-modal" data-nestedpages-modal="np-link-modal">
 
 	<div class="modal-content">
 		
@@ -33,6 +33,11 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 								ob_end_clean();
 								$out .= '</div>';
 								$out .= '<div class="np-menu-search-noresults">' . __('No Results', 'wp-nested-pages') . '</div></li>';
+
+								if ( $type->has_archive ) :
+									$out .= '<li data-default-result class="post-type-archive"><a href="#" data-np-menu-object="' . esc_attr($name) . '" data-np-menu-type="post_type_archive" data-np-object-name="' . sprintf(__('%s (Archive)'), esc_attr($type->labels->name)) . '" data-np-permalink="' . get_post_type_archive_link($name) . '" data-np-menu-selection>' . sprintf(__('%s (Archive)', 'wp-nested-pages'), esc_html($type->labels->name)) . '</a></li>';
+								endif;
+
 								foreach ( $recent_posts as $post ){
 									$out .= '<li data-default-result><a href="#" data-np-menu-object="' . esc_attr($name) . '" data-np-menu-type="post_type" data-np-menu-objectid="' . esc_attr($post->ID) . '" data-np-permalink="' . get_the_permalink($post->ID) . '" data-np-object-name="' . esc_attr($type->labels->singular_name) . '" data-np-menu-selection>' . esc_html($post->post_title) . '</a></li>';
 								}
@@ -88,7 +93,7 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 								<label><?php _e('CSS Classes (optional)', 'wp-nested-pages'); ?></label>
 								<input type="text" name="cssClasses" data-np-menu-css-classes />
 							</p>
-							<?php if ( $this->user->canSortPages() ) : // Menu Options Button ?>
+							<?php if ( $this->user->canSortPosts($this->post_type->name) ) : // Menu Options Button ?>
 							<label class="checkbox">
 								<input type="checkbox" name="linkTarget" class="link_target" data-np-menu-link-target />
 								<span class="checkbox-title"><?php _e( 'Open link in a new window/tab' ); ?></span>
@@ -100,23 +105,26 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 			</div><!-- .modal-body -->
 
 			<div class="modal-footer">
-				<input type="hidden" name="menuTitle" data-np-menu-title value="">
-				<input type="hidden" name="objectType" data-np-menu-object-input value="">
-				<input type="hidden" name="objectId" data-np-menu-objectid-input value="">
-				<input type="hidden" name="menuType" data-np-menu-type-input value="">
-				<input type="hidden" name="parent_id" class="parent_id" value="">
-				<button type="button" class="button modal-close" data-nestedpages-modal-close>
-					<?php _e('Cancel', 'wp-nested-pages'); ?>
-				</button>
+				<div class="footer-inner">
+					<input type="hidden" name="menuTitle" data-np-menu-title value="">
+					<input type="hidden" name="objectType" data-np-menu-object-input value="">
+					<input type="hidden" name="objectId" data-np-menu-objectid-input value="">
+					<input type="hidden" name="menuType" data-np-menu-type-input value="">
+					<input type="hidden" name="parent_id" class="parent_id" value="">
+					<input type="hidden" name="parent_post_type" class="parent-post-type" value="<?php echo $this->post_type->name; ?>" data-np-menu-parent-post-type>
+					<button type="button" class="button modal-close" data-nestedpages-modal-close>
+						<?php _e('Cancel', 'wp-nested-pages'); ?>
+					</button>
 
-				<a accesskey="s" class="button-primary" data-np-save-link style="display:none;float:right;">
-					<?php _e( 'Add', 'wp-nested-pages' ); ?>
-				</a>
-				<div class="np-qe-loading">
-					<?php include( NestedPages\Helpers::asset('images/spinner.svg') ); ?>
-				</div>
-
+					<a accesskey="s" class="button-primary" data-np-save-link style="display:none;float:right;">
+						<?php _e( 'Add', 'wp-nested-pages' ); ?>
+					</a>
+					<div class="np-qe-loading">
+						<?php include( NestedPages\Helpers::asset('images/spinner.svg') ); ?>
+					</div>
+				</div><!-- .footer-inner -->
 			</div><!-- .modal-footer -->
+			
 			</form>
 		</div><!-- #npmenuitems -->
 		

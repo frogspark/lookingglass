@@ -39,20 +39,37 @@ class PostFactory
 	*/
 	public function createChildPosts($data)
 	{
+		if ( !current_user_can('publish_posts') ) return;
+		$post_type = sanitize_text_field($data['post_type']);
+
+		// Set the initial menu order
+		$pq = new \WP_Query([
+			'post_type' => $post_type,
+			'post_parent' => sanitize_text_field($data['parent_id']),
+			'posts_per_page' => -1,
+			'fields' => 'ids'
+		]);
+		$menu_order = ( $pq->have_posts() ) ? count($pq->posts) : 0;
+		wp_reset_postdata();
+
 		foreach($data['post_title'] as $key => $title){
-			$post_type = sanitize_text_field($data['post_type']);
 			$post = [
 				'post_title' => sanitize_text_field($title),
 				'post_status' => sanitize_text_field($data['_status']),
 				'post_author' => sanitize_text_field($data['post_author']),
 				'post_parent' => sanitize_text_field($data['parent_id']),
-				'post_type' => $post_type
+				'post_type' => $post_type,
+				'menu_order' => $menu_order
 			];
 			$new_page_id = wp_insert_post($post);
 			$data['post_id'] = $new_page_id;
 			if ( isset($data['page_template']) ) $this->post_update_repo->updateTemplate($data);
 			if ( isset($data['nav_status']) ) $this->post_update_repo->updateNavStatus($data);
 			$this->new_ids[$key] = $new_page_id;
+
+			$new_post = get_post($new_page_id);
+			$new_post->post_content = (string) apply_filters('default_content', $new_post->post_content, $new_post);
+			wp_update_post($new_post);
 		}
 		return $this->getNewPosts($post_type);
 	}
@@ -62,6 +79,7 @@ class PostFactory
 	*/
 	public function createBeforeAfterPosts($data)
 	{
+		if ( !current_user_can('publish_posts') ) return;
 		global $wpdb;
 		$menu_order = 0;
 		$parent = false;
