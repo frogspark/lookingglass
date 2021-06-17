@@ -1,0 +1,762 @@
+@import 'variables';
+@import 'fonts';
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
+@import 'node_modules/aos/src/sass/aos.scss';
+@import 'node_modules/slick-carousel/slick/slick.scss';
+@import 'node_modules/@fortawesome/fontawesome-pro/scss/fontawesome.scss';
+@import 'node_modules/@fortawesome/fontawesome-pro/scss/light.scss';
+@import 'node_modules/@fortawesome/fontawesome-pro/scss/regular.scss';
+@import 'node_modules/@fortawesome/fontawesome-pro/scss/solid.scss';
+@import 'node_modules/@fortawesome/fontawesome-pro/scss/brands.scss';
+@import 'node_modules/@fortawesome/fontawesome-pro/scss/duotone.scss';
+@import 'mixins';
+
+html {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  position: absolute;
+  transition: transform 1000ms ease-in-out;
+  width: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+
+  > main {
+    flex: 1 1 auto;
+  }
+}
+
+::selection {
+  background-color: rgba(lighten($secondary, 10%), .5);
+  color: #FFFFFF;
+}
+
+p:empty {
+  display: none;
+}
+
+a {
+  transition: $transition;
+
+  &:focus {
+    outline: none !important;
+  }
+}
+
+.wysiwyg {
+  position: relative;
+
+  > *:last-child() {
+    margin-bottom: 0;
+  }
+
+  p > img {
+    margin-top: 16px;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      margin-bottom: 8px;
+      padding-left: 32px;
+      position: relative;
+
+      &:before {
+        color: $secondary;
+        content: '\f178';
+        font-family: 'Font Awesome 5 Pro';
+        left: 0;
+        position: absolute;
+      }
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  > ol {
+    list-style: none;
+    padding-left: 0;
+
+    > li {
+      counter-increment: count;
+      margin-bottom: 4px;
+      position: relative;
+      padding-left: 28px;
+
+      &:before {
+        color: $secondary;
+        content: counter(count) '.';
+        font-weight: bold;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 24px;
+      }
+
+      ol {
+        list-style: none;
+        margin: 8px 0 12px;
+        padding-left: 0;
+
+        > li {
+          counter-increment: counter;
+          margin-bottom: 4px;
+          padding-left: 28px;
+          position: relative;
+
+          &:before {
+            color: $secondary;
+            content: counter(counter) '.';
+            font-weight: bold;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 24px;
+          }
+        }
+      }
+    }
+  }
+
+  &.alt {
+    color: color-yiq($primary);
+  }
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none !important;
+}
+
+.rounded {
+  border-radius: .5rem !important;
+}
+
+.shadow {
+  box-shadow: 0px 0px 12px 0px rgba($primary, .25) !important;
+}
+
+.bg-wrapper {
+  overflow: hidden;
+  position: relative;
+
+  &:before {
+    background-color: rgba(0, 0, 0, .25);
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: $transition;
+    width: 100%;
+    z-index: 1;
+  }
+
+  > div {
+    transition: all .75s ease;
+  }
+}
+
+a:hover .bg-wrapper {
+  position: relative;
+
+  @include lg {
+    position: relative;
+
+    &:before {
+      background-color: rgba(0, 0, 0, .5);
+    }
+
+    > div {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.nf-form-wrap {
+  position: relative;
+
+  .nf-error-msg {
+    color: $primary;
+    text-align: center;
+
+    @include lg {
+      text-align: left;
+    }
+  }
+
+  .nf-error-required-error {
+    display: none;
+  }
+
+  .nf-before-form-content {
+    display: none;
+  }
+
+  .nf-form-content {
+    max-width: 100%;
+    padding: 0;
+
+    .list-select-wrap > div div:after {
+      display: none;
+    }
+  }
+
+  .nf-pass.field-wrap .nf-field-element:after,
+  .nf-error.field-wrap .nf-field-element:after {
+    display: none;
+  }
+
+  .nf-pass .ninja-forms-field,
+  .nf-error .ninja-forms-field {
+    border-color: $primary !important;
+  }
+
+  nf-fields-wrap {
+    display: block;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .nf-field-container {
+      margin-bottom: 8px;
+
+      @include md {
+        margin-bottom: 24px;
+      }
+
+      input:not([type="button"]),
+      textarea {
+        background-color: color-yiq($primary);
+        border: 1px solid $primary;
+        border-radius: 0;
+        color: $primary;
+        height: auto;
+        padding: 16px;
+        text-align: center;
+        transition: $transition;
+        width: 100%;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+
+        &:focus {
+          box-shadow: 0px 0px 0px 4px rgba($primary, .5);
+          outline: none;
+
+          &::placeholder {
+            opacity: .5;
+          }
+        }
+
+        &::placeholder {
+          color: $primary;
+          transition: $transition;
+        }
+
+        @include lg {
+          text-align: left;
+        }
+      }
+
+      textarea {
+        height: 128px;
+      }
+    }
+
+    .listselect-wrap .nf-field-element {
+      position: relative;
+  
+      > div {
+        display: none;
+      }
+  
+      &:after {
+        color: $primary;
+        content: '\f078';
+        font-family: 'Font Awesome 5 Pro';
+        font-weight: bold;
+        pointer-events: none;
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 5;
+      }
+  
+      select {
+        background-color: color-yiq($primary);
+        border: 1px solid $primary;
+        border-radius: 0;
+        color: $primary;
+        height: auto !important;
+        padding: 16px;
+        transition: $transition;
+        width: 100%;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+    
+        &:focus {
+          box-shadow: 0px 0px 0px 4px rgba($primary, .5);
+          outline: none;
+        }
+      }
+    }
+
+    .listradio-wrap {
+      position: relative;
+
+      ul {
+        display: block;
+
+        li {
+          display: block;
+          margin-bottom: 8px !important;
+          position: relative;
+          width: 100%;
+
+          &:last-of-type {
+            margin-bottom: 0 !important;
+          }
+
+          label {
+            line-height: 32px;
+            margin: 0;
+            padding-left: 48px;
+            position: relative;
+  
+            &.nf-checked-label:after {
+              opacity: 1;
+            }
+  
+            &:before {
+              border: 1px solid $primary;
+              border-radius: 100vh;
+              content: '';
+              height: 32px;
+              left: 0;
+              position: absolute;
+              top: 0;
+              width: 32px;
+            }
+  
+            &:after {
+              color: $primary;
+              content: '\f111';
+              font-family: 'Font Awesome 5 Pro';
+              font-weight: bold;
+              left: 8px;
+              opacity: 0;
+              position: absolute;
+              transition: $transition-base;
+            }
+          }
+
+          input {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .checkbox-container {
+      position: relative;
+
+      .nf-field-label {
+        display: block;
+        line-height: 32px;
+        padding-left: 48px;
+        width: 100%;
+
+        label {
+          font-weight: normal;
+          position: relative;
+
+          &.nf-checked-label:after {
+            opacity: 1;
+          }
+
+          &:before {
+            border: 1px solid $primary;
+            content: '';
+            height: 32px;
+            left: -48px;
+            position: absolute;
+            top: 0;
+            width: 32px;
+          }
+
+          &:after {
+            color: $primary;
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Pro';
+            left: -40px;
+            opacity: 0;
+            position: absolute;
+            transition: $transition-base;
+          }
+        }
+      }
+
+      .nf-field-element {
+        display: none;
+      }
+    }
+
+    .textarea-container {
+      margin-bottom: 0;
+
+      @include md {
+        margin-bottom: 16px;
+      }
+    }
+
+    .submit-container {
+      margin-bottom: 0;
+      text-align: center;
+
+      @include lg {
+        text-align: left;
+      }
+
+      input {
+        background-color: $primary;
+        border-radius: 0;
+        color: color-yiq($primary);
+        display: inline-block;
+        height: auto;
+        max-width: 100%;
+        min-width: 128px;
+        padding: 16px;
+        text-align: center;
+        transition: $transition;
+        -moz-appearance: none !important;
+        -webkit-appearance: none !important;
+
+        &:focus {
+          outline: none;
+        }
+
+        &:hover {
+          background-color: $primary;
+          box-shadow: 0px 0px 0px 4px rgba($primary, .5);
+          color: color-yiq($primary);
+        }
+      }
+    }
+
+    @include lg {
+      display: flex;
+
+      nf-field {
+        flex: 100%;
+  
+        &:nth-child(-n+4) {
+          flex: 50%;
+
+          &:nth-child(odd) {
+            padding-right: 12px;
+          }
+  
+          &:nth-child(even) {
+            padding-left: 12px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.slick-slider {
+  position: relative;
+
+  .slick-arrow {
+    position: relative;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .slick-list,
+  .slick-slide,
+  .slick-track {
+    backface-visibility: hidden;
+  }
+}
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+
+  span, a {
+    align-items: center;
+    color: $primary;
+    display: flex;
+    flex-direction: row;
+    font-weight: bold;
+    justify-content: center;
+    margin-bottom: 32px;
+    margin-left: 8px;
+    transition: $transition;
+  }
+
+  a {
+    opacity: .5;
+
+    &:hover {
+      color: $primary;
+      opacity: 1;
+    }
+  }
+}
+
+@each $label, $color in $theme-colors {
+  .btn-#{$label} {
+    background-color: $color;
+    border: 2px solid $color;
+    border-radius: 0;
+    color: color-yiq($color);
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+    transition: $transition;
+  }
+
+  a:hover .btn-#{$label},
+  .btn-#{$label}:hover {
+    background-color: color-yiq($color);
+    border: 2px solid $color;
+    box-shadow: 0px 0px 0px 4px rgba($color, .5);
+    color: $color;
+  }
+
+  .btn-underline-#{$label} {
+    color: $color;
+    position: relative;
+    transition: $transition;
+
+    &.active:before {
+      bottom: 0;
+      content: '';
+      opacity: 1;
+    }
+
+    &:before {
+      background-color: $color;
+      bottom: -4px;
+      content: '';
+      height: 1px;
+      left: 0;
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      transition: $transition;
+      width: 100%;
+
+      @include lg {
+        content: '';
+      }
+    }
+  }
+
+  a:hover .btn-underline-#{$label},
+  .btn-underline-#{$label}:hover {
+    color: $color;
+
+    &:before {
+      bottom: 0;
+      opacity: 1;
+    }
+  }
+}
+
+#header {
+  border-bottom: 1px solid rgba($primary, .25);
+  position: sticky;
+  top: 0;
+  transition: $transition;
+  z-index: 9;
+
+  .logo img {
+    height: 48px;
+    width: auto;
+  
+    @include lg {
+      height: 64px;
+    }
+  }
+
+  #burger {
+    background-color: transparent;
+    border: none;
+    position: relative;
+    z-index: 10;
+    
+    &:focus {
+      outline: none;
+    }
+  
+    span:not(.burger) {
+      color: $primary;
+    }
+  
+    .burger {
+      background-color: $primary;
+      height: 2px;
+      margin-left: 16px;
+      position: relative;
+      transition: $transition;
+      width: 24px;
+  
+      &:before, &:after {
+        background-color: $primary;
+        content: '';
+        height: 2px;
+        left: 0;
+        position: absolute;
+        transition: $transition;
+        width: 24px;
+      }
+  
+      &:before {
+        top: -8px;
+      }
+  
+      &:after {
+        top: 8px;
+      }
+    }
+  
+    &.open .burger:before,
+    &.open .burger:after {
+      top: 0;
+    }
+  }
+
+  #navigation-mobile ul {
+    align-items: center;
+    background-color: $primary;
+    flex-direction: column;
+    height: 0;
+    justify-content: center;
+    left: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    transition: $transition;
+    width: 100%;
+    z-index: 9;
+  
+    &.open {
+      height: 100vh;
+      pointer-events: all;
+  
+      li {
+        opacity: 1;
+        transition: all .75s ease .35s;
+        transform: translateY(0) translateZ(0) !important;
+
+        @for $i from 1 through 12 {
+          &:nth-child(#{$i}) {
+            transition-delay: #{256ms + ($i * 32ms)};
+            visibility: visible;
+          }
+        }
+      }
+    }
+  
+    li {
+      opacity: 0;
+      position: relative;
+
+      @for $i from 1 through 12 {
+        &:nth-child(#{$i}) {
+          transform: translateY(#{64px + ($i * 8px)}) translateZ(0);
+        }
+      }
+    }
+  }
+}
+
+.cc-window {
+  font-family: $font-family-sans-serif !important;
+
+  .cc-link {
+    padding: 0;
+    text-decoration: none;
+  }
+
+  .cc-btn {
+    background-color: $secondary !important;
+    border-radius: 0;
+    color: $primary !important;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 12px 28px 10px;
+    text-transform: uppercase;
+
+    &:hover {
+      background-color: $secondary !important;
+      color: $primary !important;
+    }
+  }
+}
+
+@include edge {
+  .nf-form-cont {
+    width: 100%;
+
+    nf-fields-wrap nf-field {
+      flex: none !important;
+      padding: 0 !important;
+      width: 100% !important;
+    }
+  }
+}
+
+@include ie {
+  .nf-form-cont {
+    width: 100%;
+
+    nf-fields-wrap nf-field {
+      flex: none !important;
+      padding: 0 !important;
+      width: 100% !important;
+    }
+  }
+
+  select::-ms-expand {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  h1, .h1 {
+    font-size: 1.75rem;
+  }
+  h2, .h2 {
+    font-size: 1.5rem;
+  }
+  h3, .h3 {
+    font-size: 1.3rem;
+  }
+  h4, .h4 {
+    font-size: 1.2rem;
+  }
+  h5, .h5 {
+    font-size: 1.1rem;
+  }
+  h6, .h6 {
+    font-size: 1rem;
+  }
+}

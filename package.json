@@ -1,0 +1,64 @@
+{
+  "name": "frogspark-boilerplate",
+  "version": "1.0.0",
+  "description": "This is Frogspark's Bedrock Boilerplate.",
+  "author": "Calum Ogilvie",
+  "main": "index.php",
+  "license": "GPL-3.0",
+  "homepage": "https://github.com/frogspark/boilerplate#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frogspark/boilerplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/anttiviljami/frogspark/boilerplate/issues"
+  },
+  "keywords": [
+    "wordpress",
+    "bedrock"
+  ],
+  "engines": {
+    "node": "^8.8.1",
+    "npm": "^5.4.2"
+  },
+  "scripts": {
+    "start": "gulp",
+    "sassLint": "sass-lint -c .scss-lint.yml './web/wp/app/themes/frogspark/scss/src/*.scss' -v -q",
+    "eslint": "eslint -c .eslintrc.js './web/wp/app/themes/frogspark/js/src/*.js'"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-pro": "^5.15.3",
+    "aos": "^2.3.4",
+    "bootstrap": "^5.0.1",
+    "jquery": "^3.6.0",
+    "letteringjs": "^0.7.0",
+    "magnific-popup": "^1.1.0",
+    "popper.js": "^1.14.6",
+    "slick-carousel": "^1.8.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.0",
+    "@babel/preset-env": "^7.14.1",
+    "@babel/register": "^7.13.16",
+    "acorn": "^7.4.1",
+    "babelify": "^10.0.0",
+    "browser-sync": "^2.26.14",
+    "browserify": "^16.5.2",
+    "globby": "^11.0.3",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-bro": "^2.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-notify": "^3.0.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-uglify": "^3.0.0",
+    "gulplog": "^1.0.0",
+    "through2": "^4.0.2",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  }
+}
