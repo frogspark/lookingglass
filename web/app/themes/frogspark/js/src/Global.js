@@ -22,7 +22,8 @@ $(document).ready(function(){
   // Scroll check.
   function scrollCheck() {
     if ($('#header.alt').length){
-      if ($(document).scrollTop() > 100) {
+      var header = $('#header').outerHeight();
+      if ($(document).scrollTop() > header) {
         $('#header').addClass('scroll');
       } else {
         $('#header').removeClass('scroll');

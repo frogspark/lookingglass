@@ -3,13 +3,18 @@
   <?php $alt = true; ?>
 <?php endif; ?>
 
-<header class="<?php if ($alt): echo 'alt'; endif; ?> py-2 py-lg-4" id="header">
+<header class="<?php if ($alt): echo 'alt'; endif; ?>" id="header">
   <div class="container">
     <div class="row">
-      <div class="align-items-center col-6 col-lg-auto d-flex flex-row">
-        <a class="logo" href="/"><img alt="<?php echo get_bloginfo('name'); ?>" src="<?php if ($alt): echo get_field('logo_alt', 'option')['url']; else: echo get_field('logo', 'option')['url']; endif;?>"></a>
+      <div class="align-items-center col-6 col-lg-auto d-flex flex-row position-relative py-2 py-lg-4" style="overflow: hidden;">
+        <?php if ($alt): ?>
+          <a class="alt logo" href="/"><img alt="<?php echo get_bloginfo('name'); ?>" src="<?php echo get_field('logo_alt', 'option')['url']; ?>"></a>
+          <a class="default logo" href="/"><img alt="<?php echo get_bloginfo('name'); ?>" src="<?php echo get_field('logo', 'option')['url']; ?>"></a>
+        <?php else: ?>
+          <a class="logo" href="/"><img alt="<?php echo get_bloginfo('name'); ?>" src="<?php echo get_field('logo', 'option')['url']; ?>"></a>
+        <?php endif; ?>
       </div>
-      <div class="align-items-center col-6 col-lg d-flex flex-row justify-content-end">
+      <div class="align-items-center col-6 col-lg d-flex flex-row justify-content-end py-2 py-lg-4">
         <nav class="d-none d-xl-block" id="navigation">
           <ul class="nav">
             <?php $menu = wp_get_nav_menu_items('Primary menu'); ?>

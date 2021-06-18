@@ -614,6 +614,18 @@ a:hover .bg-wrapper {
     }
   }
 
+  .alt.logo {
+    transition: $transition;
+    transition-delay: .25s;
+  }
+
+  .default.logo {
+    position: absolute;
+    transform: translateY(calc(100% + 16px));
+    transition: $transition;
+    transition-delay: 0s;
+  }
+
   #fullmenu,
   #burger {
     background-color: transparent;
@@ -765,7 +777,19 @@ a:hover .bg-wrapper {
   }
 
   &.scroll {
+    background-color: $quinary;
     position: fixed;
+    transition-delay: .25s;
+
+    .alt.logo {
+      opacity: 0;
+      transform: translateY(calc(-100% + 16px));
+    }
+  
+    .default.logo {
+      transform: translateY(0);
+      transition-delay: .25s;
+    }
 
     #fullmenu,
     #burger {
@@ -790,6 +814,10 @@ a:hover .bg-wrapper {
       &:before {
         background-color: $primary !important;
       }
+    }
+
+    #shortcuts:before {
+      background-color: $primary;
     }
   }
 }
