@@ -6,13 +6,31 @@ import slick from 'slick-carousel';
 import AOS from 'aos';
 
 $(document).ready(function(){
+  // Full menu.
+  function openFullMenu(openFull) { $('#fullmenu').toggleClass('open', openFull); $('#navigation-full ul').toggleClass('open', openFull); }
+  var openFull = false;
+  $('#fullmenu').on('click', function() { openFull = !openFull; openFullMenu(openFull); });
+
   // Burger menu.
-  function openMenu(open) { $('#burger').toggleClass('open', open); $('#navigation-mobile ul').toggleClass('open', open); }
-  var open = false;
-  $('#burger').on('click', function() { open = !open; openMenu(open); });
+  function openMobileMenu(openBurger) { $('#burger').toggleClass('open', openBurger); $('#navigation-mobile ul').toggleClass('open', openBurger); }
+  var openBurger = false;
+  $('#burger').on('click', function() { openBurger = !openBurger; openMobileMenu(openBurger); });
 
   // Active class.
-  $('#header .nav > li > a[href]').each(function() { if (this.href == window.location.href) { $(this).addClass('active'); } });
+  // $('#header .nav > li > a[href]').each(function() { if (this.href == window.location.href) { $(this).addClass('active'); } });
+
+  // Scroll check.
+  function scrollCheck() {
+    if ($('#header.alt').length){
+      if ($(document).scrollTop() > 100) {
+        $('#header').addClass('scroll');
+      } else {
+        $('#header').removeClass('scroll');
+      }
+    }
+  }
+  $(document).on('ready', function(){ scrollCheck(); });
+  $(window).on('scroll', function(){ scrollCheck(); });
 
   // AOS.
   AOS.init();

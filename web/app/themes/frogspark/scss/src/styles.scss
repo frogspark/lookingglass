@@ -48,6 +48,10 @@ a {
   }
 }
 
+.fw-semibold {
+  font-weight: 600;
+}
+
 .wysiwyg {
   position: relative;
 
@@ -546,22 +550,27 @@ a:hover .bg-wrapper {
     transition: $transition;
 
     &.active:before {
-      bottom: 0;
       content: '';
       opacity: 1;
+      width: 100%;
     }
 
-    &:before {
+    &.fw-semibold:before {
+      height: 2px;
+    }
+
+    &:before { 
       background-color: $color;
-      bottom: -4px;
+      bottom: -2px;
       content: '';
       height: 1px;
-      left: 0;
+      left: 50%;
       opacity: 0;
       pointer-events: none;
       position: absolute;
+      transform: translateX(-50%);
       transition: $transition;
-      width: 100%;
+      width: 0;
 
       @include lg {
         content: '';
@@ -574,28 +583,38 @@ a:hover .bg-wrapper {
     color: $color;
 
     &:before {
-      bottom: 0;
       opacity: 1;
+      width: 100%;
     }
   }
 }
 
 #header {
-  border-bottom: 1px solid rgba($primary, .25);
-  position: sticky;
+  left: 0;
+  position: fixed;
   top: 0;
   transition: $transition;
+  width: 100%;
   z-index: 9;
 
   .logo img {
-    height: 48px;
+    height: 40px;
     width: auto;
+
+    @include md {
+      height: 48px;
+    }
   
     @include lg {
       height: 64px;
     }
+
+    @include xl {
+      height: 72px;
+    }
   }
 
+  #fullmenu,
   #burger {
     background-color: transparent;
     border: none;
@@ -608,12 +627,12 @@ a:hover .bg-wrapper {
   
     span:not(.burger) {
       color: $primary;
+      transition: $transition;
     }
   
     .burger {
       background-color: $primary;
       height: 2px;
-      margin-left: 16px;
       position: relative;
       transition: $transition;
       width: 24px;
@@ -640,6 +659,22 @@ a:hover .bg-wrapper {
     &.open .burger:before,
     &.open .burger:after {
       top: 0;
+    }
+
+    &.alt {
+      position: relative;
+
+      span:not(.burger) {
+        color: $quinary;
+      }
+
+      .burger {
+        background-color: $quinary;
+
+        &:before, &:after {
+          background-color: $quinary;
+        }
+      }
     }
   }
 
@@ -683,6 +718,77 @@ a:hover .bg-wrapper {
         &:nth-child(#{$i}) {
           transform: translateY(#{64px + ($i * 8px)}) translateZ(0);
         }
+      }
+    }
+  }
+
+  #shortcuts {
+    position: relative;
+
+    a {
+      position: relative;
+
+      @include lg {
+        z-index: 1;
+
+        &:before {
+          background-color: $secondary;
+          border-radius: 100vh;
+          content: '';
+          height: 40px;
+          left: 50%;
+          opacity: 0;
+          position: absolute;
+          top: 50%;
+          transform: translateX(-50%) translateY(-50%) scale(0);
+          transition: $transition;
+          width: 40px;
+          z-index: -1;
+        }
+  
+        &:hover:before {
+          opacity: .25;
+          transform: translateX(-50%) translateY(-50%) scale(1);
+        }
+      }
+    }
+
+    &:before {
+      background-color: $quaternary;
+      height: 40px;
+      width: 1px;
+
+      @include xl {
+        content: '';
+      }
+    }
+  }
+
+  &.scroll {
+    position: fixed;
+
+    #fullmenu,
+    #burger {
+      position: relative;
+    
+      span:not(.burger) {
+        color: $primary;
+      }
+    
+      .burger {
+        background-color: $primary;
+    
+        &:before, &:after {
+          background-color: $primary;
+        }
+      }
+    }
+
+    #navigation .btn-underline-quinary {
+      color: $primary !important;
+
+      &:before {
+        background-color: $primary !important;
       }
     }
   }
