@@ -51,5 +51,8 @@
       "content": {"href": "/cookie-policy/"}
     })});
   </script>
+
+  <!-- IvyMode -->
+  <link rel="stylesheet" href="https://use.typekit.net/lac5rsq.css">
 </head>
 <body <?php body_class(); ?>>
