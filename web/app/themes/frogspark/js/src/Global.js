@@ -7,12 +7,12 @@ import AOS from 'aos';
 
 $(document).ready(function(){
   // Full menu.
-  function openFullMenu(openFull) { $('#fullmenu').toggleClass('open', openFull); $('#navigation-full ul').toggleClass('open', openFull); }
+  function openFullMenu(openFull) { $('#fullmenu').toggleClass('open', openFull); $('#navigation-full ul').toggleClass('open', openFull); $('#header').toggleClass('open', openFull); }
   var openFull = false;
   $('#fullmenu').on('click', function() { openFull = !openFull; openFullMenu(openFull); });
 
   // Burger menu.
-  function openMobileMenu(openBurger) { $('#burger').toggleClass('open', openBurger); $('#navigation-mobile ul').toggleClass('open', openBurger); }
+  function openMobileMenu(openBurger) { $('#burger').toggleClass('open', openBurger); $('#navigation-mobile ul').toggleClass('open', openBurger); $('#header').toggleClass('open', openBurger); }
   var openBurger = false;
   $('#burger').on('click', function() { openBurger = !openBurger; openMobileMenu(openBurger); });
 
@@ -21,13 +21,11 @@ $(document).ready(function(){
 
   // Scroll check.
   function scrollCheck() {
-    if ($('#header.alt').length){
-      var header = $('#header').outerHeight();
-      if ($(document).scrollTop() > header) {
-        $('#header').addClass('scroll');
-      } else {
-        $('#header').removeClass('scroll');
-      }
+    var header = $('#header').outerHeight();
+    if ($(document).scrollTop() > header) {
+      $('#header').addClass('scroll');
+    } else {
+      $('#header').removeClass('scroll');
     }
   }
   $(document).on('ready', function(){ scrollCheck(); });

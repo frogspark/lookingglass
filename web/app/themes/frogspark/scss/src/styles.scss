@@ -616,14 +616,12 @@ a:hover .bg-wrapper {
 
   .alt.logo {
     transition: $transition;
-    transition-delay: .25s;
   }
 
   .default.logo {
+    opacity: 0;
     position: absolute;
-    transform: translateY(calc(100% + 16px));
     transition: $transition;
-    transition-delay: 0s;
   }
 
   #fullmenu,
@@ -667,11 +665,6 @@ a:hover .bg-wrapper {
         top: 8px;
       }
     }
-  
-    &.open .burger:before,
-    &.open .burger:after {
-      top: 0;
-    }
 
     &.alt {
       position: relative;
@@ -688,26 +681,65 @@ a:hover .bg-wrapper {
         }
       }
     }
+
+    &.open {
+      position: relative;
+
+      span:not(.burger) {
+        color: $primary;
+      }
+
+      .burger {
+        background-color: $primary;
+        transform: rotate(45deg);
+
+        &:before, &:after {
+          background-color: $primary;
+        }
+
+        &:before {
+          top: 0;
+        }
+
+        &:after {
+          top: 0;
+          transform: rotate(-90deg);
+        }
+      }
+    }
+
+    &:hover {
+      position: relative;
+
+      .burger:before,
+      .burger:after {
+        top: 0;
+      }
+    }
   }
 
+  #burger {
+    height: 18px;
+  }
+
+  #navigation-full ul,
   #navigation-mobile ul {
     align-items: center;
-    background-color: $primary;
     flex-direction: column;
     height: 0;
     justify-content: center;
     left: 0;
+    overflow: scroll;
     pointer-events: none;
     position: fixed;
     top: 0;
     transition: $transition;
     width: 100%;
     z-index: 9;
-  
+
     &.open {
-      height: 100vh;
       pointer-events: all;
-  
+
       li {
         opacity: 1;
         transition: all .75s ease .35s;
@@ -721,7 +753,7 @@ a:hover .bg-wrapper {
         }
       }
     }
-  
+
     li {
       opacity: 0;
       position: relative;
@@ -731,6 +763,31 @@ a:hover .bg-wrapper {
           transform: translateY(#{64px + ($i * 8px)}) translateZ(0);
         }
       }
+    }
+  }
+
+  #navigation-full ul {
+    background-color: $quinary;
+    box-shadow: 0px 0px 8px 4px rgba(0, 0, 0, .05);
+
+    &.open {
+      height: 50vh;
+
+      @include lg {
+        padding-top: 96px;
+      }
+
+      @include xl {
+        padding-top: 104px;
+      }
+    }
+  }
+
+  #navigation-mobile ul {
+    background-color: $quinary;
+  
+    &.open {
+      height: 100vh;
     }
   }
 
@@ -770,7 +827,7 @@ a:hover .bg-wrapper {
       height: 40px;
       width: 1px;
 
-      @include xl {
+      @include lg {
         content: '';
       }
     }
@@ -778,17 +835,16 @@ a:hover .bg-wrapper {
 
   &.scroll {
     background-color: $quinary;
+    border-bottom: 1px solid $quaternary;
+    box-shadow: 0px 0px 8px 4px rgba(0, 0, 0, .05);
     position: fixed;
-    transition-delay: .25s;
 
     .alt.logo {
       opacity: 0;
-      transform: translateY(calc(-100% + 16px));
     }
   
     .default.logo {
-      transform: translateY(0);
-      transition-delay: .25s;
+      opacity: 1;
     }
 
     #fullmenu,
@@ -819,6 +875,24 @@ a:hover .bg-wrapper {
     #shortcuts:before {
       background-color: $primary;
     }
+  }
+
+  &.open {
+    position: fixed;
+
+    .alt.logo {
+      opacity: 0;
+    }
+  
+    .default.logo {
+      opacity: 1;
+    }
+  }
+
+  &:not(.alt) {
+    background-color: $quinary;
+    border-bottom: 1px solid $quaternary;
+    position: sticky;
   }
 }
 
