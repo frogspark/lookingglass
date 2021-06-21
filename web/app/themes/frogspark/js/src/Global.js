@@ -57,12 +57,14 @@ $(document).ready(function(){
         {
           breakpoint: 768,
           settings: {
+            fade: true,
             slidesToShow: 2,
           }
         },
         {
           breakpoint: 992,
           settings: {
+            fade: false,
             slidesToShow: 3,
           }
         },
