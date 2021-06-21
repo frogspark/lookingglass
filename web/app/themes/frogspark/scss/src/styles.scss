@@ -713,7 +713,10 @@ a:hover .bg-wrapper {
 
       .burger:before,
       .burger:after {
-        top: 0;
+
+        @include lg {
+          top: 0;
+        }
       }
     }
   }
@@ -1048,6 +1051,7 @@ a:hover .bg-wrapper {
     appearance: none;
     background-color: $quinary;
     border: none;
+    padding: 0 !important;
     width: 100%;
     -moz-appearance: none;
     -webkit-appearance: none;
