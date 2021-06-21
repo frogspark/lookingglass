@@ -22,6 +22,7 @@ $(document).ready(function(){
   // Scroll check.
   function scrollCheck() {
     var header = $('#header').outerHeight();
+    header = header / 2;
     if ($(document).scrollTop() > header) {
       $('#header').addClass('scroll');
     } else {

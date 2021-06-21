@@ -323,8 +323,68 @@ add_filter('show_admin_bar', '__return_false');
 function get_search($full = true, $type = false) {
 ?>
 
-  <div class="bg-quinary px-8 py-8">
-
+  <div class="bg-quinary px-8 py-8" id="search">
+    <form action="/" method="get">
+      <div class="d-flex flex-row flex-wrap mb-6 search-types">
+        <input checked class="d-none" id="sales" name="type" type="radio" value="sales">
+        <label class="pb-2 pb-lg-4 pe-sm-8 ps-sm-8 ps-lg-0 pt-2 pt-lg-0 text-sm-center text-lg-start" for="sales">Sales</label>
+        <input class="d-none" id="rentals" name="type" type="radio" value="rentals">
+        <label class="pb-2 pb-lg-4 px-sm-8 pt-2 pt-lg-0 text-sm-center text-lg-start" for="rentals">Rentals</label>
+        <input class="d-none" id="commercial" name="type" type="radio" value="commercial">
+        <label class="pb-2 pb-lg-4 px-sm-8 pt-2 pt-lg-0 text-sm-center text-lg-start" for="commercial">Commercial</label>
+        <input class="d-none" id="yachts" name="type" type="radio" value="yachts">
+        <label class="pb-2 pb-lg-4 px-sm-8 pt-2 pt-lg-0 text-sm-center text-lg-start" for="yachts">Yachts</label>
+      </div>
+      <div class="d-flex flex-column flex-lg-row">
+        <div class="d-flex flex-column flex-fill mb-4 mb-lg-0 pe-lg-4 search-group">
+          <label class="fw-semibold mb-lg-1" for="island">Preferred island</label>
+          <div class="select-wrapper">
+            <select id="island" name="island">
+              <option default value="0">Anywhere</option>
+              <option value="island-1">Island 1</option>
+              <option value="island-2">Island 2</option>
+              <option value="island-3">Island 3</option>
+            </select>
+          </div>
+        </div>
+        <div class="d-flex flex-column flex-fill mb-4 mb-lg-0 px-lg-4 search-group">
+          <label class="fw-semibold mb-lg-1" for="min-price">Min price</label>
+          <div class="select-wrapper">
+            <select id="min-price" name="min-price">
+              <option default value="0">Any</option>
+              <option value="0-5000">£0 - £5,000</option>
+              <option value="5000-10000">£5,000 - £10,000</option>
+              <option value="10000">£10,000+</option>
+            </select>
+          </div>
+        </div>
+        <div class="d-flex flex-column flex-fill mb-4 mb-lg-0 px-lg-4 search-group">
+          <label class="fw-semibold mb-lg-1" for="max-price">Max price</label>
+          <div class="select-wrapper">
+            <select id="max-price" name="max-price">
+              <option default value="0">Any</option>
+              <option value="0-5000">£0 - £5,000</option>
+              <option value="5000-10000">£5,000 - £10,000</option>
+              <option value="10000">£10,000+</option>
+            </select>
+          </div>
+        </div>
+        <div class="d-flex flex-column flex-fill mb-4 mb-lg-0 px-lg-4 search-group">
+          <label class="fw-semibold mb-lg-1" for="beds">No. of beds</label>
+          <div class="select-wrapper">
+            <select id="beds" name="beds">
+              <option default value="0">Any</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+        </div>
+        <div class="align-items-center align-items-lg-end d-flex flex-column flex-fill ps-lg-4">
+          <input type="submit" value="">
+        </div>
+      </div>
+    </form>
   </div>
 
 <?php
