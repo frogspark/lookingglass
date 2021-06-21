@@ -37,11 +37,56 @@
     <div class="container">
       <div class="justify-content-center row">
         <div class="col-12 col-md-10 col-lg-12 col-xl-10 mt-lg-n24" data-aos="fade-up" data-aos-delay="50" style="z-index: 2;">
-          <div class="bg-quinary border border-quaternary px-4 px-lg-12 py-12">
+          <div class="bg-quinary border border-quaternary px-4 px-sm-8 px-lg-12 py-12">
             <div class="justify-content-center row">
-              <div class="col-12 col-md-10 col-lg-8 col-xl-6 mb-8 text-center">
+              <div class="col-12 col-lg-8 col-xl-6 mb-8 text-center">
                 <h2><?php the_field('featured_title'); ?></h2>
                 <div class="wysiwyg"><p class="mb-0"><?php the_field('featured_text'); ?></p></div>
+              </div>
+            </div>
+            <div class="justify-content-center row">
+              <div class="col-12 mb-8">
+                <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                  <?php for ($x = 1; $x <= 4; $x++): ?>
+                    <li class="nav-item" role="presentation"><button aria-controls="pills-<?php if ($x == 1): echo 'sales'; elseif ($x == 2): echo 'rentals'; elseif ($x == 3): echo 'commercial'; else: echo 'yachts'; endif; ?>-tab" aria-selected="true" class="<?php if ($x == 1): echo 'active'; endif; ?> nav-link pb-2 pb-lg-4 <?php if ($x == 1): echo 'pe-sm-8 ps-sm-8 ps-lg-0'; else: echo 'px-sm-8'; endif; ?> pt-2 pt-lg-0 text-start text-sm-center text-lg-start" data-bs-target="#pills-<?php if ($x == 1): echo 'sales'; elseif ($x == 2): echo 'rentals'; elseif ($x == 3): echo 'commercial'; else: echo 'yachts'; endif; ?>" data-bs-toggle="pill" id="pills-<?php if ($x == 1): echo 'sales'; elseif ($x == 2): echo 'rentals'; elseif ($x == 3): echo 'commercial'; else: echo 'yachts'; endif; ?>-tab" role="tab" type="button"><?php if ($x == 1): echo 'Sales'; elseif ($x == 2): echo 'Rentals'; elseif ($x == 3): echo 'Commercial'; else: echo 'Yachts'; endif; ?></button></li>
+                  <?php endfor; ?>
+                </ul>
+              </div>
+              <div class="col-12 px-0">
+                <div class="tab-content">
+                  <?php for ($x = 1; $x <= 4; $x++): ?>
+                    <div aria-labelledby="pills-<?php if ($x == 1): echo 'sales'; elseif ($x == 2): echo 'rentals'; elseif ($x == 3): echo 'commercial'; else: echo 'yachts'; endif; ?>-tab" class="tab-pane fade <?php if ($x == 1): echo 'active show'; endif; ?>" id="pills-<?php if ($x == 1): echo 'sales'; elseif ($x == 2): echo 'rentals'; elseif ($x == 3): echo 'commercial'; else: echo 'yachts'; endif; ?>" role="tabpanel">
+                      <div class="carousel-featured mb-8 pb-10 pb-lg-0 px-n4">
+                        <?php for ($i = 1; $i <= 3; $i++): ?>
+                          <div class="px-4">
+                            <div class="property">
+                              <div class="gallery mb-4">
+                                <div class="carousel-gallery">
+                                  <?php for ($z = 1; $z <= 3; $z++): ?>
+                                    <div><div class="bg-portrait" style="background-image: url(/app/uploads/2021/06/placeholder.jpg);"></div></div>
+                                  <?php endfor; ?>
+                                </div>
+                                <a class="heart" href="/"></a>
+                                <?php if ($i == 2): echo '<span class="bg-secondary h5 note px-2 py-1 text-quinary">New listing</span>'; endif; ?>
+                              </div>
+                              <div class="row">
+                                <div class="col-12 col-lg-6 mb-2 mb-lg-0 text-center text-lg-start">
+                                  <p class="fw-semibold mb-1">3 bed apartment</p>
+                                  <p class="mb-1">Kingston</p>
+                                  <p class="mb-0">USD $575,000</p>
+                                </div>
+                                <div class="col-12 col-lg-6 d-flex flex-column justify-content-end">
+                                  <p class="mb-0 text-center text-lg-end"><a class="btn-arrow-secondary" href="/">More details</a></p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        <?php endfor; ?>
+                      </div>
+                      <p class="mb-0 text-center"><a class="btn-secondary" href="/">Show me more</a></p>
+                    </div>
+                  <?php endfor; ?>
+                </div>
               </div>
             </div>
           </div>

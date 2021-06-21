@@ -32,7 +32,7 @@ $(document).ready(function(){
   $(document).on('ready', function(){ scrollCheck(); });
   $(window).on('scroll', function(){ scrollCheck(); });
 
-  // Hero slider.
+  // Hero carousel.
   $('.carousel-images').slick({
     arrows: false,
     fade: true,
@@ -44,6 +44,46 @@ $(document).ready(function(){
     infinite: false,
     nextArrow: '<button class="slick-arrow slick-next"><i class="far fa-arrow-right"></i></button>',
     prevArrow: '<button class="slick-arrow slick-prev"><i class="far fa-arrow-left"></i></button>',
+  });
+
+  function propertySlick() {
+    $('.carousel-featured').slick({
+      infinite: false,
+      mobileFirst: true,
+      nextArrow: '<button class="slick-arrow slick-next"><i class="far fa-arrow-right"></i></button>',
+      prevArrow: '<button class="slick-arrow slick-prev"><i class="far fa-arrow-left"></i></button>',
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2,
+          }
+        },
+        {
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 3,
+          }
+        },
+      ],
+    });
+    $('.carousel-gallery').slick({
+      accessibility: false,
+      dots: true,
+      draggable: false,
+      infinite: false,
+      nextArrow: '<button class="slick-arrow slick-next"><i class="far fa-arrow-right"></i></button>',
+      prevArrow: '<button class="slick-arrow slick-prev"><i class="far fa-arrow-left"></i></button>',
+      swipe: false,
+      swipteToSlide: false,
+      touchMove: false,
+    });
+  }
+  propertySlick();
+  $('[data-bs-toggle="pill"]').on('shown.bs.tab', function(e) {
+    $('.carousel-featured').slick('unslick');
+    $('.carousel-gallery').slick('unslick');
+    propertySlick();
   });
 
   // AOS.

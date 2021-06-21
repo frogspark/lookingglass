@@ -323,7 +323,7 @@ add_filter('show_admin_bar', '__return_false');
 function get_search($full = true, $type = false) {
 ?>
 
-  <div class="bg-quinary px-8 py-8" id="search">
+  <div class="bg-quinary px-4 px-sm-8 py-8" id="search">
     <form action="/" method="get">
       <div class="d-flex flex-row flex-wrap mb-6 search-types">
         <input checked class="d-none" id="sales" name="type" type="radio" value="sales">
