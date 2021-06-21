@@ -42,7 +42,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12 py-6 text-center text-lg-start">
-        <p class="mb-0">© Copyright <?php echo get_bloginfo('name'); ?>. <span class="d-block d-lg-inline-block">All rights reserved <?php echo date('Y'); ?></span></p>
+        <p class="mb-0">© Copyright <?php echo get_bloginfo('name'); ?>. <span class="d-block d-lg-inline-block">All rights reserved <?php echo date('Y'); ?>.</span></p>
       </div>
     </div>
   </div>
