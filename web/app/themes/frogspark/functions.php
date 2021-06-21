@@ -315,3 +315,17 @@ add_action('login_head', 'custom_login_logo');
 */
 
 add_filter('show_admin_bar', '__return_false');
+
+/*
+* Get search.
+*/
+
+function get_search($full = true, $type = false) {
+?>
+
+  <div class="bg-quinary px-8 py-8">
+
+  </div>
+
+<?php
+}

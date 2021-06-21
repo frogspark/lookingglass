@@ -2,6 +2,105 @@
     "key": "group_5f7efa1bc4378",
     "title": "Front",
     "fields": [
+        {
+            "key": "field_60d05185c8158",
+            "label": "Hero",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_60d0518bc8159",
+            "label": "Title",
+            "name": "hero_title",
+            "type": "text",
+            "instructions": "The title which will be used for this section.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_60d0519cc815a",
+            "label": "Images",
+            "name": "hero_images",
+            "type": "repeater",
+            "instructions": "The images which will be used for this section.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 1,
+            "max": 0,
+            "layout": "block",
+            "button_label": "Add image",
+            "sub_fields": [
+                {
+                    "key": "field_60d058aa19352",
+                    "label": "Title",
+                    "name": "title",
+                    "type": "text",
+                    "instructions": "The title which will be used for this section.",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_60d051afc815b",
+                    "label": "Image",
+                    "name": "image",
+                    "type": "image",
+                    "instructions": "The image which will be used for this section.",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "preview_size": "medium",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": ""
+                }
+            ]
+        }
     ],
     "location": [
         [
@@ -35,5 +134,5 @@
     ],
     "active": true,
     "description": "The fields which will be used for the front page.",
-    "modified": 1602236216
+    "modified": 1624266945
 }

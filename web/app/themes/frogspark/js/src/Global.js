@@ -31,6 +31,20 @@ $(document).ready(function(){
   $(document).on('ready', function(){ scrollCheck(); });
   $(window).on('scroll', function(){ scrollCheck(); });
 
+  // Hero slider.
+  $('.carousel-images').slick({
+    arrows: false,
+    fade: true,
+  });
+  $('.carousel-hero').slick({
+    asNavFor: '.carousel-images',
+    dots: true,
+    fade: true,
+    infinite: false,
+    nextArrow: '<button class="slick-arrow slick-next"><i class="far fa-arrow-right"></i></button>',
+    prevArrow: '<button class="slick-arrow slick-prev"><i class="far fa-arrow-left"></i></button>',
+  });
+
   // AOS.
   AOS.init();
   setTimeout(function(){ AOS.init(); }, 500);

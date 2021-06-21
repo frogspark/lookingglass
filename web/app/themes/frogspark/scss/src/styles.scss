@@ -896,6 +896,150 @@ a:hover .bg-wrapper {
   }
 }
 
+.hero {
+  padding-top: 56px;
+  position: relative;
+
+  &:before {
+    background-color: rgba(0, 0, 0, .25);
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+  }
+
+  &.front {
+
+    @include lg {
+      height: 100vh;
+    }
+  }
+
+  &.slider {
+    position: relative;
+
+    .carousel-hero {
+      padding-top: 32px;
+      position: relative;
+
+      .slick-arrow {
+        background-color: transparent;
+        border: none;
+        left: 0;
+        padding: 0;
+        position: absolute;
+        transition: $transition;
+        top: 0;
+
+        i {
+          color: $quaternary;
+          transition: $transition;
+        }
+
+        &.slick-disabled {
+          opacity: .25;
+          pointer-events: none;
+        }
+
+        &.slick-next {
+          left: 32px;;
+        }
+
+        &:hover i {
+          color: $secondary;
+        }
+      }
+
+      .slick-dots {
+        display: flex !important;
+        flex-direction: row;
+        left: 64px;
+        list-style: none;
+        margin: 0;
+        padding-left: 0;
+        position: absolute;
+        top: 11px;
+        width: 198px;
+
+        li {
+          display: flex;
+          flex-direction: row;
+          flex: 1 1 auto!important;
+
+          &.slick-active button {
+            background-color: $secondary;
+          }
+
+          button {
+            background-color: $quaternary;
+            border: none;
+            font-size: 0;
+            height: 2px;
+            padding: 0;
+            transition: $transition;
+            width: 100%;
+          }
+        }
+
+        @include xl {
+          width: 256px;
+        }
+      }
+    }
+
+    .carousel-images {
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+
+      .slick-list {
+        height: 100%;
+        pointer-events: none;
+
+        .slick-track {
+          height: 100%;
+
+          .slick-slide > div {
+            height: 100%;
+
+            > div {
+              height: 100%;
+
+              > div {
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                height: 100%;
+              }
+            }
+          }
+        }
+      }
+
+      .slick-arrow {
+        position: absolute;
+      }
+    }
+  }
+  
+  @include md {
+    padding-top: 64px;
+  }
+
+  @include lg {
+    padding-top: 96px;
+  }
+
+  @include xl {
+    padding-top: 104px;
+  }
+}
+
 .cc-window {
   font-family: $font-family-sans-serif !important;
 
