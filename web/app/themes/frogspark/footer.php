@@ -3,7 +3,7 @@
 <section class="bg-quaternary" data-aos="fade">
   <div class="container">
     <div class="justify-content-center row">
-      <div class="col-12 col-md-10 col-lg-4">
+      <div class="col-lg-4 d-none d-lg-block">
         <div class="bg-landscape" style="background-image: url(/app/uploads/2021/06/placeholder.jpg); min-height: 100%;"></div>
       </div>
       <div class="col-12 col-md-10 col-lg-8 pb-4 pb-lg-16 pt-12 pt-lg-24">
