@@ -154,6 +154,141 @@
             "toolbar": "full",
             "media_upload": 0,
             "delay": 0
+        },
+        {
+            "key": "field_60d1cd25a4a90",
+            "label": "CTAs",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_60d1cd2aa4a91",
+            "label": "CTAs",
+            "name": "ctas",
+            "type": "repeater",
+            "instructions": "The CTAs which will be used for this section.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 1,
+            "max": 0,
+            "layout": "block",
+            "button_label": "Add CTA",
+            "sub_fields": [
+                {
+                    "key": "field_60d1cd4ca4a92",
+                    "label": "Title",
+                    "name": "title",
+                    "type": "text",
+                    "instructions": "The title which will be used for this section.",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_60d1cd5da4a93",
+                    "label": "Text",
+                    "name": "text",
+                    "type": "textarea",
+                    "instructions": "The text which will be used for this section.",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 4,
+                    "new_lines": ""
+                },
+                {
+                    "key": "field_60d1cd6ea4a94",
+                    "label": "Button",
+                    "name": "button",
+                    "type": "link",
+                    "instructions": "The button which will be used for this section.",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array"
+                },
+                {
+                    "key": "field_60d1cd85a4a95",
+                    "label": "Images",
+                    "name": "images",
+                    "type": "repeater",
+                    "instructions": "The images which will be used for this section.",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "collapsed": "",
+                    "min": 2,
+                    "max": 2,
+                    "layout": "block",
+                    "button_label": "Add image",
+                    "sub_fields": [
+                        {
+                            "key": "field_60d1cdd8a4a96",
+                            "label": "Image",
+                            "name": "image",
+                            "type": "image",
+                            "instructions": "The image which will be used for this section.",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "preview_size": "medium",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": ""
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "location": [
@@ -188,5 +323,5 @@
     ],
     "active": true,
     "description": "The fields which will be used for the front page.",
-    "modified": 1624277812
+    "modified": 1624362524
 }

@@ -55,7 +55,7 @@ a {
 .wysiwyg {
   position: relative;
 
-  > *:last-child() {
+  > *:last-child {
     margin-bottom: 0;
   }
 
@@ -156,7 +156,7 @@ button:focus {
   position: relative;
 
   &:before {
-    background-color: rgba(0, 0, 0, .25);
+    background-color: rgba($secondary, 0);
     content: '';
     height: 100%;
     left: 0;
@@ -167,8 +167,27 @@ button:focus {
     z-index: 1;
   }
 
-  > div {
-    transition: all .75s ease;
+  &:after {
+    align-items: center;
+    background-color: transparent;
+    border: 2px solid $quinary;
+    border-radius: 100vh;
+    color: $quinary;
+    content: '\f061';
+    display: flex;
+    flex-direction: row;
+    font-family: $font-awesome;
+    font-size: $h4-font-size;
+    height: 68px;
+    justify-content: center;
+    left: 50%;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%) scale(1.25) rotate(0deg);
+    transition: $transition;
+    width: 68px;
+    z-index: 2;
   }
 }
 
@@ -179,11 +198,14 @@ a:hover .bg-wrapper {
     position: relative;
 
     &:before {
-      background-color: rgba(0, 0, 0, .5);
+      background-color: rgba($secondary, 1);
     }
 
-    > div {
-      transform: scale(1.1);
+    &:after {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-50%) scale(1) rotate(310deg);
+      transition: all .5s ease;
+      transition-delay: .15s;
     }
   }
 }
@@ -279,11 +301,11 @@ a:hover .bg-wrapper {
 
     .listselect-wrap .nf-field-element {
       position: relative;
-  
+
       > div {
         display: none;
       }
-  
+
       &:after {
         color: $primary;
         content: '\f078';
@@ -296,7 +318,7 @@ a:hover .bg-wrapper {
         transform: translateY(-50%);
         z-index: 5;
       }
-  
+
       select {
         background-color: color-yiq($primary);
         border: 1px solid $primary;
@@ -308,7 +330,7 @@ a:hover .bg-wrapper {
         width: 100%;
         -moz-appearance: none;
         -webkit-appearance: none;
-    
+
         &:focus {
           box-shadow: 0px 0px 0px 4px rgba($primary, .5);
           outline: none;
@@ -337,11 +359,11 @@ a:hover .bg-wrapper {
             margin: 0;
             padding-left: 48px;
             position: relative;
-  
+
             &.nf-checked-label:after {
               opacity: 1;
             }
-  
+
             &:before {
               border: 1px solid $primary;
               border-radius: 100vh;
@@ -352,11 +374,11 @@ a:hover .bg-wrapper {
               top: 0;
               width: 32px;
             }
-  
+
             &:after {
               color: $primary;
               content: '\f111';
-              font-family: 'Font Awesome 5 Pro';
+              font-family: $font-awesome;
               font-weight: bold;
               left: 8px;
               opacity: 0;
@@ -463,14 +485,14 @@ a:hover .bg-wrapper {
 
       nf-field {
         flex: 100%;
-  
+
         &:nth-child(-n+4) {
           flex: 50%;
 
           &:nth-child(odd) {
             padding-right: 12px;
           }
-  
+
           &:nth-child(even) {
             padding-left: 12px;
           }
@@ -488,6 +510,14 @@ a:hover .bg-wrapper {
 
     &:focus {
       outline: none;
+    }
+  }
+
+  &.slick-overflow {
+    position: relative;
+
+    > .slick-list {
+      overflow: visible;
     }
   }
 }
@@ -534,10 +564,11 @@ a:hover .bg-wrapper {
 
   a:hover .btn-#{$label},
   .btn-#{$label}:hover {
+    color: $quinary;
+
     @include lg {
-      background-color: color-yiq($color);
+      background-color: $color;
       box-shadow: 0px 0px 0px 4px rgba($color, .5);
-      color: $quinary;
     }
   }
 
@@ -556,7 +587,7 @@ a:hover .bg-wrapper {
       height: 2px;
     }
 
-    &:before { 
+    &:before {
       background-color: $color;
       bottom: -2px;
       content: '';
@@ -584,6 +615,54 @@ a:hover .bg-wrapper {
       width: 100%;
     }
   }
+
+  .btn-arrow-#{$label} {
+    color: $color;
+    display: inline-block;
+    font-weight: 600;
+    overflow: hidden;
+    padding-right: 24px;
+    position: relative;
+    transition: $transition;
+
+    &:before,
+    &:after {
+      color: $color;
+      content: '\f061';
+      font-family: $font-awesome;
+      font-weight: 400;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: $transition;
+    }
+
+    &:before {
+      right: 0;
+    }
+
+    &:after {
+      left: -20px;
+    }
+  }
+
+  a:hover .btn-arrow-#{$label},
+  .btn-arrow-#{$label}:hover {
+    color: $color;
+
+    @include lg {
+      padding-left: 24px;
+      padding-right: 0;
+
+      &:before {
+        right: -20px;
+      }
+
+      &:after {
+        left: 0;
+      }
+    }
+  }
 }
 
 #header {
@@ -601,7 +680,7 @@ a:hover .bg-wrapper {
     @include md {
       height: 48px;
     }
-  
+
     @include lg {
       height: 64px;
     }
@@ -627,23 +706,23 @@ a:hover .bg-wrapper {
     border: none;
     position: relative;
     z-index: 10;
-    
+
     &:focus {
       outline: none;
     }
-  
+
     span:not(.burger) {
       color: $primary;
       transition: $transition;
     }
-  
+
     .burger {
       background-color: $primary;
       height: 2px;
       position: relative;
       transition: $transition;
       width: 24px;
-  
+
       &:before, &:after {
         background-color: $primary;
         content: '';
@@ -653,11 +732,11 @@ a:hover .bg-wrapper {
         transition: $transition;
         width: 24px;
       }
-  
+
       &:before {
         top: -8px;
       }
-  
+
       &:after {
         top: 8px;
       }
@@ -785,7 +864,7 @@ a:hover .bg-wrapper {
 
   #navigation-mobile ul {
     background-color: $quinary;
-  
+
     &.open {
       height: 100vh;
     }
@@ -814,7 +893,7 @@ a:hover .bg-wrapper {
           width: 40px;
           z-index: -1;
         }
-  
+
         &:hover:before {
           opacity: .25;
           transform: translateX(-50%) translateY(-50%) scale(1);
@@ -842,7 +921,7 @@ a:hover .bg-wrapper {
     .alt.logo {
       opacity: 0;
     }
-  
+
     .default.logo {
       opacity: 1;
     }
@@ -850,14 +929,14 @@ a:hover .bg-wrapper {
     #fullmenu,
     #burger {
       position: relative;
-    
+
       span:not(.burger) {
         color: $primary;
       }
-    
+
       .burger {
         background-color: $primary;
-    
+
         &:before, &:after {
           background-color: $primary;
         }
@@ -883,7 +962,7 @@ a:hover .bg-wrapper {
     .alt.logo {
       opacity: 0;
     }
-  
+
     .default.logo {
       opacity: 1;
     }
@@ -968,7 +1047,7 @@ a:hover .bg-wrapper {
         li {
           display: flex;
           flex-direction: row;
-          flex: 1 1 auto!important;
+          flex: 1 1 auto !important;
 
           &.slick-active button {
             background-color: $secondary;
@@ -1027,7 +1106,7 @@ a:hover .bg-wrapper {
       }
     }
   }
-  
+
   @include md {
     padding-top: 64px;
   }
@@ -1190,7 +1269,7 @@ a:hover .bg-wrapper {
       &.active {
         font-weight: bold;
       }
-  
+
       &.active:before,
       &:hover:before {
         width: 100%;
@@ -1298,7 +1377,7 @@ a:hover .bg-wrapper {
 
         @include lg {
           transition: $transition;
-    
+
           &:hover {
             background-color: $quinary;
             color: $secondary;
@@ -1321,7 +1400,7 @@ a:hover .bg-wrapper {
         li {
           display: flex;
           flex-direction: row;
-          flex: 1 1 auto!important;
+          flex: 1 1 auto !important;
 
           &.slick-active button {
             background-color: $secondary;
@@ -1375,6 +1454,147 @@ a:hover .bg-wrapper {
         box-shadow: 0px 0px 0px 4px rgba($quinary, .5);
         color: $quinary;
       }
+    }
+  }
+}
+
+.cta {
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  &.first {
+    height: calc(100% - 96px);
+    left: 16px;
+    width: 62.5%;
+    z-index: 2;
+  }
+
+  &.last {
+    height: 100%;
+    left: 96px;
+    width: 60%;
+    z-index: 1;
+  }
+}
+
+.carousel-ctas {
+  position: relative;
+
+  .slick-arrow {
+    background-color: transparent;
+    border: none;
+    bottom: 0;
+    left: 50%;
+    padding: 0;
+    position: absolute;
+    transform: translateX(-50%);
+    transition: $transition;
+
+    i {
+      color: $secondary;
+      transition: $transition;
+    }
+
+    &.slick-disabled {
+      pointer-events: none;
+
+      i {
+        color: #E8E6D7;
+      }
+    }
+
+    &.slick-next {
+      left: calc(50% + 16px);
+    }
+
+    &.slick-prev {
+      left: calc(50% - 16px);
+    }
+
+    &:hover i {
+      color: $secondary;
+    }
+
+    @include lg {
+      bottom: auto;
+      left: auto;
+      right: 0;
+      top: 0;
+
+      &.slick-next {
+        left: auto;
+        right: 0;
+      }
+
+      &.slick-prev {
+        left: auto;
+        right: 48px;
+      }
+
+      i {
+        font-size: $h4-font-size;
+      }
+    }
+  }
+
+  .slick-dots {
+    display: flex !important;
+    flex-direction: row;
+    left: 16px;
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+    position: absolute;
+    top: 11px;
+    width: calc(100% - 128px);
+
+    li {
+      display: flex;
+      flex-direction: row;
+      flex: 1 1 auto !important;
+
+      &.slick-active button {
+        background-color: $secondary;
+      }
+
+      button {
+        background-color: #E8E6D7;
+        border: none;
+        font-size: 0;
+        height: 4px;
+        padding: 0;
+        transition: $transition;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.carousel-news {
+  position: relative;
+
+  > .slick-arrow {
+    background-color: transparent;
+    border: none;
+    bottom: 0;
+    color: $secondary;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+
+    &.slick-prev {
+      left: calc(50% - 16px);
+    }
+
+    &.slick-next {
+      left: calc(50% + 16px);
+    }
+
+    &.slick-disabled {
+      opacity: .5;
     }
   }
 }

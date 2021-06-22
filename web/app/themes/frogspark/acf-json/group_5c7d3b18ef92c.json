@@ -241,6 +241,152 @@
             "center_lng": "",
             "zoom": "",
             "height": ""
+        },
+        {
+            "key": "field_60d1e202cd863",
+            "label": "News",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_60d1e207cd864",
+            "label": "Title",
+            "name": "news_title",
+            "type": "text",
+            "instructions": "The title which will be used for this section.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_60d1e21ccd865",
+            "label": "Text",
+            "name": "news_text",
+            "type": "wysiwyg",
+            "instructions": "The text which will be used for this section.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_60d1ed32a1568",
+            "label": "Signup",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_60d1ed3aa1569",
+            "label": "Title",
+            "name": "signup_title",
+            "type": "text",
+            "instructions": "The title which will be used for this section.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_60d1ed49a156a",
+            "label": "Subtitle",
+            "name": "signup_subtitle",
+            "type": "text",
+            "instructions": "The subtitle which will be used for this section.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_60d1ed5fa156b",
+            "label": "Text",
+            "name": "signup_text",
+            "type": "wysiwyg",
+            "instructions": "The text which will be used for this section.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_60d1ed74a156c",
+            "label": "Form",
+            "name": "signup_form",
+            "type": "text",
+            "instructions": "The form which will be used for this section.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         }
     ],
     "location": [
@@ -275,5 +421,5 @@
     ],
     "active": true,
     "description": "The fields which will be used site-wide.",
-    "modified": 1623999520
+    "modified": 1624370633
 }

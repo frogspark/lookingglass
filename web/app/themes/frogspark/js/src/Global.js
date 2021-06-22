@@ -48,7 +48,6 @@ $(document).ready(function(){
 
   function propertySlick() {
     $('.carousel-featured').slick({
-      fade: true,
       infinite: false,
       mobileFirst: true,
       nextArrow: '<button class="slick-arrow slick-next"><i class="far fa-arrow-right"></i></button>',
@@ -57,14 +56,12 @@ $(document).ready(function(){
         {
           breakpoint: 768,
           settings: {
-            fade: true,
             slidesToShow: 2,
           }
         },
         {
           breakpoint: 992,
           settings: {
-            fade: false,
             slidesToShow: 3,
           }
         },
@@ -78,7 +75,7 @@ $(document).ready(function(){
       nextArrow: '<button class="slick-arrow slick-next"><i class="far fa-arrow-right"></i></button>',
       prevArrow: '<button class="slick-arrow slick-prev"><i class="far fa-arrow-left"></i></button>',
       swipe: false,
-      swipteToSlide: false,
+      swipeToSlide: false,
       touchMove: false,
     });
   }
@@ -87,6 +84,46 @@ $(document).ready(function(){
     $('.carousel-featured').slick('unslick');
     $('.carousel-gallery').slick('unslick');
     propertySlick();
+  });
+
+  // CTAs carousel.
+  $('.carousel-ctas').slick({
+    infinite: false,
+    mobileFirst: true,
+    nextArrow: '<button class="slick-arrow slick-next"><i class="far fa-arrow-right"></i></button>',
+    prevArrow: '<button class="slick-arrow slick-prev"><i class="far fa-arrow-left"></i></button>',
+    responsive: [
+      {
+        breakpoint: 992,
+        settings: {
+          dots: true,
+          nextArrow: '<button class="slick-arrow slick-next"><i class="fas fa-arrow-right"></i></button>',
+          prevArrow: '<button class="slick-arrow slick-prev"><i class="fas fa-arrow-left"></i></button>',
+        },
+      },
+    ],
+  });
+
+  // News carousel.
+  $('.carousel-news').slick({
+    infinite: false,
+    mobileFirst: true,
+    nextArrow: '<button class="slick-arrow slick-next"><i class="far fa-arrow-right"></i></button>',
+    prevArrow: '<button class="slick-arrow slick-prev"><i class="far fa-arrow-left"></i></button>',
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+        }
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 3,
+        }
+      },
+    ],
   });
 
   // AOS.
