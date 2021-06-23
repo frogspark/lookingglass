@@ -104,7 +104,7 @@
                           </div>
 												<?php endfor; ?>
                       </div>
-                      <p class="mb-0 text-center"><a class="btn-secondary" href="/">Show me more</a></p>
+                      <p class="mb-0 pb-2 text-center"><a class="btn-secondary" href="/"><span>Show me more</span></a></p>
                     </div>
 									<?php endfor; ?>
                 </div>
@@ -129,7 +129,7 @@
                     <div class="bg-quinary px-4 px-sm-8 py-8">
                       <p class="h3"><?php the_sub_field( 'title' ); ?></p>
                       <p class="mb-6"><?php the_sub_field( 'text' ); ?></p>
-                      <p class="mb-0"><a class="btn-secondary" href="<?php echo get_sub_field( 'button' )[ 'url' ]; ?>" <?php if ( get_sub_field( 'button' )[ 'target' ] ): echo 'target="_blank"'; endif; ?>><?php echo get_sub_field( 'button' )[ 'title' ]; ?></a></p>
+                      <p class="mb-0"><a class="btn-secondary" href="<?php echo get_sub_field( 'button' )[ 'url' ]; ?>" <?php if ( get_sub_field( 'button' )[ 'target' ] ): echo 'target="_blank"'; endif; ?>><span><?php echo get_sub_field( 'button' )[ 'title' ]; ?></span></a></p>
                     </div>
                   </div>
                   <div class="cta first" style="background-image: url(<?php echo get_sub_field( 'images' )[ 0 ][ 'image' ][ 'url' ]; ?>);"></div>

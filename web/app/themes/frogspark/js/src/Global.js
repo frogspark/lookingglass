@@ -80,7 +80,7 @@ $(document).ready(function(){
     });
   }
   propertySlick();
-  $('[data-bs-toggle="pill"]').on('shown.bs.tab', function(e) {
+  jQuery('button[data-bs-toggle="pill"]').on('shown.bs.tab', function(e) {
     $('.carousel-featured').slick('unslick');
     $('.carousel-gallery').slick('unslick');
     propertySlick();

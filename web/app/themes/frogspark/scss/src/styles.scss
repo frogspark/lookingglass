@@ -214,7 +214,7 @@ a:hover .bg-wrapper {
   position: relative;
 
   .nf-error-msg {
-    color: $primary;
+    color: $secondary;
     text-align: center;
 
     @include lg {
@@ -246,7 +246,7 @@ a:hover .bg-wrapper {
 
   .nf-pass .ninja-forms-field,
   .nf-error .ninja-forms-field {
-    border-color: $primary !important;
+    border-color: $secondary !important;
   }
 
   nf-fields-wrap {
@@ -263,12 +263,12 @@ a:hover .bg-wrapper {
 
       input:not([type="button"]),
       textarea {
-        background-color: color-yiq($primary);
-        border: 1px solid $primary;
-        border-radius: 0;
+        background-color: transparent;
+        border: 1px solid $secondary;
+        border-radius: 100vh;
         color: $primary;
         height: auto;
-        padding: 16px;
+        padding: 12px 24px 14px 24px;
         text-align: center;
         transition: $transition;
         width: 100%;
@@ -276,7 +276,7 @@ a:hover .bg-wrapper {
         -webkit-appearance: none;
 
         &:focus {
-          box-shadow: 0px 0px 0px 4px rgba($primary, .5);
+          box-shadow: 0px 0px 0px 4px rgba($secondary, .5);
           outline: none;
 
           &::placeholder {
@@ -299,145 +299,6 @@ a:hover .bg-wrapper {
       }
     }
 
-    .listselect-wrap .nf-field-element {
-      position: relative;
-
-      > div {
-        display: none;
-      }
-
-      &:after {
-        color: $primary;
-        content: '\f078';
-        font-family: 'Font Awesome 5 Pro';
-        font-weight: bold;
-        pointer-events: none;
-        position: absolute;
-        right: 16px;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 5;
-      }
-
-      select {
-        background-color: color-yiq($primary);
-        border: 1px solid $primary;
-        border-radius: 0;
-        color: $primary;
-        height: auto !important;
-        padding: 16px;
-        transition: $transition;
-        width: 100%;
-        -moz-appearance: none;
-        -webkit-appearance: none;
-
-        &:focus {
-          box-shadow: 0px 0px 0px 4px rgba($primary, .5);
-          outline: none;
-        }
-      }
-    }
-
-    .listradio-wrap {
-      position: relative;
-
-      ul {
-        display: block;
-
-        li {
-          display: block;
-          margin-bottom: 8px !important;
-          position: relative;
-          width: 100%;
-
-          &:last-of-type {
-            margin-bottom: 0 !important;
-          }
-
-          label {
-            line-height: 32px;
-            margin: 0;
-            padding-left: 48px;
-            position: relative;
-
-            &.nf-checked-label:after {
-              opacity: 1;
-            }
-
-            &:before {
-              border: 1px solid $primary;
-              border-radius: 100vh;
-              content: '';
-              height: 32px;
-              left: 0;
-              position: absolute;
-              top: 0;
-              width: 32px;
-            }
-
-            &:after {
-              color: $primary;
-              content: '\f111';
-              font-family: $font-awesome;
-              font-weight: bold;
-              left: 8px;
-              opacity: 0;
-              position: absolute;
-              transition: $transition-base;
-            }
-          }
-
-          input {
-            display: none;
-          }
-        }
-      }
-    }
-
-    .checkbox-container {
-      position: relative;
-
-      .nf-field-label {
-        display: block;
-        line-height: 32px;
-        padding-left: 48px;
-        width: 100%;
-
-        label {
-          font-weight: normal;
-          position: relative;
-
-          &.nf-checked-label:after {
-            opacity: 1;
-          }
-
-          &:before {
-            border: 1px solid $primary;
-            content: '';
-            height: 32px;
-            left: -48px;
-            position: absolute;
-            top: 0;
-            width: 32px;
-          }
-
-          &:after {
-            color: $primary;
-            content: '\f00c';
-            font-family: 'Font Awesome 5 Pro';
-            left: -40px;
-            opacity: 0;
-            position: absolute;
-            transition: $transition-base;
-          }
-        }
-      }
-
-      .nf-field-element {
-        display: none;
-      }
-    }
-
     .textarea-container {
       margin-bottom: 0;
 
@@ -454,17 +315,34 @@ a:hover .bg-wrapper {
         text-align: left;
       }
 
+      .nf-field-element {
+        position: relative;
+        width: auto;
+
+        &:before {
+          color: $quinary;
+          content: '\f061';
+          font-family: $font-awesome;
+          left: 50%;
+          pointer-events: none;
+          position: absolute;
+          top: 50%;
+          transform: translateX(-50%) translateY(-50%);
+        }
+      }
+
       input {
-        background-color: $primary;
-        border-radius: 0;
-        color: color-yiq($primary);
+        background-color: $secondary;
+        border: none;
+        border-radius: 100vh;
         display: inline-block;
-        height: auto;
+        font-size: 0;
+        height: 52px;
         max-width: 100%;
-        min-width: 128px;
         padding: 16px;
         text-align: center;
         transition: $transition;
+        width: 52px;
         -moz-appearance: none !important;
         -webkit-appearance: none !important;
 
@@ -473,9 +351,8 @@ a:hover .bg-wrapper {
         }
 
         &:hover {
-          background-color: $primary;
-          box-shadow: 0px 0px 0px 4px rgba($primary, .5);
-          color: color-yiq($primary);
+          background-color: $secondary;
+          box-shadow: 0px 0px 0px 4px rgba($secondary, .5);
         }
       }
     }
@@ -556,10 +433,33 @@ a:hover .bg-wrapper {
     color: $quinary;
     display: inline-block;
     font-weight: bold;
+    overflow: hidden;
     padding: 12px 28px 14px 28px;
     position: relative;
     text-align: center;
     transition: $transition;
+
+    span {
+      display: block;
+      opacity: 1;
+      position: relative;
+      transition: $transition;
+    }
+
+    &:before {
+      color: $quinary;
+      content: '\f061';
+      display: block;
+      font-family: $font-awesome;
+      font-weight: 400;
+      left: 0;
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      transform: translateX(-100%) translateY(-50%);
+      transition: $transition;
+      width: 100%;
+    }
   }
 
   a:hover .btn-#{$label},
@@ -569,6 +469,16 @@ a:hover .bg-wrapper {
     @include lg {
       background-color: $color;
       box-shadow: 0px 0px 0px 4px rgba($color, .5);
+
+      span {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+
+      &:before {
+        opacity: 1;
+        transform: translateX(0%) translateY(-50%);
+      }
     }
   }
 
@@ -1595,6 +1505,37 @@ a:hover .bg-wrapper {
 
     &.slick-disabled {
       opacity: .5;
+    }
+  }
+}
+
+.signup {
+  position: relative;
+
+  .nf-form-content {
+    height: 52px;
+  }
+
+  .nf-form-wrap {
+    position: relative;
+
+    .nf-error-msg {
+      margin-top: 16px;
+    }
+
+    nf-fields-wrap {
+      display: block;
+
+      nf-field:last-of-type {
+        height: 52px;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      .nf-field-container input:not([type=button]) {
+        padding-right: 64px;
+      }
     }
   }
 }
