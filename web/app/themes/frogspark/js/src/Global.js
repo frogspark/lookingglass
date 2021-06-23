@@ -48,6 +48,7 @@ $(document).ready(function(){
 
   function propertySlick() {
     $('.carousel-featured').slick({
+      fade: true,
       infinite: false,
       mobileFirst: true,
       nextArrow: '<button class="slick-arrow slick-next"><i class="far fa-arrow-right"></i></button>',
@@ -56,12 +57,14 @@ $(document).ready(function(){
         {
           breakpoint: 768,
           settings: {
+            fade: false,
             slidesToShow: 2,
           }
         },
         {
           breakpoint: 992,
           settings: {
+            fade: false,
             slidesToShow: 3,
           }
         },
