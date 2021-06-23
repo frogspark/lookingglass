@@ -100,7 +100,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 px-0">
-          <div class="bg-cinematic" style="background-image: url(<?php echo get_field('banner_image')['url']; ?>"></div>
+          <div class="bg-cinematic d-none" style="background-image: url(<?php echo get_field('banner_image')['url']; ?>"></div>
         </div>
       </div>
     </div>
