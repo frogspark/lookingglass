@@ -129,6 +129,22 @@ $(document).ready(function(){
     ],
   });
 
+  // Team carousel.
+  $('.carousel-team').slick({
+    infinite: false,
+    mobileFirst: true,
+    nextArrow: '<button class="slick-arrow slick-next"><i class="far fa-arrow-right"></i></button>',
+    prevArrow: '<button class="slick-arrow slick-prev"><i class="far fa-arrow-left"></i></button>',
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+        }
+      },
+    ],
+  });
+
   // AOS.
   AOS.init();
   setTimeout(function(){ AOS.init(); }, 500);

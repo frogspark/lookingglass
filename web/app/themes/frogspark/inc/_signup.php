@@ -1,9 +1,9 @@
 <section>
   <div class="container">
     <div class="justify-content-center row">
-      <div class="col-12 col-md-10 col-xl-11">
+      <div class="col-12 col-md-10 col-lg-12 col-xl-11">
         <div class="justify-content-center row">
-          <div class="col-lg-6 col-xl-5 d-none d-lg-block mb-lg-8 text-lg-start" data-aos="fade-up" data-aos-delay="50">
+          <div class="col-lg-6 col-xl-4 d-none d-lg-block mb-lg-8 text-lg-start" data-aos="fade-up" data-aos-delay="50">
             <p class="h2 mb-0 pr-xl-8"><?php the_field( 'signup_title', 'option' ); ?></p>
           </div>
           <div class="col-12 col-lg-6 col-xl-5 mb-8 offset-xl-1 text-center text-lg-start" data-aos="fade-up" data-aos-delay="50">
