@@ -1015,6 +1015,11 @@ a:hover .bg-wrapper {
         position: absolute;
       }
     }
+
+    @include lg {
+      height: 100vh;
+      min-height: 820px;
+    }
   }
 
   @include md {
@@ -1368,7 +1373,7 @@ a:hover .bg-wrapper {
   }
 }
 
-.cta {
+.item {
   background-position: center;
   background-size: cover;
   position: absolute;
@@ -1390,7 +1395,7 @@ a:hover .bg-wrapper {
   }
 }
 
-.carousel-ctas {
+.carousel-items {
   position: relative;
 
   .slick-arrow {

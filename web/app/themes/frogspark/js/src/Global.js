@@ -89,8 +89,8 @@ $(document).ready(function(){
     propertySlick();
   });
 
-  // CTAs carousel.
-  $('.carousel-ctas').slick({
+  // Items carousel.
+  $('.carousel-items').slick({
     infinite: false,
     mobileFirst: true,
     nextArrow: '<button class="slick-arrow slick-next"><i class="far fa-arrow-right"></i></button>',

@@ -120,7 +120,7 @@
     <div class="container">
       <div class="justify-content-center row">
         <div class="col-12 col-md-10 col-lg-12 mb-8 px-0" data-aos="fade-up" data-aos-delay="50">
-          <div class="carousel-ctas pb-10 pb-lg-0 pt-0 pt-lg-16 slick-overflow">
+          <div class="carousel-items pb-10 pb-lg-0 pt-0 pt-lg-16 slick-overflow">
 						<?php while ( have_rows( 'ctas' ) ): the_row(); ?>
               <div class="px-4">
                 <div class="position-relative row">
@@ -132,8 +132,8 @@
                       <p class="mb-0"><a class="btn-secondary" href="<?php echo get_sub_field( 'button' )[ 'url' ]; ?>" <?php if ( get_sub_field( 'button' )[ 'target' ] ): echo 'target="_blank"'; endif; ?>><span><?php echo get_sub_field( 'button' )[ 'title' ]; ?></span></a></p>
                     </div>
                   </div>
-                  <div class="cta first" style="background-image: url(<?php echo get_sub_field( 'images' )[ 0 ][ 'image' ][ 'url' ]; ?>);"></div>
-                  <div class="cta last" style="background-image: url(<?php echo get_sub_field( 'images' )[ 1 ][ 'image' ][ 'url' ]; ?>);"></div>
+                  <div class="item first" style="background-image: url(<?php echo get_sub_field( 'images' )[ 0 ][ 'image' ][ 'url' ]; ?>);"></div>
+                  <div class="item last" style="background-image: url(<?php echo get_sub_field( 'images' )[ 1 ][ 'image' ][ 'url' ]; ?>);"></div>
                 </div>
               </div>
 						<?php endwhile; ?>
