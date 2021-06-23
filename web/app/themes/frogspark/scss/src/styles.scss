@@ -1624,6 +1624,51 @@ a:hover .btn-back,
   }
 }
 
+.addtoany_shortcode {
+  position: relative;
+
+  .addtoany_list {
+    height: 32px;
+    line-height: 32px !important;
+
+    a {
+      height: 32px;
+      line-height: 32px !important;
+      margin-left: 8px;
+      margin-right: 8px;
+      padding: 0;
+      transition: $transition;
+
+      &:hover {
+        span {
+          box-shadow: 0px 0px 0px 4px rgba($secondary, .5);
+        }
+      }
+
+      span {
+        align-items: center;
+        background-color: $secondary !important;
+        border-radius: 100vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        transition: $transition;
+
+        svg {
+          height: 24px;
+          transition: $transition;
+          width: 24px;
+        }
+      }
+
+      @include lg {
+        margin-left: 16px;
+        margin-right: 0;
+      }
+    }
+  }
+}
+
 .cc-window {
   font-family: $font-family-sans-serif !important;
 

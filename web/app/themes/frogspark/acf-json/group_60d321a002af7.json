@@ -1,7 +1,62 @@
 {
     "key": "group_60d321a002af7",
     "title": "News",
-    "fields": [],
+    "fields": [
+        {
+            "key": "field_60d33cb8136ea",
+            "label": "Related",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_60d33cc2136eb",
+            "label": "Title",
+            "name": "related_title",
+            "type": "text",
+            "instructions": "The title which will be used for this section.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_60d33cda136ec",
+            "label": "Text",
+            "name": "related_text",
+            "type": "wysiwyg",
+            "instructions": "The text which will be used for this section.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 0,
+            "delay": 0
+        }
+    ],
     "location": [
         [
             {
@@ -33,5 +88,5 @@
     ],
     "active": true,
     "description": "The fields which will be used for the news page.",
-    "modified": 1624449464
+    "modified": 1624456424
 }

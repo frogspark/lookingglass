@@ -28,4 +28,4 @@
 			</div>
 		</div>
 	</div>
-</section><?php
+</section>
