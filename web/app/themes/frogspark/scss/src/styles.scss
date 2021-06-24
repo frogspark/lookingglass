@@ -215,11 +215,8 @@ a:hover .bg-wrapper {
 
   .nf-error-msg {
     color: $secondary;
+    margin-top: 8px;
     text-align: center;
-
-    @include lg {
-      text-align: left;
-    }
   }
 
   .nf-error-required-error {
@@ -295,6 +292,7 @@ a:hover .bg-wrapper {
       }
 
       textarea {
+        border-radius: 32px;
         height: 128px;
       }
     }
@@ -312,7 +310,15 @@ a:hover .bg-wrapper {
       text-align: center;
 
       @include lg {
-        text-align: left;
+        text-align: center;
+      }
+
+      .submit-wrap {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        position: relative;
       }
 
       .nf-field-element {
@@ -953,6 +959,9 @@ a:hover .btn-back,
 }
 
 .hero {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   padding-top: 56px;
   position: relative;
 
@@ -1605,6 +1614,11 @@ a:hover .btn-back,
 
     .nf-error-msg {
       margin-top: 16px;
+      text-align: center;
+
+      @include lg {
+        text-align: left;
+      }
     }
 
     nf-fields-wrap {

@@ -13,7 +13,7 @@
 				<div class="carousel-news pb-10 pb-lg-0 slick-overflow">
 	        <?php while ( $posts->have_posts() ) : $posts->the_post(); ?>
 						<div class="px-4">
-              <a class="d-block text-center" href="<?php the_permalink(); ?>">
+              <a class="d-block text-center text-lg-start" href="<?php the_permalink(); ?>">
                 <div class="bg-wrapper mb-4">
                   <div class="bg-portrait" style="background-image: url(<?php echo get_field( 'page_image' )[ 'url' ]; ?>);"></div>
                 </div>

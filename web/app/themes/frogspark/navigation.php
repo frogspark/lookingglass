@@ -1,7 +1,7 @@
 <?php $alt = false; $template = get_page_template_slug(); ?>
 <?php if (is_front_page()): ?>
   <?php $alt = true; ?>
-<?php elseif ($template === 'page-virgin_islands.php' || $template === 'page-about.php' || $template === 'page-news.php'): ?>
+<?php elseif ($template === 'page-virgin_islands.php' || $template === 'page-about.php' || $template === 'page-news.php' || $template === 'page-advertise.php'): ?>
   <?php $alt = true; ?>
 <?php endif; ?>
 
