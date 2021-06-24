@@ -305,6 +305,50 @@ a:hover .bg-wrapper {
       }
     }
 
+    .listselect-wrap .nf-field-element {
+      position: relative;
+
+      > div {
+        display: none;
+      }
+
+      &:after {
+        color: $primary;
+        content: '\f063';
+        font-family: $font-awesome;
+        font-weight: 400;
+        pointer-events: none;
+        position: absolute;
+        right: 24px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 5;
+      }
+
+      select {
+        background-color: color-yiq($primary);
+        border: 1px solid $secondary;
+        border-radius: 100vh;
+        color: $primary;
+        height: auto !important;
+        padding: 12px 32px 14px 24px;
+        text-align: center;
+        transition: $transition;
+        width: 100%;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+
+        @include lg {
+          text-align: left;
+        }
+
+        &:focus {
+          box-shadow: 0px 0px 0px 4px rgba($secondary, .5);
+          outline: none;
+        }
+      }
+    }
+
     .submit-container {
       margin-bottom: 0;
       text-align: center;
@@ -1680,6 +1724,17 @@ a:hover .btn-back,
         margin-right: 0;
       }
     }
+  }
+}
+
+.map {
+  height: auto;
+  padding-bottom: 100%;
+  position: relative;
+  width: 100%;
+
+  @include lg {
+    padding-bottom: 42.8571% ;
   }
 }
 

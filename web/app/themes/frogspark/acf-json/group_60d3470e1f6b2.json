@@ -265,6 +265,6 @@
         "send-trackbacks"
     ],
     "active": true,
-    "description": "The fields which will be used for the about page.",
-    "modified": 1624459350
+    "description": "The fields which will be used for the advertise page.",
+    "modified": 1624521234
 }
