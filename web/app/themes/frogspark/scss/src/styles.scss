@@ -1267,6 +1267,11 @@ a:hover .btn-back,
     }
   }
 
+  input[type="text"] {
+    border: none;
+    padding: 0;
+  }
+
   input[type="submit"] {
     background-color: $secondary;
     border: none;
