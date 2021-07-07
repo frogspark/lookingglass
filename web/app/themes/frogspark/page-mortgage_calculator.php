@@ -31,7 +31,7 @@
             </div>
             <div class="mb-8 row">
               <div class="col-12 col-lg-5 mb-8 mb-lg-0">
-                <form>
+                <form id="calculator">
                   <div class="mb-8 mb-lg-12">
                     <div class="row">
                       <div class="col-12 col-lg-auto text-center text-lg-start"><p class="fw-semibold mb-2">Property Price</p></div>
