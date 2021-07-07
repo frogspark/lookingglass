@@ -20,10 +20,10 @@
         },
         {
             "key": "field_60e57794ba97e",
-            "label": "Address",
-            "name": "address",
+            "label": "Location",
+            "name": "location",
             "type": "google_map",
-            "instructions": "The address which will be used for this section.",
+            "instructions": "The location which will be used for this section.",
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
@@ -42,7 +42,7 @@
             "name": "phone_number",
             "type": "text",
             "instructions": "The phone number which will be used for this section.",
-            "required": 0,
+            "required": 1,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "50",
@@ -61,7 +61,7 @@
             "name": "email_address",
             "type": "text",
             "instructions": "The email address which will be used for this section.",
-            "required": 0,
+            "required": 1,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "50",
@@ -270,10 +270,10 @@
                 },
                 {
                     "key": "field_60e57953ba98c",
-                    "label": "Address",
-                    "name": "address",
+                    "label": "Location",
+                    "name": "location",
                     "type": "google_map",
-                    "instructions": "The address which will be used for this section.",
+                    "instructions": "The location which will be used for this section.",
                     "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -320,5 +320,5 @@
     ],
     "active": true,
     "description": "The fields which will be used for the agents.",
-    "modified": 1625652170
+    "modified": 1625663803
 }

@@ -1625,7 +1625,8 @@ a:hover .btn-back,
 }
 
 .carousel-news,
-.carousel-team {
+.carousel-team,
+.carousel-agents {
   position: relative;
 
   > .slick-arrow {
@@ -1812,6 +1813,42 @@ a:hover .btn-back,
 
   input {
     display: none;
+  }
+}
+
+.list-agent {
+  position: relative;
+
+  .phone,
+  .mail,
+  .address {
+    position: relative;
+
+    &:before {
+      display: none;
+    }
+
+    @include lg {
+      padding-left: 28px;
+
+      &:before {
+        color: $secondary;
+        display: block;
+        font-family: $font-awesome;
+        left: 0;
+        position: absolute;
+        top: 0;
+      }
+    }
+  }
+  .phone:before {
+    content: '\f095';
+  }
+  .mail:before {
+    content: '\f0e0';
+  }
+  .address:before {
+    content: '\f041';
   }
 }
 
