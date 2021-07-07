@@ -78,8 +78,6 @@ $(document).ready(function(){
     terms_slider.setAttribute('value', terms_slider.value);
   }
 
-  
-
   // Hero carousel.
   $('.carousel-images').slick({
     arrows: false,
