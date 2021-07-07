@@ -9,7 +9,7 @@
       <div class="align-items-center d-flex flex-row h-100 pt-12 pt-lg-0 row">
         <div class="col-12" data-aos="fade-up" data-aos-delay="50">
           <div class="justify-content-center justify-content-lg-start row">
-            <div class="col-12 col-md-10 col-lg-11 col-xl-5 offset-xl-1 text-center text-lg-start text-quinary">
+            <div class="col-12 col-md-10 col-lg-11 col-xl-7 offset-xl-1 text-center text-lg-start text-quinary">
               <h1 class="mb-4 text-quinary"><?php the_title(); ?></h1>
             </div>
           </div>

@@ -32,6 +32,52 @@ $(document).ready(function(){
   $(document).on('ready', function(){ scrollCheck(); });
   $(window).on('scroll', function(){ scrollCheck(); });
 
+  // Mortgage Calculator.
+  function formatNumber(num) { return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') }
+
+  var price_slider = document.getElementById('price');
+  var price_output = document.getElementById('price-value');
+
+  var deposit_slider = document.getElementById('deposit');
+  var deposit_output = document.getElementById('deposit-value');
+  var deposit_percent = document.getElementById('deposit-percent');
+
+  var terms_slider = document.getElementById('terms');
+  var terms_output = document.getElementById('terms-value');
+
+  price_output.innerHTML = price_slider.value;
+  price_output.innerHTML = formatNumber(price_output.innerHTML);
+  price_slider.oninput = function() {
+    price_output.innerHTML = this.value;
+    price_output.innerHTML = formatNumber(price_output.innerHTML);
+    price_slider.setAttribute('value', price_slider.value);
+
+    deposit_slider.setAttribute('value', 0);
+    deposit_slider.setAttribute('min', 0);
+    deposit_slider.setAttribute('max', 0);
+    deposit_slider.setAttribute('max', price_slider.value);
+    deposit_output.innerHTML = 0;
+    deposit_percent.innerHTML = '(0%)';
+  }
+
+  deposit_output.innerHTML = deposit_slider.value;
+  deposit_output.innerHTML = formatNumber(deposit_output.innerHTML);
+  deposit_slider.oninput = function() {
+    deposit_output.innerHTML = this.value;
+    deposit_output.innerHTML = formatNumber(deposit_output.innerHTML);
+    deposit_slider.setAttribute('value', deposit_slider.value);
+
+    deposit_percent.innerHTML = '(' + ((deposit_slider.value/price_slider.value) * 100).toFixed(0) + '%)';
+  }
+
+  terms_output.innerHTML = terms_slider.value;
+  terms_output.innerHTML = formatNumber(terms_output.innerHTML);
+  terms_slider.oninput = function() {
+    terms_output.innerHTML = this.value;
+    terms_output.innerHTML = formatNumber(terms_output.innerHTML);
+    terms_slider.setAttribute('value', terms_slider.value);
+  }
+
   // Hero carousel.
   $('.carousel-images').slick({
     arrows: false,
