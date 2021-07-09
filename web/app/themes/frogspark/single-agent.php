@@ -76,6 +76,92 @@
     </div>
   </section>
 
+  <?php $query = array ( 'post_type' => 'post', 'posts_per_page' => -1, 'meta_query' => array( array('key' => 'agent', 'value' => $post->ID, 'compare' => '=') ) ); ?>
+  <?php $posts = new WP_Query( $query ); ?>
+  <?php if ($posts->post_count > 0): ?>
+    <section class="bg-quinary mb-4 mb-lg-16" style="overflow: hidden;">
+      <div class="container">
+        <div class="justify-content-center justify-content-lg-start mb-lg-8 row">
+          <div class="col-12 col-md-10 col-lg-6 col-xl-4 mb-8 text-center text-lg-start" data-aos="fade-up" data-aos-delay="50">
+            <h3>Blog posts for <?php the_title(); ?></h3>
+            <div class="wysiwyg"><?php the_field( 'news_text' ); ?></div>
+          </div>
+        </div>
+        <div class="justify-content-center row">
+          <div class="col-12 col-md-10 col-lg-12 mb-8 px-0" data-aos="fade-up" data-aos-delay="50">
+            <div class="carousel-news pb-10 pb-lg-14 slick-overflow">
+							<?php while ( $posts->have_posts() ) : $posts->the_post(); ?>
+                <div class="px-4">
+                  <a class="d-block text-center text-lg-start" href="<?php the_permalink(); ?>">
+                    <div class="bg-wrapper mb-4">
+                      <div class="bg-portrait" style="background-image: url(<?php echo get_field( 'page_image' )[ 'url' ]; ?>);"></div>
+                    </div>
+                    <p class="h4 mb-2 text-primary"><?php the_title(); ?></p>
+                    <p class="fw-semibold mb-2 text-primary"><?php echo date( 'd.m.Y', strtotime( $post->post_date ) ); ?></p>
+                    <p class="mb-2 text-primary"><?php the_field( 'page_snippet' ); ?></p>
+                    <p class="mb-0"><span class="btn-arrow-secondary">Read more</span></p>
+                  </a>
+                </div>
+							<?php endwhile; wp_reset_postdata(); ?>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  <?php endif; ?>
+
+  <section class="bg-quinary">
+    <div class="container">
+      <div class="justify-content-center row">
+        <div class="col-12 col-md-10 col-lg-12 col-xl-10 mb-8">
+          <div class="border border-quaternary px-4 px-sm-8 py-8" style="overflow: hidden;">
+            <div class="justify-content-center row">
+              <div class="col-12 col-lg-6 mb-8 text-center">
+                <h3><?php the_title(); ?> listings</h3>
+                <div class="wysiwyg"><?php the_field( 'news_text' ); ?></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 px-0">
+                <div class="carousel-featured mb-8 pb-10 pb-lg-14 px-n4 slick-overflow">
+									<?php for ( $i = 1; $i <= 6; $i ++ ): ?>
+                    <div class="px-4">
+                      <div class="property">
+                        <div class="gallery mb-4">
+                          <div class="carousel-gallery">
+														<?php for ( $z = 1; $z <= 3; $z ++ ): ?>
+                              <div>
+                                <div class="bg-portrait"
+                                    style="background-image: url(<?php echo wp_get_upload_dir()[ 'baseurl' ]; ?>/2021/06/placeholder.jpg);"></div>
+                              </div>
+														<?php endfor; ?>
+                          </div>
+                          <a class="heart" href="/"></a>
+													<?php if ( $i === 2 ): echo '<span class="bg-secondary h5 note px-2 py-1 text-quinary">New listing</span>'; endif; ?>
+                        </div>
+                        <div class="row">
+                          <div class="col-12 col-lg-6 mb-2 mb-lg-0 text-center text-lg-start">
+                            <p class="fw-semibold mb-1">3 bed apartment</p>
+                            <p class="mb-1">Kingston</p>
+                            <p class="mb-0">USD $575,000</p>
+                          </div>
+                          <div class="col-12 col-lg-6 d-flex flex-column justify-content-end">
+                            <p class="mb-0 text-center text-lg-end"><a class="btn-arrow-secondary" href="/">More details</a></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+									<?php endfor; ?>
+                </div>
+                <p class="mb-0 pb-2 text-center"><a class="btn-secondary" href="/"><span>Show me more</span></a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <?php get_template_part('inc/_map-script'); ?>
 
 	<section class="my-2 my-lg-8"></section>

@@ -96,6 +96,7 @@ $(document).ready(function(){
 
   function propertySlick() {
     $('.carousel-featured').slick({
+      arrows: true,
       fade: true,
       infinite: false,
       mobileFirst: true,
@@ -105,6 +106,7 @@ $(document).ready(function(){
         {
           breakpoint: 768,
           settings: {
+            arrows: true,
             fade: false,
             slidesToShow: 2,
           }
@@ -112,6 +114,7 @@ $(document).ready(function(){
         {
           breakpoint: 992,
           settings: {
+            arrows: true,
             fade: false,
             slidesToShow: 3,
           }

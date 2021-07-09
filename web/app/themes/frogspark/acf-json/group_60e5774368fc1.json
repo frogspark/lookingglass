@@ -287,6 +287,76 @@
                     "height": ""
                 }
             ]
+        },
+        {
+            "key": "field_60e7f816e33ed",
+            "label": "News",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_60e7f82be33ef",
+            "label": "Text",
+            "name": "news_text",
+            "type": "wysiwyg",
+            "instructions": "The text which will be used for this section.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_60e7fd3d49265",
+            "label": "Listings",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_60e7fd4549266",
+            "label": "Text",
+            "name": "listings_text",
+            "type": "wysiwyg",
+            "instructions": "The text which will be used for this section.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 0,
+            "delay": 0
         }
     ],
     "location": [
@@ -320,5 +390,5 @@
     ],
     "active": true,
     "description": "The fields which will be used for the agents.",
-    "modified": 1625663803
+    "modified": 1625816415
 }

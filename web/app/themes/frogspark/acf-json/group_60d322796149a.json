@@ -3,6 +3,22 @@
     "title": "Post",
     "fields": [
         {
+            "key": "field_60e7f88b7aa58",
+            "label": "Page",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
             "key": "field_60d3227a8e2b0",
             "label": "Text",
             "name": "page_text",
@@ -63,6 +79,44 @@
             "max_height": "",
             "max_size": "",
             "mime_types": ""
+        },
+        {
+            "key": "field_60e7f8927aa59",
+            "label": "Agent",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_60e7f8987aa5a",
+            "label": "Agent",
+            "name": "agent",
+            "type": "post_object",
+            "instructions": "The agent which will be used for this section.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "agent"
+            ],
+            "taxonomy": "",
+            "allow_null": 1,
+            "multiple": 0,
+            "return_format": "id",
+            "ui": 1
         }
     ],
     "location": [
@@ -96,5 +150,5 @@
     ],
     "active": true,
     "description": "The fields which will be used for the posts.",
-    "modified": 1624449764
+    "modified": 1625815231
 }
