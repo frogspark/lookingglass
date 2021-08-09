@@ -1167,6 +1167,7 @@ a:hover .btn-back,
 }
 
 .select-wrapper {
+  padding-right: 32px;
   position: relative;
   width: 100%;
 
@@ -1624,6 +1625,7 @@ a:hover .btn-back,
   }
 }
 
+.carousel-base,
 .carousel-news,
 .carousel-team,
 .carousel-agents {
@@ -1849,6 +1851,19 @@ a:hover .btn-back,
   }
   .address:before {
     content: '\f041';
+  }
+}
+
+.view-form {
+  position: relative;
+
+  a {
+    color: $primary;
+
+    &.active,
+    &:hover {
+      color: $secondary;
+    }
   }
 }
 
