@@ -37,7 +37,7 @@
     // $last = $first + $posts->post_count - 1;
   ?>
 
-  <section class="pb-4 pb-lg-16">
+  <section class="pb-4 pb-lg-16" style="overflow: hidden;">
     <div class="container">
       <div class="justify-content-center mb-lg-8 row">
         <div class="col-12 col-md-10 col-lg-12 d-flex flex-column flex-lg-row mb-8" data-aos="fade-up" data-aos-delay="50">
