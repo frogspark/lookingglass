@@ -1,6 +1,6 @@
 {
     "key": "group_6110f18eca7b6",
-    "title": "Property Sales Search",
+    "title": "Properties",
     "fields": [
         {
             "key": "field_6110f1900e167",
@@ -67,7 +67,7 @@
             {
                 "param": "page_template",
                 "operator": "==",
-                "value": "page-property_sales_search.php"
+                "value": "page-properties.php"
             }
         ]
     ],
@@ -91,6 +91,6 @@
         "send-trackbacks"
     ],
     "active": true,
-    "description": "The fields which will be used for the property sales search page.",
-    "modified": 1628500716
+    "description": "The fields which will be used for the properties pages.",
+    "modified": 1628509694
 }

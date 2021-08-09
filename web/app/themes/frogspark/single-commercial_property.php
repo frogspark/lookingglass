@@ -6,7 +6,7 @@
     <div class="container">
       <div class="d-none d-lg-flex justify-content-center mb-8 row">
         <div class="col-lg-12 mb-8" data-aos="fade-up" data-aos-delay="50">
-          <p class="mb-0"><a class="btn-back" href="/">Back to listings</a></p>
+          <p class="mb-0"><a class="btn-back" href="/sales/">Back to listings</a></p>
         </div>
       </div>
       <div class="justify-content-center row">

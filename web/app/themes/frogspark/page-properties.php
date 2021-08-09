@@ -1,4 +1,4 @@
-<?php /* Template Name: Property Sales Search */ ?>
+<?php /* Template Name: Properties */ ?>
 
 <?php get_header(); ?>
 
@@ -28,14 +28,7 @@
     </div>
   </section>
 
-  <?php // $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1; ?>
-  <?php // $query = array ( 'post_type' => 'property', 'posts_per_page' => 12, 'paged' => $paged ); ?>
-  <?php // $posts = new WP_Query( $query ); ?>
-  <?php
-    // $pagenum = $posts->query_vars['paged'] < 1 ? 1 : $posts->query_vars['paged'];
-    // $first = ( ( $pagenum - 1 ) * $posts->query_vars['posts_per_page'] ) + 1;
-    // $last = $first + $posts->post_count - 1;
-  ?>
+  <?php $slug = $post->post_name; ?>
 
   <section class="pb-4 pb-lg-16" style="overflow: hidden;">
     <div class="container">
@@ -91,7 +84,7 @@
                     <p class="mb-0">USD $575,000</p>
                   </div>
                   <div class="col-lg-6 d-flex flex-column justify-content-end">
-                    <p class="mb-0 text-end"><a class="btn-arrow-secondary" href="/sales/test/">More details</a></p>
+                    <p class="mb-0 text-end"><a class="btn-arrow-secondary" href="/<?php echo $slug; ?>/test/">More details</a></p>
                   </div>
                 </div>
                 <?php if ($x == 1 || $x == 4 || $x == 9): ?>
@@ -147,7 +140,7 @@
                         <p class="mb-0">USD $575,000</p>
                       </div>
                       <div class="col-12 d-flex flex-column justify-content-end">
-                        <p class="mb-0 text-center"><a class="btn-arrow-secondary" href="/sales/test/">More details</a></p>
+                        <p class="mb-0 text-center"><a class="btn-arrow-secondary" href="/<?php echo $slug; ?>/test/">More details</a></p>
                       </div>
                     </div>
                   </div>
@@ -181,7 +174,7 @@
                         <p class="mb-0">USD $575,000</p>
                       </div>
                       <div class="col-lg-6 d-flex flex-column justify-content-start">
-                        <p class="mb-0 text-end"><a class="btn-arrow-secondary" href="/sales/test/">More details</a></p>
+                        <p class="mb-0 text-end"><a class="btn-arrow-secondary" href="/<?php echo $slug; ?>/test/">More details</a></p>
                       </div>
                     </div>
                     <p class="mb-6">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
@@ -244,7 +237,7 @@
                         <p class="mb-0">USD $575,000</p>
                       </div>
                       <div class="col-12 d-flex flex-column justify-content-end">
-                        <p class="mb-0 text-center"><a class="btn-arrow-secondary" href="/sales/test/">More details</a></p>
+                        <p class="mb-0 text-center"><a class="btn-arrow-secondary" href="/<?php echo $slug; ?>/test/">More details</a></p>
                       </div>
                     </div>
                   </div>
@@ -264,7 +257,7 @@
                   <p class="fw-semibold mb-1">3 bed apartment</p>
                   <p class="mb-1">Kingston</p>
                   <p class="mb-2">USD $575,000</p>
-                  <p class="mb-0"><a class="btn-underline-secondary fw-semibold" href="/sales/test/">View property</a></p>
+                  <p class="mb-0"><a class="btn-underline-secondary fw-semibold" href="/<?php echo $slug; ?>/test/">View property</a></p>
                 </div>
               </div>
             </div>
