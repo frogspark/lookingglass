@@ -108,6 +108,64 @@
     </div>
   </section>
 
+  <section class="pb-4 pb-lg-16" style="overflow: hidden;">
+    <div class="container">
+      <div class="justify-content-center row">
+        <div class="col-12 col-md-10 col-lg-8 col-xl-10 mb-8 text-center">
+          <p class="h2 mb-0">Like this property? Contact an agent to arrange a viewing</p>
+        </div>
+      </div>
+      <div class="d-none d-lg-flex justify-content-center row">
+        <?php for ($x = 1; $x <= 2; $x++): ?>
+          <div class="col-lg-4 mb-8" data-aos="fade-up" data-aos-delay="50">
+            <div class="border border-tertiary px-4 px-md-8 py-8 text-center">
+              <div class="justify-content-center row">
+                <div class="col-lg-4 mb-4">
+                  <div class="bg-square" style="background-image: url(<?php echo wp_get_upload_dir()[ 'baseurl' ]; ?>/2021/06/placeholder.jpg);"></div>
+                </div>
+                <div class="col-12 border-bottom border-tertiary mb-4 text-center">
+                  <p class="fs-5 mb-0">Maritha Keil</p>
+                  <p class="fs-5 fw-semibold mb-4">Coldwell Banker</p>
+                </div>
+              </div>
+              <ul class="list-unstyled mb-4 text-center">
+                <li><a class="btn-underline-primary" href="tel:01332 123456">01332 123456</a></li>
+                <li><a class="btn-underline-primary" href="mailto:name@agent.co.uk">name@agent.co.uk</a></li>
+              </ul>
+              <p class="mb-0"><a class="btn-secondary" href="/"><span>Request a viewing</span></a></p>
+            </div>
+          </div>
+        <?php endfor; ?>
+      </div>
+      <div class="d-flex d-lg-none justify-content-center row">
+        <div class="col-12 col-md-10 mb-8 px-0" data-aos="fade-up" data-aos-delay="50">
+          <div class="carousel-base pb-14 slick-overflow">
+            <?php for ($x = 1; $x <= 2; $x++): ?>
+              <div class="px-4">
+                <div class="border border-tertiary px-4 px-md-8 py-8 text-center">
+                  <div class="justify-content-center row">
+                    <div class="col-8 col-sm-6 col-md-4 mb-4">
+                      <div class="bg-square" style="background-image: url(<?php echo wp_get_upload_dir()[ 'baseurl' ]; ?>/2021/06/placeholder.jpg);"></div>
+                    </div>
+                    <div class="col-12 border-bottom border-tertiary mb-4 text-center">
+                      <p class="fs-5 mb-0">Maritha Keil</p>
+                      <p class="fs-5 fw-semibold mb-4">Coldwell Banker</p>
+                    </div>
+                  </div>
+                  <ul class="list-unstyled mb-4 text-center">
+                    <li><a class="btn-underline-primary" href="tel:01332 123456">01332 123456</a></li>
+                    <li><a class="btn-underline-primary" href="mailto:name@agent.co.uk">name@agent.co.uk</a></li>
+                  </ul>
+                  <p class="mb-0"><a class="btn-secondary" href="/"><span>Request a viewing</span></a></p>
+                </div>
+              </div>
+            <?php endfor; ?>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="bg-quinary" style="overflow: hidden;">
     <div class="container">
       <div class="justify-content-center justify-content-lg-start mb-lg-8 row">
@@ -125,10 +183,7 @@
                   <div class="gallery mb-4">
                     <div class="carousel-gallery">
                       <?php for ( $z = 1; $z <= 3; $z ++ ): ?>
-                        <div>
-                          <div class="bg-portrait"
-                              style="background-image: url(<?php echo wp_get_upload_dir()[ 'baseurl' ]; ?>/2021/06/placeholder.jpg);"></div>
-                        </div>
+                        <div><div class="bg-portrait" style="background-image: url(<?php echo wp_get_upload_dir()[ 'baseurl' ]; ?>/2021/06/placeholder.jpg);"></div></div>
                       <?php endfor; ?>
                     </div>
                     <a class="heart" href="/"></a>
