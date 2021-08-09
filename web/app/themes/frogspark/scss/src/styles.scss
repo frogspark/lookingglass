@@ -1293,6 +1293,7 @@ a:hover .btn-back,
   }
 }
 
+#nav-property, 
 #pills-tab {
   position: relative;
 
@@ -1626,6 +1627,7 @@ a:hover .btn-back,
 }
 
 .carousel-base,
+.carousel-sub,
 .carousel-news,
 .carousel-team,
 .carousel-agents {
@@ -1864,6 +1866,17 @@ a:hover .btn-back,
     &:hover {
       color: $secondary;
     }
+  }
+}
+
+.property-sub {
+  border-top: 8px solid $tertiary;
+  cursor: pointer;
+  transition: $transition;
+
+  &.active,
+  &:hover {
+    border-top: 8px solid $secondary;
   }
 }
 

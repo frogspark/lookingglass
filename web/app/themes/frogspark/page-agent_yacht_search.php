@@ -52,7 +52,6 @@
               <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" class="mx-1 view-form" method="get"><input name="view" type="hidden" value="list"><a class="<?php if (isset($_GET['view']) && $_GET['view'] == 'list'): echo 'active'; endif; ?>" onclick="this.parentNode.submit()" style="cursor: pointer;"><i class="fas fa-list"></i></a></form>
               <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" class="mx-1 view-form" method="get"><input name="view" type="hidden" value="map"><a class="<?php if (isset($_GET['view']) && $_GET['view'] == 'map'): echo 'active'; endif; ?>" onclick="this.parentNode.submit()" style="cursor: pointer;"><i class="fas fa-map-marker-alt"></i></a></form>
             </li>
-            <!-- <li><button class="btn-underline-secondary" style="background: none; border: none; padding: 0;">More filters</button></li> -->
           </ul>
           <?php if (!isset($_GET['view']) || (isset($_GET['view']) && $_GET['view'] != 'map')): ?>
             <div class="align-items-start align-items-lg-center d-flex flex-column flex-lg-row justify-content-center justify-content-lg-end">
@@ -177,14 +176,15 @@
           </div>
         </div>
       <?php elseif (isset($_GET['view']) && $_GET['view'] == 'map'): ?>
+        <!-- Map -->
         <div class="row">
           <div class="col-12 col-md-10 col-lg-12 mb-8" data-aos="fade-up" data-aos-delay="50">
-            <div class="map" style="height: auto; padding-bottom: 100%; width: 100%;">
+            <div class="map-alt" style="height: auto; padding-bottom: 100%; width: 100%;">
               <?php while ( $posts->have_posts() ) : $posts->the_post(); ?>
                 <div class="marker" data-icon="<?php echo wp_get_upload_dir()[ 'baseurl' ]; ?>/2021/06/marker.svg" data-lat="<?php echo get_field('location')['lat']; ?>" data-lng="<?php echo get_field('location')['lng']; ?>">
                   <div class="pb-1 pe-2 pt-1">
                     <p class="fw-semibold mb-2 text-center text-primary"><?php the_title(); ?></p>
-                    <p class="mb-0"><a class="btn-underline-secondary" href="<?php the_permalink(); ?>">View agent</a></p>
+                    <p class="mb-0"><a class="btn-underline-secondary fw-semibold" href="<?php the_permalink(); ?>">View agent</a></p>
                   </div>
                 </div>
               <?php endwhile; wp_reset_postdata(); ?>
