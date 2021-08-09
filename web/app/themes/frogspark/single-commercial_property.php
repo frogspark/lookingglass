@@ -116,7 +116,7 @@
   <section class="pb-4 pb-lg-16" style="overflow: hidden;">
     <div class="container">
       <div class="justify-content-center row">
-        <div class="col-12 col-md-10 col-lg-8 col-xl-10 mb-8 text-center">
+        <div class="col-12 col-md-10 col-lg-8 col-xl-10 mb-8 text-center" data-aos="fade-up" data-aos-delay="50">
           <p class="h2 mb-0">Like this property? Contact an agent to arrange a viewing</p>
         </div>
       </div>

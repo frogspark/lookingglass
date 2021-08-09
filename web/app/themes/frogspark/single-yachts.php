@@ -35,10 +35,7 @@
           <nav>
             <ul class="nav nav-pills" id="nav-property" role="tablist">
               <li class="nav-item"><button aria-controls="nav-home" aria-selected="true" class="active nav-link pb-2 pb-lg-4 pe-sm-8 ps-sm-8 ps-lg-0 pt-2 pt-lg-0" data-bs-target="#nav-info" data-bs-toggle="pill" id="nav-info-tab" role="tab" type="button">Info</button></li>
-              <li class="nav-item"><button aria-controls="nav-video_map" aria-selected="false" class="nav-link pb-2 pb-lg-4 pt-2 pt-lg-0 px-sm-8" data-bs-target="#nav-video_map" data-bs-toggle="pill" id="nav-video_map-tab" role="tab" type="button">Video Tour & Map</button></li>
-              <li class="nav-item"><button aria-controls="nav-schooling" aria-selected="false" class="nav-link pb-2 pb-lg-4 pt-2 pt-lg-0 px-sm-8" data-bs-target="#nav-schooling" data-bs-toggle="pill" id="nav-schooling-tab" role="tab" type="button">Schooling</button></li>
-              <li class="nav-item"><button aria-controls="nav-area" aria-selected="false" class="nav-link pb-2 pb-lg-4 pt-2 pt-lg-0 px-sm-8" data-bs-target="#nav-area" data-bs-toggle="pill" id="nav-area-tab" role="tab" type="button">Local Area</button></li>
-              <li class="nav-item"><button aria-controls="nav-calculator" aria-selected="false" class="nav-link pb-2 pb-lg-4 pt-2 pt-lg-0 px-sm-8" data-bs-target="#nav-calculator" data-bs-toggle="pill" id="nav-calculator-tab" role="tab" type="button">Mortgage Calculator</button></li>
+              <li class="nav-item"><button aria-controls="nav-spec" aria-selected="false" class="nav-link pb-2 pb-lg-4 pt-2 pt-lg-0 px-sm-8" data-bs-target="#nav-spec" data-bs-toggle="pill" id="nav-spec-tab" role="tab" type="button">Technical Specifications</button></li>
             </ul>
           </nav>
 
@@ -46,7 +43,7 @@
             <div aria-labelledby="nav-info-tab" class="active fade show pt-6 tab-pane" id="nav-info" role="tabpanel">
               <div class="row">
                 <div class="col-12 col-lg-10 col-xl-8">
-                  <h1 class="mb-2 text-secondary">3 bed apartment in Kingston</h1>
+                  <h1 class="mb-2 text-secondary">2014 Jeanneau Sun Odyssey</h1>
                   <p class="h3">Large family home.</p>
                   <p class="align-items-start align-items-lg-center d-flex flex-column flex-lg-row justify-content-center justify-content-lg-start fs-6 mb-8"><span class="fw-semibold me-lg-6">USD$575,000</span> <span class="fw-semibold">Listing #7564</span></p>
                   <div class="mb-4 row">
@@ -71,38 +68,12 @@
                 </div>
               </div>
             </div>
-            <div aria-labelledby="nav-video_map-tab" class="tab-pane pt-10 fade" id="nav-video_map" role="tabpanel">
-              <div class="row">
-                <div class="col-12 col-lg-10 col-xl-8">
-                  <div class="mb-6 video-wrapper"><video controls="true" src="/app/uploads/2021/08/test.mp4" style="height: auto; max-width: 100%; width: 100%;"></video></div>
-                  <div class="map" style="height: 0; padding-bottom: 56.25%; width: 100%;"><div class="marker" data-icon="<?php echo wp_get_upload_dir()[ 'baseurl' ]; ?>/2021/06/marker.svg" data-lat="52.914669" data-lng="-1.5400072"></div></div>
-                  <?php get_template_part('inc/_map-script'); ?>
-                </div>
-              </div>
-            </div>
-            <div aria-labelledby="nav-area-tab" class="tab-pane pt-10 fade" id="nav-area" role="tabpanel">
+
+            <div aria-labelledby="nav-spec-tab" class="tab-pane pt-10 fade" id="nav-spec" role="tabpanel">
               <div class="row">
                 <div class="col-12 col-lg-10 col-xl-8">
                   <div class="wysiwyg">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div aria-labelledby="nav-schooling-tab" class="tab-pane pt-10 fade" id="nav-schooling" role="tabpanel">
-              <div class="row">
-                <div class="col-12 col-lg-10 col-xl-8">
-                  <div class="wysiwyg">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div aria-labelledby="nav-calculator-tab" class="tab-pane pt-10 fade" id="nav-calculator" role="tabpanel">
-              <div class="row">
-                <div class="col-12 col-lg-10 col-xl-8">
-                  <div class="row">
-                    <?php get_calculator(); ?>
                   </div>
                 </div>
               </div>
@@ -117,7 +88,7 @@
     <div class="container">
       <div class="justify-content-center row">
         <div class="col-12 col-md-10 col-lg-8 col-xl-10 mb-8 text-center" data-aos="fade-up" data-aos-delay="50">
-          <p class="h2 mb-0">Like this property? Contact an agent to arrange a viewing</p>
+          <p class="h2 mb-0">Like this yacht? Contact an agent to arrange a viewing</p>
         </div>
       </div>
       <div class="d-none d-lg-flex justify-content-center row">
@@ -175,7 +146,7 @@
     <div class="container">
       <div class="justify-content-center justify-content-lg-start mb-lg-8 row">
         <div class="col-12 col-md-10 col-lg-6 col-xl-4 mb-8 text-center text-lg-start" data-aos="fade-up" data-aos-delay="50">
-          <h3>Similar properties</h3>
+          <h3>Similar yachts</h3>
           <div class="wysiwyg"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p></div>
         </div>
       </div>
