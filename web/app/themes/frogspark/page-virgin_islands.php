@@ -41,10 +41,8 @@
       <div class="justify-content-center row">
         <div class="col-12 col-md-10 col-lg-12 col-xl-11">
           <div class="justify-content-center row">
-            <div class="col-12 col-lg-6 col-xl-4 mb-lg-8 text-center text-lg-start" data-aos="fade-up" data-aos-delay="50">
-              <p class="h2 pr-xl-8"><?php the_field( 'introduction_title' ); ?></p>
-            </div>
-            <div class="col-12 col-lg-6 col-xl-5 mb-8 offset-xl-1 text-center text-lg-start" data-aos="fade-up" data-aos-delay="50">
+            <div class="col-12 mb-lg-8 text-center text-lg-start" data-aos="fade-up" data-aos-delay="50">
+              <p class="h2 mb-8"><?php the_field( 'introduction_title' ); ?></p>
               <div class="wysiwyg"><?php the_field('introduction_text'); ?></div>
             </div>
           </div>
