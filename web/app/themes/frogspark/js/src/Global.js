@@ -46,7 +46,8 @@ $(document).ready(function(){
     var terms_slider = document.getElementById('terms');
     var terms_output = document.getElementById('terms-value');
 
-    price_output.innerHTML = price_slider.value;
+    price_output.innerHTML = "Amount";
+    // price_output.innerHTML = price_slider.value;
     price_output.innerHTML = formatNumber(price_output.innerHTML);
     price_slider.oninput = function() {
       price_output.innerHTML = this.value;
@@ -61,7 +62,8 @@ $(document).ready(function(){
       deposit_percent.innerHTML = '(0%)';
     }
 
-    deposit_output.innerHTML = deposit_slider.value;
+    deposit_output.innerHTML = "Amount";
+    // deposit_output.innerHTML = deposit_slider.value;
     deposit_output.innerHTML = formatNumber(deposit_output.innerHTML);
     deposit_slider.oninput = function() {
       deposit_output.innerHTML = this.value;

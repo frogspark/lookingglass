@@ -34,10 +34,12 @@
         <div class="col-12 col-md-10 col-lg-12 mb-8" data-aos="fade-up" data-aos-delay="50">
           <nav>
             <ul class="nav nav-pills" id="nav-property" role="tablist">
-              <li class="nav-item"><button aria-controls="nav-home" aria-selected="true" class="active nav-link pb-2 pb-lg-4 pe-sm-8 ps-sm-8 ps-lg-0 pt-2 pt-lg-0" data-bs-target="#nav-info" data-bs-toggle="pill" id="nav-info-tab" role="tab" type="button">Info</button></li>
-              <li class="nav-item"><button aria-controls="nav-video_map" aria-selected="false" class="nav-link pb-2 pb-lg-4 pt-2 pt-lg-0 px-sm-8" data-bs-target="#nav-video_map" data-bs-toggle="pill" id="nav-video_map-tab" role="tab" type="button">Video Tour & Map</button></li>
-              <li class="nav-item"><button aria-controls="nav-schooling" aria-selected="false" class="nav-link pb-2 pb-lg-4 pt-2 pt-lg-0 px-sm-8" data-bs-target="#nav-schooling" data-bs-toggle="pill" id="nav-schooling-tab" role="tab" type="button">Schooling</button></li>
-              <li class="nav-item"><button aria-controls="nav-area" aria-selected="false" class="nav-link pb-2 pb-lg-4 pt-2 pt-lg-0 px-sm-8" data-bs-target="#nav-area" data-bs-toggle="pill" id="nav-area-tab" role="tab" type="button">Local Area</button></li>
+              <li class="nav-item"><button aria-controls="nav-home" aria-selected="true" class="active nav-link pb-2 pb-lg-4 pe-sm-8 ps-sm-8 ps-lg-0 pt-2 pt-lg-0" data-bs-target="#nav-info" data-bs-toggle="pill" id="nav-info-tab" role="tab" type="button">Description</button></li>
+              <li class="nav-item"><button aria-controls="nav-video" aria-selected="false" class="nav-link pb-2 pb-lg-4 pt-2 pt-lg-0 px-sm-8" data-bs-target="#nav-video" data-bs-toggle="pill" id="nav-video-tab" role="tab" type="button">Video Tour</button></li>
+              <?php// if(ADD STRATMENT TO HIDE THIS IF THERE IS NO VIDEO): ?>
+              <li class="nav-item"><button aria-controls="nav-map" aria-selected="false" class="nav-link pb-2 pb-lg-4 pt-2 pt-lg-0 px-sm-8" data-bs-target="#nav-map" data-bs-toggle="pill" id="nav-map-tab" role="tab" type="button">Map</button></li>
+              <?php// endif; ?>
+              <!-- <li class="nav-item"><button aria-controls="nav-area" aria-selected="false" class="nav-link pb-2 pb-lg-4 pt-2 pt-lg-0 px-sm-8" data-bs-target="#nav-area" data-bs-toggle="pill" id="nav-area-tab" role="tab" type="button">Local Area</button></li> -->
               <li class="nav-item"><button aria-controls="nav-calculator" aria-selected="false" class="nav-link pb-2 pb-lg-4 pt-2 pt-lg-0 px-sm-8" data-bs-target="#nav-calculator" data-bs-toggle="pill" id="nav-calculator-tab" role="tab" type="button">Mortgage Calculator</button></li>
             </ul>
           </nav>
@@ -71,16 +73,17 @@
                 </div>
               </div>
             </div>
-            <div aria-labelledby="nav-video_map-tab" class="tab-pane pt-10 fade" id="nav-video_map" role="tabpanel">
+
+            <?php// if(ADD STRATMENT TO HIDE THIS IF THERE IS NO VIDEO): ?>
+            <div aria-labelledby="nav-video-tab" class="tab-pane pt-10 fade" id="nav-video" role="tabpanel">
               <div class="row">
                 <div class="col-12 col-lg-10 col-xl-8">
                   <div class="mb-6 video-wrapper"><video controls="true" src="/app/uploads/2021/08/test.mp4" style="height: auto; max-width: 100%; width: 100%;"></video></div>
-                  <div class="map" style="height: 0; padding-bottom: 56.25%; width: 100%;"><div class="marker" data-icon="<?php echo wp_get_upload_dir()[ 'baseurl' ]; ?>/2021/06/marker.svg" data-lat="52.914669" data-lng="-1.5400072"></div></div>
-                  <?php get_template_part('inc/_map-script'); ?>
                 </div>
               </div>
             </div>
-            <div aria-labelledby="nav-area-tab" class="tab-pane pt-10 fade" id="nav-area" role="tabpanel">
+            <?php// endif; ?>
+            <!-- <div aria-labelledby="nav-area-tab" class="tab-pane pt-10 fade" id="nav-area" role="tabpanel">
               <div class="row">
                 <div class="col-12 col-lg-10 col-xl-8">
                   <div class="wysiwyg">
@@ -88,10 +91,14 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div aria-labelledby="nav-schooling-tab" class="tab-pane pt-10 fade" id="nav-schooling" role="tabpanel">
+            </div> -->
+            <div aria-labelledby="nav-map-tab" class="tab-pane pt-10 fade" id="nav-map" role="tabpanel">
               <div class="row">
                 <div class="col-12 col-lg-10 col-xl-8">
+                  <div class="mb-8">
+                    <div class="map" style="height: 0; padding-bottom: 56.25%; width: 100%;"><div class="marker" data-icon="<?php echo wp_get_upload_dir()[ 'baseurl' ]; ?>/2021/06/marker.svg" data-lat="52.914669" data-lng="-1.5400072"></div></div>
+                    <?php get_template_part('inc/_map-script'); ?>
+                  </div>
                   <div class="wysiwyg">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                   </div>
@@ -107,6 +114,18 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-12 pb-lg-24">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="py-12 py-lg-24 bg-secondary">
+
           </div>
         </div>
       </div>
@@ -165,6 +184,18 @@
                 </div>
               </div>
             <?php endfor; ?>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-12 pb-lg-24">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="py-12 py-lg-24 bg-secondary">
+
           </div>
         </div>
       </div>

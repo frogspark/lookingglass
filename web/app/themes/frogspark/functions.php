@@ -441,28 +441,21 @@ function get_calculator() {
     <form id="calculator">
       <div class="mb-8 mb-lg-12">
         <div class="row">
-          <div class="col-12 col-lg-auto text-center text-lg-start"><p class="fw-semibold mb-2">Property Price</p></div>
+          <div class="col-12 col-lg-auto text-center text-lg-start"><p class="fw-semibold mb-2">Purchase Price (USD)</p></div>
           <div class="col-12 col-lg text-center text-lg-end"><p class="mb-4 mb-lg-2">USD$ <span id="price-value">250000</span></p></div>
         </div>
         <div class="slider-wrapper w-100"><input class="slider" id="price" max="1000000" min="0" name="price" type="range" value="500000"></div>
       </div>
       <div class="mb-8 mb-lg-12">
         <div class="row">
-          <div class="col-12 col-lg-auto text-center text-lg-start"><p class="fw-semibold mb-2">Deposit</p></div>
+          <div class="col-12 col-lg-auto text-center text-lg-start"><p class="fw-semibold mb-2">Deposit (USD)</p></div>
           <div class="col-12 col-lg text-center text-lg-end"><p class="mb-4 mb-lg-2">USD$ <span id="deposit-value">250000</span> <span id="deposit-percent">(0%)</span></p></div>
         </div>
         <div class="slider-wrapper w-100"><input class="slider" id="deposit" max="500000" min="0" name="deposit" type="range" value="0"></div>
       </div>
       <div class="mb-8 mb-lg-12">
         <div class="row">
-          <div class="col-12 col-lg-auto text-center text-lg-start"><p class="fw-semibold mb-2">Terms in years</p></div>
-          <div class="col-12 col-lg text-center text-lg-end"><p class="mb-4 mb-lg-2"><span id="terms-value">0</span></p></div>
-        </div>
-        <div class="slider-wrapper w-100"><input class="slider" id="terms" max="50" min="0" name="terms" type="range" value="0"></div>
-      </div>
-      <div>
-        <div class="row">
-          <div class="col-12 col-lg-auto text-center text-lg-start"><p class="fw-semibold mb-2">Interest rate</p></div>
+          <div class="col-12 col-lg-auto text-center text-lg-start"><p class="fw-semibold mb-2">Interest Rate (%)</p></div>
           <div class="col-12 col-lg text-center text-lg-end">
             <ul class="d-flex flex-row justify-content-center justify-content-lg-end list-radio list-unstyled">
               <li class="mr-4 mr-lg-0 ms-4 ms-lg-0">
@@ -474,6 +467,22 @@ function get_calculator() {
                 <label for="variable">Variable</label>
               </li>
             </ul>
+          </div>
+        </div>
+      </div>
+      <div class="mb-8 mb-lg-12">
+        <div class="row">
+          <div class="col-12 col-lg-auto text-center text-lg-start"><p class="fw-semibold mb-2">Loan Term (Years)</p></div>
+          <div class="col-12 col-lg text-center text-lg-end"><p class="mb-4 mb-lg-2"><span id="terms-value">0</span></p></div>
+        </div>
+        <div class="slider-wrapper w-100"><input class="slider" id="terms" max="50" min="0" name="terms" type="range" value="20"></div>
+      </div>
+      <div>
+        <div class="row">
+          <div class="col-12">
+            <a href="" class="btn-secondary text-uppercase">
+              <span>Calculate</span>
+            </a>
           </div>
         </div>
       </div>
