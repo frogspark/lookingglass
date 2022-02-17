@@ -18,32 +18,34 @@
       </div>
       <div class="align-items-center col-6 col-lg d-flex flex-row justify-content-end py-2 py-lg-4">
         <nav class="d-none d-xl-block" id="navigation">
-          <ul class="nav">
-            <?php $menu = wp_get_nav_menu_items('Primary menu'); ?>
-            <?php foreach ($menu as $item): ?>
-              <li class="ms-xl-10"><a class="btn-underline-<?php if ($alt): echo 'quinary'; else: echo 'primary'; endif; ?> fw-semibold" href="<?php echo $item->url; ?>"><?php echo $item->title; ?></a></li>
-            <?php endforeach; ?>
-          </ul>
+          <?php $menu = wp_get_nav_menu_items('Primary menu'); ?>
+          <?php echo print_multi_level_menu($menu); ?>
+          <!-- <ul class="nav"> -->
+            <!-- <?php// foreach ($menu as $item): ?>
+              <li class="ms-xl-10"><a class="btn-underline-<?php// if ($alt): echo 'quinary'; else: echo 'primary'; endif; ?> fw-semibold" href="<?php// echo $item->url; ?>"><?php// echo $item->title; ?></a></li>
+            <?php// endforeach; ?> -->
+          <!-- </ul> -->
         </nav>
         <nav class="d-none d-lg-block" id="navigation-full">
-          <ul class="nav">
-            <div class="container">
-              <div class="justify-content-center row">
-                <div class="col-12 col-md-10 col-lg-6">
-                  <div class="row">
-                    <?php $menu = wp_get_nav_menu_items('Secondary menu'); ?>
-                    <?php foreach ($menu as $item): ?>
-                      <div class="col-12 col-lg-6 mb-2">
-                        <li><a class="btn-underline-primary fw-semibold" href="<?php echo $item->url; ?>"><?php echo $item->title; ?></a></li>
-                      </div>
-                    <?php endforeach; ?>
-                  </div>
+          <!-- <div class="container">
+            <div class="justify-content-center row">
+              <div class="col-12 col-md-10 col-lg-6">
+                <div class="row"> -->
+                  <?php $menu = wp_get_nav_menu_items('Secondary menu'); ?>
+                  <?php echo print_mobile_multi_level_menu($menu); ?>
+                  <!-- </div>
                 </div>
               </div>
-            </div>
-          </ul>
+            </div> -->
+            <!-- <ul class="nav"> -->
+              <!-- <?php// foreach ($menu as $item): ?>
+                <div class="col-12 col-lg-6 mb-2">
+                  <li><a class="btn-underline-primary fw-semibold" href="<?php// echo $item->url; ?>"><?php// echo $item->title; ?></a></li>
+                </div>
+              <?php// endforeach; ?> -->
+          <!-- </ul> -->
         </nav>
-        <div class="d-none d-lg-block ms-xl-10">
+        <div class="d-none d-lg-block ms-xl-5 ms-xxl-10">
           <button class="align-items-center <?php if ($alt): echo 'alt'; endif; ?> d-flex flex-row p-0" id="fullmenu" name="menu" type="button">
             <span class="fw-semibold">Full Menu</span>
             <span class="burger ms-4"></span>

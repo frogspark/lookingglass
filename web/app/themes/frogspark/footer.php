@@ -23,7 +23,7 @@
           <div class="col-12 col-lg-12 col-xl-7 mb-8 text-center text-lg-start">
             <ul class="list-unstyled mb-0">
               <div class="row">
-                <?php $menu = wp_get_nav_menu_items('Secondary menu'); ?>
+                <?php $menu = wp_get_nav_menu_items('Footer'); ?>
                 <?php foreach ($menu as $item): ?>
                   <div class="col-12 col-md-6 mb-2">
                     <li><a class="btn-underline-primary" href="<?php echo $item->url; ?>"><?php echo $item->title; ?></a></li>

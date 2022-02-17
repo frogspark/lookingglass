@@ -31,6 +31,11 @@ body {
   }
 }
 
+::-moz-selection {
+  background-color: rgba(lighten($secondary, 10%), .5);
+  color: #FFFFFF;
+}
+
 ::selection {
   background-color: rgba(lighten($secondary, 10%), .5);
   color: #FFFFFF;
@@ -276,9 +281,49 @@ a:hover .bg-wrapper {
           box-shadow: 0px 0px 0px 4px rgba($secondary, .5);
           outline: none;
 
+          &::-webkit-input-placeholder {
+            opacity: .5;
+          }
+
+          &::-moz-placeholder {
+            opacity: .5;
+          }
+
+          &:-ms-input-placeholder {
+            opacity: .5;
+          }
+
+          &::-ms-input-placeholder {
+            opacity: .5;
+          }
+
           &::placeholder {
             opacity: .5;
           }
+        }
+
+        &::-webkit-input-placeholder {
+          color: $primary;
+          -webkit-transition: $transition;
+          transition: $transition;
+        }
+
+        &::-moz-placeholder {
+          color: $primary;
+          -moz-transition: $transition;
+          transition: $transition;
+        }
+
+        &:-ms-input-placeholder {
+          color: $primary;
+          -ms-transition: $transition;
+          transition: $transition;
+        }
+
+        &::-ms-input-placeholder {
+          color: $primary;
+          -ms-transition: $transition;
+          transition: $transition;
         }
 
         &::placeholder {
@@ -712,7 +757,7 @@ a:hover .btn-back,
       height: 64px;
     }
 
-    @include xl {
+    @include xxl {
       height: 72px;
     }
   }
@@ -831,7 +876,7 @@ a:hover .btn-back,
   #navigation-full ul,
   #navigation-mobile ul {
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
     height: 0;
     justify-content: center;
     left: 0;
@@ -856,6 +901,91 @@ a:hover .btn-back,
             transition-delay: #{256ms + ($i * 32ms)};
             visibility: visible;
           }
+        }
+
+        .submenu {
+          position: initial;
+          width: 100%;
+          background-color: rgba(lighten($secondary, 10%), 1);
+  
+          .container {
+            margin: 0 0;
+            padding: 0 0;
+          }
+  
+          ul {
+            display: none;
+            transition: $transition-base;
+  
+            li.nav-item {
+              margin: 0 !important;
+              background-color: rgba(lighten($secondary, 10%), 1);
+              width: 100vw;
+  
+              a.nav-link {
+                color: $secondary;
+  
+                &:before {
+                  background-color: $secondary;
+                }
+  
+                &:hover {
+                  &:before {
+                    bottom: 16px;
+                  }
+                }
+              }
+  
+              a.nav-link:active, .active {
+                &:before {
+                  bottom: 16px;
+                }
+              }
+            }
+          }
+        }
+        
+        .submenu.open {
+          ul {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: $transition-base;
+          }
+        }
+  
+        .submenu-toggle {
+          cursor: pointer;
+          display: block;
+          height: 20px;
+          right: 10px;
+          position: absolute;
+          top: 21px;
+          transform: translateY(-50%);
+          transition: $transition-base;
+          width: 20px;
+          transform: rotateZ(0deg);
+  
+          &:before {
+            color: $quinary;
+            content: '\f078';
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            left: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            transition: $transition-base;
+            height: 100%;
+            width: 100%;
+            font-family: $font-awesome;
+          }
+        }
+      
+        .submenu-toggle.open {
+          transform: rotateZ(180deg);
         }
       }
     }
@@ -998,7 +1128,148 @@ a:hover .btn-back,
   &:not(.alt) {
     background-color: $quinary;
     border-bottom: 1px solid $quaternary;
+    position: -webkit-sticky;
     position: sticky;
+  }
+}
+
+// Navigation 
+
+.header,
+header {
+  #navigation ul {
+    align-items: center;
+    height: 100%;
+    justify-content: start;
+    transition: $transition-base;
+    width: 100%;
+
+    li.nav-item {
+      position: relative;
+
+      a.nav-link {
+        padding: 2.1rem 0;
+
+        @media (max-width: 1440px) {
+          font-size: .93rem;
+        }
+
+        &:before {
+          bottom: 2.1rem;
+          opacity: 0;
+        }
+
+
+        &:hover {
+          &:before {
+            opacity: 1;
+          }
+        }
+      }
+
+      &:hover {
+        .submenu {
+          opacity: 1;
+          pointer-events: all;
+        }
+      }
+    }
+
+    .submenu {
+      background-color: $quinary;
+      left: 50%;
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      transition: $transition-base;
+      width: 40vw;
+      top: auto;
+      transform: translateX(-50%);
+      box-shadow: 0px 0px 12px 0px rgba($primary, .25);
+      padding: 2rem 1rem 1rem 1rem;
+
+      @media (max-width: 1920px) {
+        width: 50vw;
+      }
+
+      @media (max-width: 1200px) {
+        width: 65vw;
+      }
+
+      .nav {
+        justify-content: center;
+        
+        li.nav-item {
+          width: 40%;
+          flex: 0 0 auto;
+          margin-right: 0px !important;
+
+          a.nav-link {
+            color: $primary;
+            padding: 0 0;
+            margin-bottom: 1rem;
+            width: -webkit-fit-content;
+            width: -moz-fit-content;
+            width: fit-content;
+
+            &:before {
+              bottom: -4px;
+              opacity: 0;
+              background-color: $primary !important;
+            }
+    
+    
+            &:hover {
+              &:before {
+                bottom: 0;
+                opacity: 1;
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.page-template-page-virgin_islands,
+.page-template-page-about,
+.page-template-page-advertise,
+// .page-template-page-agent_yacht_search,
+.page-template-page-mortgage_calculator,
+.home {
+  #navigation ul {  
+    li.nav-item {
+      a.nav-link {
+        color: $quinary !important;
+
+        &:before {
+          background-color: $quinary !important;
+        }
+      }
+    }
+
+    .submenu {
+      .nav {
+        li.nav-item {         
+          a.nav-link {
+            color: $primary !important;
+
+            &:before {
+              color: $primary !important;
+            }
+
+            // &:hover {
+            //   &:before {
+            //     bottom: 0;
+            //     opacity: 1;
+            //   }
+            // }
+          }
+        }
+      }
+    }
   }
 }
 
@@ -1752,7 +2023,8 @@ a:hover .btn-back,
   position: relative;
 
   input {
-    appearance: none;
+    -moz-appearance: none;
+         appearance: none;
     background-color: $quaternary;
     border-radius: 100vh;
     height: 8px;

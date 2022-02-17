@@ -7,12 +7,12 @@ import AOS from 'aos';
 
 $(document).ready(function(){
   // Full menu.
-  function openFullMenu(openFull) { $('#fullmenu').toggleClass('open', openFull); $('#navigation-full ul').toggleClass('open', openFull); $('#header').toggleClass('open', openFull); }
+  function openFullMenu(openFull) { $('#fullmenu').toggleClass('open', openFull); $('#navigation-full ul:first').toggleClass('open', openFull); $('#header').toggleClass('open', openFull); }
   var openFull = false;
   $('#fullmenu').on('click', function() { openFull = !openFull; openFullMenu(openFull); });
 
   // Burger menu.
-  function openMobileMenu(openBurger) { $('#burger').toggleClass('open', openBurger); $('#navigation-mobile ul').toggleClass('open', openBurger); $('#header').toggleClass('open', openBurger); }
+  function openMobileMenu(openBurger) { $('#burger').toggleClass('open', openBurger); $('#navigation-mobile ul:first').toggleClass('open', openBurger); $('#header').toggleClass('open', openBurger); }
   var openBurger = false;
   $('#burger').on('click', function() { openBurger = !openBurger; openMobileMenu(openBurger); });
 
@@ -31,6 +31,28 @@ $(document).ready(function(){
   }
   $(document).on('ready', function(){ scrollCheck(); });
   $(window).on('scroll', function(){ scrollCheck(); });
+
+  // Burger click
+
+  // $("#burger").click(function () {
+  //   open = !open;
+  //   toggleMenu(open);
+  // });
+
+  // $("#fullmenu").click(function () {
+  //   open = !open;
+  //   toggleMenu(open);
+  // });
+
+  // Submenu.
+
+  $(".submenu-toggle").on("click", function () {
+    var toggle = $(this);
+    toggle.toggleClass("open");
+    $(this).prev(".parent-item").toggleClass("open");
+    var submenu = $(this).next(".submenu");
+    submenu.toggleClass("open");
+  });
 
   // Mortgage Calculator.
   function formatNumber(num) { return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') }
@@ -272,6 +294,19 @@ $(document).ready(function(){
   AOS.init();
   setTimeout(function(){ AOS.init(); }, 500);
 });
+
+// /**
+//  * @description handles opening and closing of the mobile menu on the site
+//  *
+//  * @param {*} open flag indicating whether or not the menu is in an open state
+//  */
+//  var open = false; // should be "hoisted" to a global scope
+//  let toggleMenu = (open) => {
+//    $("#burger").toggleClass("open", open);
+//    $("#navigation-mobile ul:first").toggleClass("open", open);
+//    $("#fullmenu").toggleClass("open", open);
+//    $("#navigation-full ul:first").toggleClass("open", open);
+//  };
 
 // Google Maps.
 (function($) {
