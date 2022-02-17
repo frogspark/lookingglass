@@ -233,7 +233,7 @@ function print_mobile_multi_level_menu($menu, $parent_item_class = 'parent-item'
       echo '</div>';
     }
     if($next && $next->menu_item_parent != 0 && $current->menu_item_parent != $parent->ID){
-      echo '<span class="submenu-toggle d-xl-none d-block"></span>';
+      echo '<span class="submenu-toggle"></span>';
     }
     if (!$next){
       if ($current->menu_item_parent != 0) {

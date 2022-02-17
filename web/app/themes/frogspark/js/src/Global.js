@@ -32,17 +32,6 @@ $(document).ready(function(){
   $(document).on('ready', function(){ scrollCheck(); });
   $(window).on('scroll', function(){ scrollCheck(); });
 
-  // Burger click
-
-  // $("#burger").click(function () {
-  //   open = !open;
-  //   toggleMenu(open);
-  // });
-
-  // $("#fullmenu").click(function () {
-  //   open = !open;
-  //   toggleMenu(open);
-  // });
 
   // Submenu.
 
@@ -295,18 +284,6 @@ $(document).ready(function(){
   setTimeout(function(){ AOS.init(); }, 500);
 });
 
-// /**
-//  * @description handles opening and closing of the mobile menu on the site
-//  *
-//  * @param {*} open flag indicating whether or not the menu is in an open state
-//  */
-//  var open = false; // should be "hoisted" to a global scope
-//  let toggleMenu = (open) => {
-//    $("#burger").toggleClass("open", open);
-//    $("#navigation-mobile ul:first").toggleClass("open", open);
-//    $("#fullmenu").toggleClass("open", open);
-//    $("#navigation-full ul:first").toggleClass("open", open);
-//  };
 
 // Google Maps.
 (function($) {

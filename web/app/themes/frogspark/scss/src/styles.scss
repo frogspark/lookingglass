@@ -895,6 +895,7 @@ a:hover .btn-back,
         opacity: 1;
         transition: all .75s ease .35s;
         transform: translateY(0) translateZ(0) !important;
+        width: 100%;
 
         @for $i from 1 through 12 {
           &:nth-child(#{$i}) {
@@ -902,93 +903,94 @@ a:hover .btn-back,
             visibility: visible;
           }
         }
+      }
 
-        .submenu {
-          position: initial;
-          width: 100%;
-          background-color: rgba(lighten($secondary, 10%), 1);
-  
-          .container {
-            margin: 0 0;
-            padding: 0 0;
-          }
-  
-          ul {
-            display: none;
-            transition: $transition-base;
-  
-            li.nav-item {
-              margin: 0 !important;
-              background-color: rgba(lighten($secondary, 10%), 1);
-              width: 100vw;
-  
-              a.nav-link {
-                color: $secondary;
-  
-                &:before {
-                  background-color: $secondary;
-                }
-  
-                &:hover {
-                  &:before {
-                    bottom: 16px;
-                  }
-                }
+    li.nav-item {
+      a.nav-link {
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
+        width: fit-content;
+        padding: 0 0 .75rem 0;
+      }  
+
+      .submenu {
+        position: initial;
+        width: 100%;
+        background-color: $secondary;
+
+        ul {
+          display: none;
+          transition: $transition-base;
+
+          li.nav-item {
+            margin: 0 !important;
+            width: 100vw;
+
+            a.nav-link {
+              color: $quinary;
+
+              &:before {
+                background-color: $quinary;
               }
-  
-              a.nav-link:active, .active {
+
+              &:hover {
                 &:before {
                   bottom: 16px;
                 }
               }
             }
+
+            a.nav-link:active, .active {
+              &:before {
+                bottom: 16px;
+              }
+            }
           }
-        }
-        
-        .submenu.open {
-          ul {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: $transition-base;
-          }
-        }
-  
-        .submenu-toggle {
-          cursor: pointer;
-          display: block;
-          height: 20px;
-          right: 10px;
-          position: absolute;
-          top: 21px;
-          transform: translateY(-50%);
-          transition: $transition-base;
-          width: 20px;
-          transform: rotateZ(0deg);
-  
-          &:before {
-            color: $quinary;
-            content: '\f078';
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            left: 50%;
-            position: absolute;
-            top: 50%;
-            transform: translateX(-50%) translateY(-50%);
-            transition: $transition-base;
-            height: 100%;
-            width: 100%;
-            font-family: $font-awesome;
-          }
-        }
-      
-        .submenu-toggle.open {
-          transform: rotateZ(180deg);
         }
       }
+
+      .submenu.open {
+        ul {
+          display: flex;
+          transition: $transition-base;
+        }
+      }
+
+      .submenu-toggle {
+        cursor: pointer;
+        display: block;
+        height: 20px;
+        right: 10px;
+        position: absolute;
+        top: 21px;
+        transform: translateY(-50%);
+        transition: $transition-base;
+        width: 20px;
+        transform: rotateZ(0deg);
+
+        &:before {
+          color: $primary;
+          content: '\f078';
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          left: 50%;
+          position: absolute;
+          top: 50%;
+          transform: translateX(-50%) translateY(-50%);
+          transition: $transition-base;
+          height: 100%;
+          width: 100%;
+          font-family: $font-awesome;
+        }
+      }
+    
+      .submenu-toggle.open {
+        transform: rotateZ(180deg);
+      }
     }
+  }
 
     li {
       opacity: 0;
@@ -1074,6 +1076,18 @@ a:hover .btn-back,
     border-bottom: 1px solid $quaternary;
     box-shadow: 0px 0px 8px 4px rgba(0, 0, 0, .05);
     position: fixed;
+
+    #navigation ul {
+      li.nav-item {
+        a.nav-link {
+          color: $primary !important;
+
+          &:before {
+            background-color: $primary !important;
+          }
+        }
+      }
+    }
 
     .alt.logo {
       opacity: 0;
