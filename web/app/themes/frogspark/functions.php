@@ -192,7 +192,7 @@ function print_mobile_multi_level_menu($menu, $parent_item_class = 'parent-item'
   $parent = null;
   echo '<ul class="nav">';
   echo '<div class="container">';
-  echo '<div class="justify-content-center row">';
+  echo '<div class="justify-content-center row py-lg-8">';
   echo '<div class="col-12 col-md-10 col-lg-6">';
   echo '<div class="row">';
   foreach ($menu as $current){
