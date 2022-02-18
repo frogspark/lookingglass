@@ -151,27 +151,6 @@
             "min": "",
             "max": "",
             "step": ""
-        },
-        {
-            "key": "field_620e6278c723e",
-            "label": "Variable",
-            "name": "interest_rates_variable",
-            "type": "number",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "min": "",
-            "max": "",
-            "step": ""
         }
     ],
     "location": [
@@ -204,5 +183,5 @@
     ],
     "active": true,
     "description": "The fields which will be used for the mortgage calculator page.",
-    "modified": 1645111110
+    "modified": 1645187059
 }

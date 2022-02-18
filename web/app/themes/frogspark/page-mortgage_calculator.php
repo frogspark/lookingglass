@@ -6,7 +6,6 @@
 	
 	<form class="d-none">
 		<input id="fixed-rate" name="fixed" type="text" value="<?php the_field('interest_rates_fixed'); ?>">
-		<input id="variable-rate" name="variable" type="text" value="<?php the_field('interest_rates_variable'); ?>">
 	</form>
 
 	<section class="hero pb-12 pb-lg-16" data-aos="fade" style="background-image: url(<?php echo get_field('hero_image')['url']; ?>">
