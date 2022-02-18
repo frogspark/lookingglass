@@ -888,12 +888,6 @@ a:hover .btn-back,
     width: 100%;
     z-index: 9;
 
-    &::-webkit-scrollbar {
-      width: 0px;
-      background: transparent;
-      display: none;
-    }
-
     &.open {
       pointer-events: all;
 
@@ -924,6 +918,7 @@ a:hover .btn-back,
           flex-direction: column;
           height: auto;
           transition: $transition-base;
+          pointer-events: all;
         }
       }
     
@@ -992,14 +987,14 @@ a:hover .btn-back,
   
                 &:hover {
                   &:before {
-                    bottom: 16px;
+                    bottom: 12px;
                   }
                 }
               }
   
               a.nav-link:active, .active {
                 &:before {
-                  bottom: 16px;
+                  bottom: 12px;
                 }
               }
             }
@@ -1176,8 +1171,13 @@ a:hover .btn-back,
       opacity: 1;
     }
 
-    #navigation {
-      display: none !important;
+    #navigation ul {
+      li.nav-item {
+        a.nav-link {
+          color: $quinary !important;
+          pointer-events: none;
+        }
+      }
     }
   }
 
@@ -1187,12 +1187,7 @@ a:hover .btn-back,
     position: -webkit-sticky;
     position: sticky;
   }
-}
 
-// Navigation 
-
-.header,
-header {
   #navigation ul {
     align-items: center;
     height: 100%;
@@ -1259,7 +1254,7 @@ header {
             width: fit-content;
 
             &:before {
-              bottom: -4px;
+              bottom: 0px;
               opacity: 0;
               background-color: $primary !important;
             }
@@ -1267,7 +1262,6 @@ header {
     
             &:hover {
               &:before {
-                bottom: 0;
                 opacity: 1;
                 width: 100%;
               }
