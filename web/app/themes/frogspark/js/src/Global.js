@@ -57,6 +57,13 @@ $(document).ready(function(){
     var terms_slider = document.getElementById('terms');
     var terms_output = document.getElementById('terms-value');
 
+    // Interest rate 
+
+    // var fixed = document.getElementById('fixed-rate');
+    // var variable = document.getElementById('variable-rate');
+    // var interest_fixed = fixed.value;
+    // var interest_variable = variable.value;
+
     price_output.innerHTML = "Amount";
     // price_output.innerHTML = price_slider.value;
     price_output.innerHTML = formatNumber(price_output.innerHTML);
@@ -91,6 +98,10 @@ $(document).ready(function(){
       terms_output.innerHTML = formatNumber(terms_output.innerHTML);
       terms_slider.setAttribute('value', terms_slider.value);
     }
+
+    // Reset the output to the users selected amount 
+    // do maths
+    // put output of these into the right side sections (maybe more maths)
   }
 
   // Hero carousel.

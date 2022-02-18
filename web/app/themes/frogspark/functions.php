@@ -149,7 +149,7 @@ function print_multi_level_menu($menu, $parent_item_class = 'parent-item'){
         echo '<div class="container">';
         echo '<div class="row">';
         echo '<div class="col-12">';
-        echo '<ul class="nav flex-lg-row">';
+        echo '<ul class="nav flex-column">';
       }
     } else {
       if ($next && $next->menu_item_parent != 0) {
@@ -204,7 +204,7 @@ function print_mobile_multi_level_menu($menu, $parent_item_class = 'parent-item'
       $parent = $current;
       if ($submenu == true){
         $submenu = false;
-        echo '</ul></div>';
+        echo '</ul></div></div></div></div>';
       }
     }
     $next = next($menu);
@@ -215,7 +215,7 @@ function print_mobile_multi_level_menu($menu, $parent_item_class = 'parent-item'
         echo '<div class="container">';
         echo '<div class="row">';
         echo '<div class="col-12">';
-        echo '<ul class="nav flex-lg-row">';
+        echo '<ul class="nav">';
       }
     } else {
       if ($next && $next->menu_item_parent != 0) {
@@ -223,14 +223,12 @@ function print_mobile_multi_level_menu($menu, $parent_item_class = 'parent-item'
         $anchor_class .= $parent_item_class;
       }
     }
-    echo '<div class="col-12 col-lg-6 mb-2">';
-    echo '<li class="nav-item ms-xl-5 ms-xxl-10">';
+    echo '<li class="col-12 col-lg-6 mb-2 nav-item ms-xl-5 ms-xxl-10">';
     echo '<a href="'.$current->url.'" class="'.$anchor_class.' btn-underline-primary fw-semibold">';
     echo $current->title;
     echo '</a>';
     if ($current->menu_item_parent == $parent->ID) {
       echo '</li>';
-      echo '</div>';
     }
     if($next && $next->menu_item_parent != 0 && $current->menu_item_parent != $parent->ID){
       echo '<span class="submenu-toggle"></span>';
@@ -242,15 +240,15 @@ function print_mobile_multi_level_menu($menu, $parent_item_class = 'parent-item'
         echo '</div>';
         echo '</div>';
         echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
       } else {
         echo '</li>';
       }
     }
   }
+  echo '</div>';
+  echo '</div>';
+  echo '</div>';
+  echo '</div>';
   echo '</ul>';
 }
 

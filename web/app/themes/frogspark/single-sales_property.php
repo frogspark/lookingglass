@@ -123,7 +123,7 @@
   <section class="pb-12 pb-lg-24">
     <div class="container">
       <div class="row">
-        <div class="col-12">
+        <div class="col-12" data-aos="fade-up" data-aos-delay="50">
           <div class="py-12 py-lg-24 bg-secondary">
 
           </div>
@@ -193,7 +193,7 @@
   <section class="pb-12 pb-lg-24">
     <div class="container">
       <div class="row">
-        <div class="col-12">
+        <div class="col-12" data-aos="fade-up" data-aos-delay="50">
           <div class="py-12 py-lg-24 bg-secondary">
 
           </div>

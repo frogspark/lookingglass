@@ -892,10 +892,9 @@ a:hover .btn-back,
       pointer-events: all;
 
       li {
-        opacity: 1;
+        opacity: 1 !important;
         transition: all .75s ease .35s;
         transform: translateY(0) translateZ(0) !important;
-        width: 100%;
 
         @for $i from 1 through 12 {
           &:nth-child(#{$i}) {
@@ -905,12 +904,39 @@ a:hover .btn-back,
         }
       }
 
+      .submenu.open {
+        ul {
+          display: flex;
+          flex-direction: column;
+          transition: $transition-base;
+        }
+      }
+    
+      .submenu-toggle.open {
+        transform: rotateZ(180deg);
+      }
+    }
+
     li.nav-item {
+      margin: 0 0 !important;
+      opacity: 0;
+      position: relative;
+
+      @for $i from 1 through 12 {
+        &:nth-child(#{$i}) {
+          transform: translateY(#{64px + ($i * 8px)}) translateZ(0);
+        }
+      }
+
       a.nav-link {
         width: -webkit-fit-content;
         width: -moz-fit-content;
         width: fit-content;
         padding: 0 0 .75rem 0;
+
+        @media (max-width: 991px) {
+          margin: 0 auto;
+        }
       }  
 
       .submenu {
@@ -921,6 +947,7 @@ a:hover .btn-back,
         ul {
           display: none;
           transition: $transition-base;
+          box-shadow: none;
 
           li.nav-item {
             margin: 0 !important;
@@ -949,24 +976,21 @@ a:hover .btn-back,
         }
       }
 
-      .submenu.open {
-        ul {
-          display: flex;
-          transition: $transition-base;
-        }
-      }
-
       .submenu-toggle {
         cursor: pointer;
         display: block;
         height: 20px;
         right: 10px;
         position: absolute;
-        top: 21px;
+        top: 3px;
         transform: translateY(-50%);
         transition: $transition-base;
         width: 20px;
         transform: rotateZ(0deg);
+
+        @media (max-width: 991px) {
+          top: 5px;
+        }
 
         &:before {
           color: $primary;
@@ -985,26 +1009,10 @@ a:hover .btn-back,
           font-family: $font-awesome;
         }
       }
-    
-      .submenu-toggle.open {
-        transform: rotateZ(180deg);
-      }
     }
   }
 
-    li {
-      opacity: 0;
-      position: relative;
-
-      @for $i from 1 through 12 {
-        &:nth-child(#{$i}) {
-          transform: translateY(#{64px + ($i * 8px)}) translateZ(0);
-        }
-      }
-    }
-  }
-
-  #navigation-full ul {
+  #navigation-full>ul {
     background-color: $quinary;
     box-shadow: 0px 0px 8px 4px rgba(0, 0, 0, .05);
 
@@ -1021,7 +1029,7 @@ a:hover .btn-back,
     }
   }
 
-  #navigation-mobile ul {
+  #navigation-mobile>ul {
     background-color: $quinary;
 
     &.open {
@@ -1196,27 +1204,17 @@ header {
       pointer-events: none;
       position: absolute;
       transition: $transition-base;
-      width: 40vw;
+      width: 290px;
       top: auto;
-      transform: translateX(-50%);
+      transform: translateX(-22%);
       box-shadow: 0px 0px 12px 0px rgba($primary, .25);
       padding: 2rem 1rem 1rem 1rem;
 
-      @media (max-width: 1920px) {
-        width: 50vw;
-      }
-
-      @media (max-width: 1200px) {
-        width: 65vw;
-      }
-
       .nav {
-        justify-content: center;
-        
         li.nav-item {
-          width: 40%;
+          width: 100%;
           flex: 0 0 auto;
-          margin-right: 0px !important;
+          margin: 0 0 !important;
 
           a.nav-link {
             color: $primary;
@@ -1250,7 +1248,7 @@ header {
 .page-template-page-virgin_islands,
 .page-template-page-about,
 .page-template-page-advertise,
-// .page-template-page-agent_yacht_search,
+.page-template-page-agent_yacht_search,
 .page-template-page-mortgage_calculator,
 .home {
   #navigation ul {  
@@ -1273,13 +1271,6 @@ header {
             &:before {
               color: $primary !important;
             }
-
-            // &:hover {
-            //   &:before {
-            //     bottom: 0;
-            //     opacity: 1;
-            //   }
-            // }
           }
         }
       }
