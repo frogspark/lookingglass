@@ -5,11 +5,15 @@
   <section class="bg-quinary pb-4 pb-lg-16 pt-12">
     <div class="container">
       <div class="d-none d-lg-flex justify-content-center mb-8 row">
-        <div class="col-lg-11 col-xl-10 mb-8" data-aos="fade-up" data-aos-delay="50">
+        <div class="col-lg-11 col-xl-10" data-aos="fade-up" data-aos-delay="50">
           <p class="mb-0"><a class="btn-back" href="/news/">Back to news</a></p>
         </div>
       </div>
       <div class="justify-content-center row">
+        <div class="col-12 mb-8" data-aos="fade-up" data-aos-delay="50">
+          <div class="display-ads horizontal-ad"><img src="https://via.placeholder.com/1000x250" alt="placeholder ads"></div>
+        </div>
+
         <div class="col-12 col-md-10 col-lg-11 col-xl-10" data-aos="fade-up" data-aos-delay="50">
           <div class="row">
             <div class="col-12 col-lg-9 mb-4 mb-lg-8 text-center text-lg-start">
@@ -28,7 +32,9 @@
         </div>
       </div>
       <div class="justify-content-center row">
-        <div class="col-12 col-md-10 col-lg-11 col-xl-8 mb-8" data-aos="fade-up" data-aos-delay="50">
+        <div class="col-12 col-md-10 col-lg-11 col-xl-8 mb-8 position-relative" data-aos="fade-up" data-aos-delay="50">
+          <div class="d-none d-lg-block display-ads vertial-top-null-ad vertical-left"><img src="https://via.placeholder.com/250x1500" alt="placeholder ads"></div>
+          <div class="d-none d-lg-block display-ads vertial-top-null-ad vertical-right"><img src="https://via.placeholder.com/250x1500" alt="placeholder ads"></div>
           <div class="wysiwyg"><?php the_field('page_text'); ?></div>
         </div>
       </div>
@@ -45,10 +51,14 @@
   <?php $posts = new WP_Query( $query ); ?>
   <section class="bg-quinary pb-4 pb-lg-16" style="overflow: hidden;">
     <div class="container">
-      <div class="justify-content-center justify-content-lg-start mb-lg-8 row">
+      <div class="justify-content-center justify-content-lg-between mb-lg-8 row">
         <div class="col-12 col-md-10 col-lg-6 col-xl-4 mb-8 text-center text-lg-start" data-aos="fade-up" data-aos-delay="50">
           <h3><?php the_field( 'related_title', $news->ID ); ?></h3>
           <div class="wysiwyg"><?php the_field( 'related_text', $news->ID ); ?></div>
+        </div>
+
+        <div class="d-none d-lg-block col-lg-6 pb-8" data-aos="fade-up" data-aos-delay="50">
+          <div class="display-ads horizontal-ad"><img src="https://via.placeholder.com/1000x250" alt="placeholder ads"></div>
         </div>
       </div>
       <div class="justify-content-center row">
@@ -68,6 +78,16 @@
               </div>
 						<?php endwhile; wp_reset_postdata(); ?>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-12 pb-lg-24">
+    <div class="container">
+      <div class="row">
+        <div class="col-12" data-aos="fade-up" data-aos-delay="50">
+          <div class="display-ads horizontal-ad"><img src="https://via.placeholder.com/1000x250" alt="placeholder ads"></div>
         </div>
       </div>
     </div>

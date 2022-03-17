@@ -40,6 +40,7 @@
         </div>
       </div>
       <div class="d-none d-lg-flex row">
+        <?php $x = 1; ?>
 				<?php while ( $posts->have_posts() ) : $posts->the_post(); ?>
           <div class="col-lg-4 mb-12" data-aos="fade-up" data-aos-delay="50">
             <a class="d-block" href="<?php the_permalink(); ?>">
@@ -52,6 +53,13 @@
               <p class="mb-0"><span class="btn-arrow-secondary">Read more</span></p>
             </a>
           </div>
+
+          <?php if($x % 3 == 0 && $wp_query->post_count != $x && $x <= 3) : ?>
+            <div class="col-12 mb-12" data-aos="fade-up" data-aos-delay="50">
+              <div class="display-ads horizontal-ad"><img src="https://via.placeholder.com/1000x250" alt="placeholder ads"></div>
+            </div>
+          <?php endif; ?>
+        <?php $x++; ?>
 				<?php endwhile; ?>
       </div>
       <div class="d-flex d-lg-none justify-content-center row">
@@ -73,12 +81,24 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-12 col-md-10 col-lg-12 mb-8" data-aos="fade-up" data-aos-delay="50">
-          <div class="pagination">
-						<?php $total_pages = $posts->max_num_pages; ?>
-						<?php if ( $total_pages > 1 ): $current_page = max( 1, get_query_var( 'paged' ) ); echo paginate_links( array ( 'base' => get_pagenum_link( 1 ) . '%_%', 'format' => 'page/%#%/', 'current' => $current_page, 'total' => $total_pages, 'prev_next' => false ) ); endif; ?>
+      <?php if ($x >= 12 || $posts->query_vars['paged'] > 1): ?> 
+        <div class="row">
+          <div class="col-12 col-md-10 col-lg-12 mb-8" data-aos="fade-up" data-aos-delay="50">
+            <div class="pagination">
+              <?php $total_pages = $posts->max_num_pages; ?>
+              <?php if ( $total_pages > 1 ): $current_page = max( 1, get_query_var( 'paged' ) ); echo paginate_links( array ( 'base' => get_pagenum_link( 1 ) . '%_%', 'format' => 'page/%#%/', 'current' => $current_page, 'total' => $total_pages, 'prev_next' => false ) ); endif; ?>
+            </div>
           </div>
+        </div>
+      <?php endif; ?>
+    </div>
+  </section>
+
+  <section class="pb-12 pb-lg-24">
+    <div class="container">
+      <div class="row">
+        <div class="col-12" data-aos="fade-up" data-aos-delay="50">
+          <div class="display-ads horizontal-ad"><img src="https://via.placeholder.com/1000x250" alt="placeholder ads"></div>
         </div>
       </div>
     </div>

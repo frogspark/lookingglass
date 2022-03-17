@@ -44,6 +44,16 @@
     </div>
   </section>
 
+  <section class="pb-12 pb-lg-24">
+    <div class="container">
+      <div class="row">
+        <div class="col-12" data-aos="fade-up" data-aos-delay="50">
+          <div class="display-ads horizontal-ad"><img src="https://via.placeholder.com/1000x250" alt="placeholder ads"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="bg-quinary pb-4 pb-lg-16">
     <div class="container">
       <div class="justify-content-center row">

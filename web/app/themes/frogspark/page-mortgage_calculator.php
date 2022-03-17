@@ -47,9 +47,27 @@
 		</div>
 	</section>
 
+	<section class="pb-12 pb-lg-24">
+    <div class="container">
+      <div class="row">
+        <div class="col-12" data-aos="fade-up" data-aos-delay="50">
+          <div class="display-ads horizontal-ad"><img src="https://via.placeholder.com/1000x250" alt="placeholder ads"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 	<?php get_template_part( 'inc/_news' ); ?>
 
-	<section class="my-2 my-lg-8"></section>
+	<section class="pt-4 pt-lg-16 pb-12 pb-lg-24">
+    <div class="container">
+      <div class="row">
+        <div class="col-12" data-aos="fade-up" data-aos-delay="50">
+          <div class="display-ads horizontal-ad"><img src="https://via.placeholder.com/1000x250" alt="placeholder ads"></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 	<?php get_template_part( 'inc/_signup' ); ?>
 

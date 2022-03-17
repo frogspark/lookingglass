@@ -4,6 +4,16 @@
 
   <?php get_template_part('navigation'); ?>
 
+  <section class="pb-0 pb-lg-12 pt-12">
+    <div class="container">
+      <div class="row">
+        <div class="col-12" data-aos="fade-up" data-aos-delay="50">
+          <div class="display-ads horizontal-ad"><img src="https://via.placeholder.com/1000x250" alt="placeholder ads"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="bg-quinary pb-4 pb-lg-16 pt-12">
     <div class="container">
       <div class="justify-content-center row">
@@ -52,7 +62,15 @@
 
   <?php get_template_part('inc/_news'); ?>
 
-  <section class="my-2 my-lg-8"></section>
+  <section class="pt-4 pt-lg-16 pb-12 pb-lg-24">
+    <div class="container">
+      <div class="row">
+        <div class="col-12" data-aos="fade-up" data-aos-delay="50">
+          <div class="display-ads horizontal-ad"><img src="https://via.placeholder.com/1000x250" alt="placeholder ads"></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <?php get_template_part( 'inc/_signup' ); ?>
 

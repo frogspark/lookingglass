@@ -36,15 +36,20 @@
     </div>
   </section>
 
-  <section class="pb-4 pb-lg-16 pt-12 pt-lg-24">
+  <section class="pb-12 pb-lg-24 pt-12 pt-lg-24">
     <div class="container">
       <div class="justify-content-center row">
         <div class="col-12 col-md-10 col-lg-12 col-xl-11">
           <div class="justify-content-center row">
-            <div class="col-12 mb-lg-8 text-center text-lg-start" data-aos="fade-up" data-aos-delay="50">
+            <div class="col-12 mb-8 text-center text-lg-start" data-aos="fade-up" data-aos-delay="50">
               <p class="h2 mb-8"><?php the_field( 'introduction_title' ); ?></p>
               <div class="wysiwyg"><?php the_field('introduction_text'); ?></div>
             </div>
+
+            <div class="col-12" data-aos="fade-up" data-aos-delay="50">
+              <div class="display-ads horizontal-ad"><img src="https://via.placeholder.com/1000x250" alt="placeholder ads"></div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -84,9 +89,11 @@
           <div class="justify-content-center row">
             <div class="col-12 col-lg-6 col-xl-4 mb-lg-8 text-center text-lg-start" data-aos="fade-up" data-aos-delay="50">
               <p class="h2 pr-xl-8"><?php the_field( 'page_title' ); ?></p>
+              <div class="d-none d-lg-block display-ads horizontal-ad horizontal-fix-height-ad"><img src="https://via.placeholder.com/1000x250" alt="placeholder ads"></div>
             </div>
             <div class="col-12 col-lg-6 col-xl-5 mb-8 offset-xl-1 text-center text-lg-start" data-aos="fade-up" data-aos-delay="50">
-              <div class="wysiwyg"><?php the_field('page_text'); ?></div>
+              <div class="wysiwyg mb-8 mb-lg-0"><?php the_field('page_text'); ?></div>
+              <div class="d-block d-lg-none display-ads horizontal-ad horizontal-fix-height-ad"><img src="https://via.placeholder.com/1000x250" alt="placeholder ads"></div>
             </div>
           </div>
         </div>
@@ -108,7 +115,15 @@
 
 	<?php get_template_part('inc/_news'); ?>
 
-	<section class="my-2 my-lg-8"></section>
+  <section class="pt-4 pt-lg-16 pb-12 pb-lg-24">
+    <div class="container">
+      <div class="row">
+        <div class="col-12" data-aos="fade-up" data-aos-delay="50">
+          <div class="display-ads horizontal-ad"><img src="https://via.placeholder.com/1000x250" alt="placeholder ads"></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 	<?php get_template_part('inc/_signup'); ?>
 
