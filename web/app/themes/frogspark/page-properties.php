@@ -32,7 +32,10 @@
 
   <section class="pb-4 pb-lg-16" style="overflow: hidden;">
     <div class="container">
-      <div class="justify-content-center mb-lg-8 row">
+      <div class="justify-content-center mb-lg-8 row position-relative">
+        <div class="d-none d-lg-block display-ads vertical-left"><img src="https://via.placeholder.com/250x1500" alt="placeholder ads"></div>
+        <div class="d-none d-lg-block display-ads vertical-right"><img src="https://via.placeholder.com/250x1500" alt="placeholder ads"></div>
+
         <div class="col-12 col-md-10 col-lg-12 d-flex flex-column flex-lg-row mb-8" data-aos="fade-up" data-aos-delay="50">
           <ul class="align-items-center d-flex flex-column flex-lg-row flex-fill justify-content-center justify-content-lg-start list-unstyled mb-0">
             <?php if (isset($_GET['view']) && $_GET['view'] == 'map'): ?>
@@ -268,9 +271,27 @@
     </div>
   </section>
 
+  <section class="pb-12 pb-lg-24">
+    <div class="container">
+      <div class="row">
+        <div class="col-12" data-aos="fade-up" data-aos-delay="50">
+          <div class="display-ads horizontal-ad"><img src="https://via.placeholder.com/1000x250" alt="placeholder ads"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <?php get_template_part( 'inc/_news' ); ?>
 
-  <section class="my-2 my-lg-8"></section>
+  <section class="pt-4 pt-lg-18 pb-12 pb-lg-24">
+    <div class="container">
+      <div class="row">
+        <div class="col-12" data-aos="fade-up" data-aos-delay="50">
+          <div class="display-ads horizontal-ad"><img src="https://via.placeholder.com/1000x250" alt="placeholder ads"></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <?php get_template_part( 'inc/_signup' ); ?>
 

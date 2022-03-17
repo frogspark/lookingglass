@@ -38,10 +38,14 @@
   </section>
 
   <section class="bg-quinary pb-12 pb-lg-24 pt-12 pt-lg-0">
+    
     <div class="container">
       <div class="justify-content-center row">
         <div class="col-12 col-md-10 col-lg-12 col-xl-10 mt-lg-n24" data-aos="fade-up" data-aos-delay="50" style="z-index: 2;">
-          <div class="bg-quinary border border-quaternary px-4 px-sm-8 px-lg-12 py-12">
+          <div class="bg-quinary border border-quaternary px-4 px-sm-8 px-lg-12 py-12 position-relative">
+            <div class="d-none d-lg-block display-ads vertical-left"><img src="https://via.placeholder.com/250x1500" alt="placeholder ads"></div>
+            <div class="d-none d-lg-block display-ads vertical-right"><img src="https://via.placeholder.com/250x1500" alt="placeholder ads"></div>
+
             <div class="justify-content-center row">
               <div class="col-12 col-lg-8 col-xl-6 mb-8 text-center">
                 <h2><?php the_field( 'featured_title' ); ?></h2>
@@ -147,10 +151,18 @@
 
   <?php get_template_part('inc/_news'); ?>
 
-  <section class="my-2 my-lg-8"></section>
+  <section class="pt-4 pt-lg-18 pb-12 pb-lg-24">
+    <div class="container">
+      <div class="row">
+        <div class="col-12" data-aos="fade-up" data-aos-delay="50">
+          <div class="display-ads horizontal-ad"><img src="https://via.placeholder.com/1000x250" alt="placeholder ads"></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <?php get_template_part('inc/_signup'); ?>
 
-  <section class="my-2 my-lg-8"></section>
+  <section class="my-2 my-lg-26"></section>
 
 <?php get_footer(); ?>

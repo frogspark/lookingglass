@@ -10,6 +10,10 @@
         </div>
       </div>
       <div class="justify-content-center row">
+        <div class="col-12 mb-8" data-aos="fade-up" data-aos-delay="50">
+          <div class="display-ads horizontal-ad"><img src="https://via.placeholder.com/1000x250" alt="placeholder ads"></div>
+        </div>
+
         <div class="col-12 col-md-10 col-lg-12" data-aos="fade-up" data-aos-delay="50">
           <div class="bg-landscape property-main" style="background-image: url(<?php echo wp_get_upload_dir()[ 'baseurl' ]; ?>/2021/06/placeholder.jpg);"></div>
         </div>
@@ -28,6 +32,7 @@
     </div>
   </section>
 
+  
   <section class="pb-4 pb-lg-16">
     <div class="container">
       <div class="justify-content-center row">
@@ -35,11 +40,11 @@
           <nav>
             <ul class="nav nav-pills" id="nav-property" role="tablist">
               <li class="nav-item"><button aria-controls="nav-home" aria-selected="true" class="active nav-link pb-2 pb-lg-4 pe-sm-8 ps-sm-8 ps-lg-0 pt-2 pt-lg-0" data-bs-target="#nav-info" data-bs-toggle="pill" id="nav-info-tab" role="tab" type="button">Description</button></li>
-              <li class="nav-item"><button aria-controls="nav-video" aria-selected="false" class="nav-link pb-2 pb-lg-4 pt-2 pt-lg-0 px-sm-8" data-bs-target="#nav-video" data-bs-toggle="pill" id="nav-video-tab" role="tab" type="button">Video Tour</button></li>
-              <?php// if(ADD STRATMENT TO HIDE THIS IF THERE IS NO VIDEO): ?>
-              <li class="nav-item"><button aria-controls="nav-map" aria-selected="false" class="nav-link pb-2 pb-lg-4 pt-2 pt-lg-0 px-sm-8" data-bs-target="#nav-map" data-bs-toggle="pill" id="nav-map-tab" role="tab" type="button">Map</button></li>
+              <?php// (ADD IF STATEMENT CONDITION): ?>
+                <li class="nav-item"><button aria-controls="nav-video" aria-selected="false" class="nav-link pb-2 pb-lg-4 pt-2 pt-lg-0 px-sm-8" data-bs-target="#nav-video" data-bs-toggle="pill" id="nav-video-tab" role="tab" type="button">Video Tour</button></li>
               <?php// endif; ?>
-              <!-- <li class="nav-item"><button aria-controls="nav-area" aria-selected="false" class="nav-link pb-2 pb-lg-4 pt-2 pt-lg-0 px-sm-8" data-bs-target="#nav-area" data-bs-toggle="pill" id="nav-area-tab" role="tab" type="button">Local Area</button></li> -->
+              <li class="nav-item"><button aria-controls="nav-map" aria-selected="false" class="nav-link pb-2 pb-lg-4 pt-2 pt-lg-0 px-sm-8" data-bs-target="#nav-map" data-bs-toggle="pill" id="nav-map-tab" role="tab" type="button">Map</button></li>
+              <li class="nav-item"><button aria-controls="nav-area" aria-selected="false" class="nav-link pb-2 pb-lg-4 pt-2 pt-lg-0 px-sm-8" data-bs-target="#nav-area" data-bs-toggle="pill" id="nav-area-tab" role="tab" type="button">Local Area</button></li>
               <li class="nav-item"><button aria-controls="nav-calculator" aria-selected="false" class="nav-link pb-2 pb-lg-4 pt-2 pt-lg-0 px-sm-8" data-bs-target="#nav-calculator" data-bs-toggle="pill" id="nav-calculator-tab" role="tab" type="button">Mortgage Calculator</button></li>
             </ul>
           </nav>
@@ -71,27 +76,41 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                   </div>
                 </div>
-              </div>
-            </div>
 
-            <?php// if(ADD STRATMENT TO HIDE THIS IF THERE IS NO VIDEO): ?>
-            <div aria-labelledby="nav-video-tab" class="tab-pane pt-10 fade" id="nav-video" role="tabpanel">
-              <div class="row">
-                <div class="col-12 col-lg-10 col-xl-8">
-                  <div class="mb-6 video-wrapper"><video controls="true" src="/app/uploads/2021/08/test.mp4" style="height: auto; max-width: 100%; width: 100%;"></video></div>
+                <div class="col-12 col-lg-2 col-xl-4 d-none d-lg-block">
+                  <div class="display-ads vertical-full-width"><img src="https://via.placeholder.com/250x1500" alt="placeholder ads"></div>
                 </div>
               </div>
             </div>
+
+            <?php// if(ADD IF STATEMENT CONDITION HERE): ?>
+              <div aria-labelledby="nav-video-tab" class="tab-pane pt-10 fade" id="nav-video" role="tabpanel">
+                <div class="row">
+                  <div class="col-12 col-lg-10 col-xl-8">
+                    <div class="mb-6 video-wrapper"><video controls="true" src="/app/uploads/2021/08/test.mp4" style="height: auto; max-width: 100%; width: 100%;"></video></div>
+                  </div>
+
+                  <div class="col-12 col-lg-2 col-xl-4 d-none d-lg-block">
+                    <div class="display-ads vertical-full-width"><img src="https://via.placeholder.com/250x1500" alt="placeholder ads"></div>
+                  </div>
+                </div>
+              </div>
             <?php// endif; ?>
-            <!-- <div aria-labelledby="nav-area-tab" class="tab-pane pt-10 fade" id="nav-area" role="tabpanel">
+
+            <div aria-labelledby="nav-area-tab" class="tab-pane pt-10 fade" id="nav-area" role="tabpanel">
               <div class="row">
                 <div class="col-12 col-lg-10 col-xl-8">
                   <div class="wysiwyg">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                   </div>
                 </div>
+
+                <div class="col-12 col-lg-2 col-xl-4 d-none d-lg-block">
+                  <div class="display-ads vertical-full-width"><img src="https://via.placeholder.com/250x1500" alt="placeholder ads"></div>
+                </div>
               </div>
-            </div> -->
+            </div>
+
             <div aria-labelledby="nav-map-tab" class="tab-pane pt-10 fade" id="nav-map" role="tabpanel">
               <div class="row">
                 <div class="col-12 col-lg-10 col-xl-8">
@@ -103,6 +122,10 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                   </div>
                 </div>
+
+                <div class="col-12 col-lg-2 col-xl-4 d-none d-lg-block">
+                  <div class="display-ads vertical-full-width"><img src="https://via.placeholder.com/250x1500" alt="placeholder ads"></div>
+                </div>
               </div>
             </div>
             <div aria-labelledby="nav-calculator-tab" class="tab-pane pt-10 fade" id="nav-calculator" role="tabpanel">
@@ -112,20 +135,12 @@
                     <?php get_calculator(); ?>
                   </div>
                 </div>
+
+                <div class="col-12 col-lg-2 col-xl-4 d-none d-lg-block">
+                  <div class="display-ads vertical-full-width"><img src="https://via.placeholder.com/250x1500" alt="placeholder ads"></div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="pb-12 pb-lg-24">
-    <div class="container">
-      <div class="row">
-        <div class="col-12" data-aos="fade-up" data-aos-delay="50">
-          <div class="py-12 py-lg-24 bg-secondary">
-
           </div>
         </div>
       </div>
@@ -190,24 +205,16 @@
     </div>
   </section>
 
-  <section class="pb-12 pb-lg-24">
-    <div class="container">
-      <div class="row">
-        <div class="col-12" data-aos="fade-up" data-aos-delay="50">
-          <div class="py-12 py-lg-24 bg-secondary">
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="bg-quinary" style="overflow: hidden;">
     <div class="container">
-      <div class="justify-content-center justify-content-lg-start mb-lg-8 row">
+      <div class="justify-content-center justify-content-lg-between mb-lg-8 row">
         <div class="col-12 col-md-10 col-lg-6 col-xl-4 mb-8 text-center text-lg-start" data-aos="fade-up" data-aos-delay="50">
           <h3>Similar properties</h3>
           <div class="wysiwyg"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p></div>
+        </div>
+
+        <div class="d-none d-lg-block col-lg-6 pb-8" data-aos="fade-up" data-aos-delay="50">
+          <div class="display-ads horizontal-ad"><img src="https://via.placeholder.com/1000x250" alt="placeholder ads"></div>
         </div>
       </div>
       <div class="justify-content-center row">
@@ -271,7 +278,15 @@
     </div>
   </section>
 
-  <section class="my-2 my-lg-8"></section>
+  <section class="pt-4 pt-lg-16 pb-12 pb-lg-24">
+    <div class="container">
+      <div class="row">
+        <div class="col-12" data-aos="fade-up" data-aos-delay="50">
+          <div class="display-ads horizontal-ad"><img src="https://via.placeholder.com/1000x250" alt="placeholder ads"></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <?php get_template_part( 'inc/_signup' ); ?>
 

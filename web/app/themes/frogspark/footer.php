@@ -13,9 +13,9 @@
             <p class="mb-2">T: <a class="btn-underline-primary" href="tel:<?php the_field('phone_number', 'option'); ?>"><?php the_field('phone_number', 'option'); ?></a></p>
             <p class="<?php if (have_rows('social_media', 'option')): echo 'mb-4'; else: echo 'mb-0'; endif; ?>">E: <a class="btn-underline-primary" href="mailto:<?php the_field('email_address', 'option'); ?>"><?php the_field('email_address', 'option'); ?></a></p>
             <?php if (have_rows('social_media', 'option')): ?>
-              <ul class="d-flex flex-row justify-content-center justify-content-lg-start list-unstyled">
+              <ul class="social-buttons d-flex flex-row justify-content-center justify-content-lg-start list-unstyled">
                 <?php while (have_rows('social_media', 'option')): the_row(); ?>
-                  <li class="me-2 me-lg-4 ms-2 ms-lg-0"><a class="text-primary" href="<?php the_sub_field('url'); ?>" target="_blank"><i class="fab fa-<?php the_sub_field('platform'); ?>"></i></a></li>
+                  <li class="me-2 me-lg-4 ms-2 ms-lg-0"><a class="social-button" href="<?php the_sub_field('url'); ?>" target="_blank"><i class="fab fa-<?php the_sub_field('platform'); ?>"></i></a></li>
                 <?php endwhile; ?>
               </ul>
             <?php endif; ?>

@@ -57,10 +57,6 @@ $(document).ready(function(){
     var terms_slider = document.getElementById('terms');
     var terms_output = document.getElementById('terms-value');
 
-    // Interest rate - Get the interest rate from ACF using mortgage template
-    var fixed = document.getElementById('fixed-rate');
-    var interest_fixed = fixed.value;
-
     price_output.innerHTML = "Amount";
     // price_output.innerHTML = price_slider.value;
     price_output.innerHTML = formatNumber(price_output.innerHTML);
