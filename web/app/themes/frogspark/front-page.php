@@ -41,10 +41,10 @@
     
     <div class="container">
       <div class="justify-content-center row">
-        <div class="col-12 col-md-10 col-lg-12 col-xl-10 mt-lg-n24" data-aos="fade-up" data-aos-delay="50" style="z-index: 2;">
+        <div class="col-12 col-md-10 col-lg-8 col-xl-8 col-xxl-8 col-xxxl-10 mt-lg-n24" data-aos="fade-up" data-aos-delay="50" style="z-index: 2;">
           <div class="bg-quinary border border-quaternary px-4 px-sm-8 px-lg-12 py-12 position-relative">
-            <div class="d-none d-lg-block display-ads vertical-left"><img src="https://via.placeholder.com/250x1500" alt="placeholder ads"></div>
-            <div class="d-none d-lg-block display-ads vertical-right"><img src="https://via.placeholder.com/250x1500" alt="placeholder ads"></div>
+            <div class="d-none d-lg-block display-ads vertical-left"><img src="https://via.placeholder.com/200x700" alt="placeholder ads"></div>
+            <div class="d-none d-lg-block display-ads vertical-right"><img src="https://via.placeholder.com/200x700" alt="placeholder ads"></div>
 
             <div class="justify-content-center row">
               <div class="col-12 col-lg-8 col-xl-6 mb-8 text-center">
@@ -108,7 +108,7 @@
                           </div>
 												<?php endfor; ?>
                       </div>
-                      <p class="mb-0 pb-2 text-center"><a class="btn-secondary" href="/"><span>Show me more</span></a></p>
+                      <p class="mb-0 mt-lg-16 pb-2 text-center"><a class="btn-secondary" href="/"><span>Show me more</span></a></p>
                     </div>
 									<?php endfor; ?>
                 </div>

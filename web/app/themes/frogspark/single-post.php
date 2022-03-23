@@ -32,9 +32,9 @@
         </div>
       </div>
       <div class="justify-content-center row">
-        <div class="col-12 col-md-10 col-lg-11 col-xl-8 mb-8 position-relative" data-aos="fade-up" data-aos-delay="50">
-          <div class="d-none d-lg-block display-ads vertial-top-null-ad vertical-left"><img src="https://via.placeholder.com/250x1500" alt="placeholder ads"></div>
-          <div class="d-none d-lg-block display-ads vertial-top-null-ad vertical-right"><img src="https://via.placeholder.com/250x1500" alt="placeholder ads"></div>
+        <div class="col-12 col-md-10 col-lg-8 col-xxl-8 col-xxxl-10 mb-8 position-relative" data-aos="fade-up" data-aos-delay="50">
+          <div class="d-none d-lg-block display-ads vertial-top-null-ad vertical-left"><img src="https://via.placeholder.com/200x700" alt="placeholder ads"></div>
+          <div class="d-none d-lg-block display-ads vertial-top-null-ad vertical-right"><img src="https://via.placeholder.com/200x700" alt="placeholder ads"></div>
           <div class="wysiwyg"><?php the_field('page_text'); ?></div>
         </div>
       </div>

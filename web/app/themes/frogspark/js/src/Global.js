@@ -125,7 +125,7 @@ $(document).ready(function(){
           }
         },
         {
-          breakpoint: 992,
+          breakpoint: 1440,
           settings: {
             arrows: true,
             fade: false,
@@ -134,6 +134,7 @@ $(document).ready(function(){
         },
       ],
     });
+    
     $('.carousel-gallery').slick({
       accessibility: false,
       dots: true,

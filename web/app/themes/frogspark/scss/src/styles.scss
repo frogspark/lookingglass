@@ -1675,11 +1675,15 @@ a:hover .btn-back,
   > .slick-arrow {
     background-color: transparent;
     border: none;
-    bottom: 0;
+    bottom: -3rem;
     color: $secondary;
     left: 50%;
     position: absolute;
     transform: translateX(-50%);
+
+    @media (max-width: 991px) {
+      bottom: 0;
+    }
 
     &.slick-prev {
       left: calc(50% - 16px);
@@ -2278,29 +2282,38 @@ a:hover .btn-back,
   width: 200px;
   height: 700px;
 
+  @media (max-width: 1200px) {
+    width: 150px;
+  }
+
     img {
       width: 200px;
       height: 700px;
+
+        @media (max-width: 1200px) {
+          width: 150px;
+      }
     }
 }
 
 .vertical-left, .vertical-right {
   position: absolute;
+  padding: 0 0;
 }
 
 .vertical-left {
-  left: -18rem;
+  left: -14rem;
 
-  @media (max-width: 1440px) {
-    left: -14.5rem;
+  @media (max-width: 1200px) {
+    left: -11rem;
   }
 }
 
 .vertical-right {
-  right: -18rem;
+  right: -14rem;
 
-  @media (max-width: 1440px) {
-    right: -14.5rem;
+  @media (max-width: 1200px) {
+    right: -11rem;
   }
 }
 

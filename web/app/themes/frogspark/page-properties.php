@@ -33,10 +33,10 @@
   <section class="pb-4 pb-lg-16" style="overflow: hidden;">
     <div class="container">
       <div class="justify-content-center mb-lg-8 row position-relative">
-        <div class="d-none d-lg-block display-ads vertical-left"><img src="https://via.placeholder.com/250x1500" alt="placeholder ads"></div>
-        <div class="d-none d-lg-block display-ads vertical-right"><img src="https://via.placeholder.com/250x1500" alt="placeholder ads"></div>
+        <!-- <div class="d-none d-lg-block display-ads vertical-left"><img src="https://via.placeholder.com/250x1500" alt="placeholder ads"></div>
+        <div class="d-none d-lg-block display-ads vertical-right"><img src="https://via.placeholder.com/250x1500" alt="placeholder ads"></div> -->
 
-        <div class="col-12 col-md-10 col-lg-12 d-flex flex-column flex-lg-row mb-8" data-aos="fade-up" data-aos-delay="50">
+        <div class="col-12 col-md-10 col-lg-8 col-xxxxl-12 d-flex flex-column flex-lg-row mb-8" data-aos="fade-up" data-aos-delay="50">
           <ul class="align-items-center d-flex flex-column flex-lg-row flex-fill justify-content-center justify-content-lg-start list-unstyled mb-0">
             <?php if (isset($_GET['view']) && $_GET['view'] == 'map'): ?>
               <li class="mb-2 mb-lg-0 me-lg-6">Showing 12 results</li>
@@ -65,61 +65,65 @@
       </div>
       <?php if (!isset($_GET['view']) || ($_GET['view'] && $_GET['view'] == 'grid')): ?>
         <!-- Grid -->
-        <div class="d-none d-lg-flex row">
-          <?php for ($x = 1; $x <= 12; $x++): ?>
-            <div class="col-lg-4 mb-8" data-aos="fade-up" data-aos-delay="50">
-              <div class="property">
-                <div class="gallery mb-4">
-                  <div class="carousel-gallery">
-                    <?php for ( $z = 1; $z <= 3; $z ++ ): ?>
-                      <div>
-                        <div class="bg-portrait" style="background-image: url(<?php echo wp_get_upload_dir()[ 'baseurl' ]; ?>/2021/06/placeholder.jpg);"></div>
-                      </div>
-                    <?php endfor; ?>
-                  </div>
-                  <a class="heart" href="/"></a>
-                  <?php if ( $i === 2 ): echo '<span class="bg-secondary h5 note px-2 py-1 text-quinary">New listing</span>'; endif; ?>
-                </div>
-                <div class="row">
-                  <div class="col-lg-6 mb-2 mb-lg-0 text-start">
-                    <p class="fw-semibold mb-1">3 bed apartment</p>
-                    <p class="mb-1">Kingston</p>
-                    <p class="mb-0">USD $575,000</p>
-                  </div>
-                  <div class="col-lg-6 d-flex flex-column justify-content-end">
-                    <p class="mb-0 text-end"><a class="btn-arrow-secondary" href="/<?php echo $slug; ?>/test/">More details</a></p>
-                  </div>
-                </div>
-                <?php if ($x == 1 || $x == 4 || $x == 9): ?>
-                  <div class="mt-4 px-4 row">
-                    <div class="col-12">
-                      <div class="border border-tertiary p-2 row" style="border-radius: 100vh;">
-                        <div class="col-lg-4 col-xl-3">
-                          <div class="bg-square" style="background-image: url(<?php echo wp_get_upload_dir()[ 'baseurl' ]; ?>/2021/08/agents.svg); background-size: contain;"></div>
+        <div class="col-lg-8 col-xxxxl-12 px-0 mx-auto position-relative">
+          <div class="d-none d-lg-block display-ads vertical-left"><img src="https://via.placeholder.com/200x700" alt="placeholder ads"></div>
+          <div class="d-none d-lg-block display-ads vertical-right"><img src="https://via.placeholder.com/200x700" alt="placeholder ads"></div>
+          <div class="d-none d-lg-flex row">
+            <?php for ($x = 1; $x <= 12; $x++): ?>
+              <div class="col-lg-6 col-xxxxl-4 mb-8" data-aos="fade-up" data-aos-delay="50">
+                <div class="property">
+                  <div class="gallery mb-4">
+                    <div class="carousel-gallery">
+                      <?php for ( $z = 1; $z <= 3; $z ++ ): ?>
+                        <div>
+                          <div class="bg-portrait" style="background-image: url(<?php echo wp_get_upload_dir()[ 'baseurl' ]; ?>/2021/06/placeholder.jpg);"></div>
                         </div>
-                        <div class="align-items-center col-lg-8 col-xl-9 d-flex flex-row">
-                          <p class="mb-0">Advertised by multiple agents</p>
+                      <?php endfor; ?>
+                    </div>
+                    <a class="heart" href="/"></a>
+                    <?php if ( $i === 2 ): echo '<span class="bg-secondary h5 note px-2 py-1 text-quinary">New listing</span>'; endif; ?>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6 mb-2 mb-lg-0 text-start">
+                      <p class="fw-semibold mb-1">3 bed apartment</p>
+                      <p class="mb-1">Kingston</p>
+                      <p class="mb-0">USD $575,000</p>
+                    </div>
+                    <div class="col-lg-6 d-flex flex-column justify-content-end">
+                      <p class="mb-0 text-end"><a class="btn-arrow-secondary" href="/<?php echo $slug; ?>/test/">More details</a></p>
+                    </div>
+                  </div>
+                  <?php if ($x == 1 || $x == 4 || $x == 9): ?>
+                    <div class="mt-4 px-4 row">
+                      <div class="col-12">
+                        <div class="border border-tertiary p-2 row" style="border-radius: 100vh;">
+                          <div class="col-lg-4 col-xl-3">
+                            <div class="bg-square" style="background-image: url(<?php echo wp_get_upload_dir()[ 'baseurl' ]; ?>/2021/08/agents.svg); background-size: contain;"></div>
+                          </div>
+                          <div class="align-items-center col-lg-8 col-xl-9 d-flex flex-row">
+                            <p class="mb-0">Advertised by multiple agents</p>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                <?php else: ?>
-                  <div class="mt-4 row">
-                    <div class="col-lg-4 col-xl-3">
-                      <div class="bg-square" style="background-image: url(<?php echo wp_get_upload_dir()[ 'baseurl' ]; ?>/2021/06/placeholder.jpg"></div>
+                  <?php else: ?>
+                    <div class="mt-4 row">
+                      <div class="col-lg-4 col-xl-3">
+                        <div class="bg-square" style="background-image: url(<?php echo wp_get_upload_dir()[ 'baseurl' ]; ?>/2021/06/placeholder.jpg"></div>
+                      </div>
+                      <div class="align-items-center col-lg-8 col-xl-9 d-flex flex-row">
+                        <ul class="list-unstyled mb-0">
+                          <li>Martha Kell</li>
+                          <li class="fw-semibold">Coldwell Banker</li>
+                          <li><a class="btn-underline-secondary" href="/">Contact</a></li>
+                        </ul>
+                      </div>
                     </div>
-                    <div class="align-items-center col-lg-8 col-xl-9 d-flex flex-row">
-                      <ul class="list-unstyled mb-0">
-                        <li>Martha Kell</li>
-                        <li class="fw-semibold">Coldwell Banker</li>
-                        <li><a class="btn-underline-secondary" href="/">Contact</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                <?php endif; ?>
+                  <?php endif; ?>
+                </div>
               </div>
-            </div>
-          <?php endfor; ?>
+            <?php endfor; ?>
+          </div>
         </div>
         <div class="d-flex d-lg-none justify-content-center row">
           <div class="col-12 col-md-10 mb-8 px-0" data-aos="fade-up" data-aos-delay="50">
