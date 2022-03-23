@@ -66,8 +66,8 @@
       <?php if (!isset($_GET['view']) || ($_GET['view'] && $_GET['view'] == 'grid')): ?>
         <!-- Grid -->
         <div class="col-lg-8 col-xxxxl-12 px-0 mx-auto position-relative">
-          <div class="d-none d-lg-block display-ads vertical-left"><img src="https://via.placeholder.com/200x700" alt="placeholder ads"></div>
-          <div class="d-none d-lg-block display-ads vertical-right"><img src="https://via.placeholder.com/200x700" alt="placeholder ads"></div>
+          <div class="d-none d-lg-block display-ads vertical-left properties-ad"><img src="https://via.placeholder.com/200x700" alt="placeholder ads"></div>
+          <div class="d-none d-lg-block display-ads vertical-right properties-ad"><img src="https://via.placeholder.com/200x700" alt="placeholder ads"></div>
           <div class="d-none d-lg-flex row">
             <?php for ($x = 1; $x <= 12; $x++): ?>
               <div class="col-lg-6 col-xxxxl-4 mb-8" data-aos="fade-up" data-aos-delay="50">
