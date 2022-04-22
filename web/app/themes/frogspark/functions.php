@@ -1,5 +1,7 @@
 <?php
 
+require_once 'inc/API.php';
+
 /*
 * Bootstrap 4.
 */

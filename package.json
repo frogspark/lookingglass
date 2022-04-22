@@ -27,9 +27,9 @@
     "eslint": "eslint -c .eslintrc.js './web/wp/app/themes/frogspark/js/src/*.js'"
   },
   "browserslist": [
-    ">=15%", 
-    "not dead", 
-    "last 2 versions", 
+    ">=15%",
+    "not dead",
+    "last 2 versions",
     "IE 11"
   ],
   "dependencies": {

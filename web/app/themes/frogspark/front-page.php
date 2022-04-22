@@ -1,3 +1,17 @@
+<?php
+
+$page_post_id = is_home() ? get_option('page_for_posts') : get_the_ID();
+while(have_rows('api_calls', $page_post_id)) {
+
+  the_row();
+
+  var_dump(API::loadACF(get_row_layout()));
+}
+
+return;
+?>
+
+
 <?php get_header(); ?>
 
 <?php get_template_part( 'navigation' ); ?>
@@ -38,7 +52,7 @@
   </section>
 
   <section class="bg-quinary pb-12 pb-lg-24 pt-12 pt-lg-0">
-    
+
     <div class="container">
       <div class="justify-content-center row">
         <div class="col-12 col-md-10 col-lg-8 col-xl-8 col-xxl-8 col-xxxl-10 mt-lg-n24" data-aos="fade-up" data-aos-delay="50" style="z-index: 2;">
