@@ -118,6 +118,11 @@ class API {
         '$origin is not a valid value - ' . implode(self::VALID_ORIGIN, ', '));
     }
 
+    if (!is_int($updated_from)) {
+
+      throw new InvalidArgumentException('$updated_from is not an integer UNIX_TIMESTAMP');
+    }
+
     if (!is_int($per_page)) {
 
       throw new InvalidArgumentException('$per_page is not an integer');

@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="69f7051d-32a5-4853-b5b1-03a7fa79bbc6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/web/app/themes/frogspark/inc/API.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/lookingglass.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/lookingglass.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/app/themes/frogspark/front-page.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/app/themes/frogspark/front-page.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/app/themes/frogspark/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/app/themes/frogspark/functions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/app/themes/frogspark/inc/API.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/app/themes/frogspark/inc/API.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +68,7 @@
       <updated>1650361843998</updated>
       <workItem from="1650361845262" duration="6883000" />
       <workItem from="1650377919891" duration="19283000" />
-      <workItem from="1650550011359" duration="11676000" />
+      <workItem from="1650550011359" duration="13619000" />
     </task>
     <servers />
   </component>
