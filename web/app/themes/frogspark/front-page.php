@@ -1,17 +1,3 @@
-<?php
-
-$page_post_id = is_home() ? get_option('page_for_posts') : get_the_ID();
-while(have_rows('api_calls', $page_post_id)) {
-
-  the_row();
-
-  var_dump(API::loadACF(get_row_layout()));
-}
-
-return;
-?>
-
-
 <?php get_header(); ?>
 
 <?php get_template_part( 'navigation' ); ?>
