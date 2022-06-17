@@ -20,37 +20,6 @@ class API {
   private $c;
   private $host;
 
-  public static function loadACF($row_layout) {
-
-    self::getInstance();
-
-    if ($row_layout === 'properties') {
-
-      try {
-        return self::$self->properties(
-          get_sub_field('type'),
-          get_sub_field('origin'),
-          strtotime(get_sub_field('updated_from')),
-          (int) get_sub_field('per_page')
-        )->exec();
-      } catch (Exception $e) {
-
-        var_dump($e->getMessage());
-      }
-    } else if ($row_layout === 'agents') {
-
-      try {
-        return self::$self->agents(
-          get_sub_field('origin'),
-          (int) get_sub_field('per_page')
-        )->exec();
-      } catch (Exception $e) {
-
-        var_dump($e->getMessage());
-      }
-    }
-  }
-
   public static function getInstance() {
 
     if (!isset(self::$self)) {
@@ -69,9 +38,9 @@ class API {
     curl_setopt($this->c, CURLOPT_RETURNTRANSFER, true);
   }
 
-  public function agents($origin, $per_page = 10, $page = 1) {
+  public function agents($origin = false, $per_page = 10, $page = 1) {
 
-    if (!in_array($origin, self::VALID_ORIGIN)) {
+    if ($origin && !in_array($origin, self::VALID_ORIGIN)) {
 
       throw new InvalidArgumentException(
         '$origin is not a valid value - ' . implode(self::VALID_ORIGIN, ', '));
@@ -87,9 +56,17 @@ class API {
       throw new InvalidArgumentException('$page is not an integer');
     }
 
+    $query = [
+      'per_page' => $per_page,
+      'page' => $page
+    ];
+    if ($origin) {
+      $query['origin'] = $origin;
+    }
+
     $url =
       $this->host . 'agents?' .
-      http_build_query(['origin' => $origin, 'per_page' => $per_page, 'page' => $page]);
+      http_build_query($query);
 
     curl_setopt($this->c, CURLOPT_URL, $url);
 
@@ -106,19 +83,19 @@ class API {
 
   public function properties($type, $origin, $updated_from, $per_page = 10, $page = 1) {
 
-    if (!in_array($type, self::VALID_PROPERTY_TYPE)) {
+    if ($type && !in_array($type, self::VALID_PROPERTY_TYPE)) {
 
       throw new InvalidArgumentException(
         '$type is not a valid value - ' . implode(self::VALID_PROPERTY_TYPE, ', '));
     }
 
-    if (!in_array($origin, self::VALID_ORIGIN)) {
+    if ($origin && !in_array($origin, self::VALID_ORIGIN)) {
 
       throw new InvalidArgumentException(
         '$origin is not a valid value - ' . implode(self::VALID_ORIGIN, ', '));
     }
 
-    if (!is_int($updated_from)) {
+    if ($updated_from && !is_int($updated_from)) {
 
       throw new InvalidArgumentException('$updated_from is not an integer UNIX_TIMESTAMP');
     }
@@ -133,15 +110,24 @@ class API {
       throw new InvalidArgumentException('$page is not an integer');
     }
 
+    $query = [
+      'per_page' => $per_page,
+      'page' => $page
+    ];
+    if ($origin) {
+      $query['origin'] = $origin;
+    }
+    if ($updated_from) {
+      $query['updated_from'] = $updated_from;
+    }
+    if ($type) {
+      $query['type'] = $type;
+    }
+
     $url =
       $this->host . 'properties?' .
-      http_build_query([
-        'origin' => $origin,
-        'type' => $type,
-        'per_page' => $per_page,
-        'page' => $page,
-        'updated_from' => $updated_from
-      ]);
+      http_build_query($query);
+
     curl_setopt($this->c, CURLOPT_URL, $url);
 
     return $this;
