@@ -46,12 +46,12 @@ class API {
         '$origin is not a valid value - ' . implode(self::VALID_ORIGIN, ', '));
     }
 
-    if (!is_int($per_page)) {
+    if ($per_page <= 0) {
 
-      throw new InvalidArgumentException('$per_page is not an integer');
+      throw new InvalidArgumentException('$per_page is not an integer greater than 0');
     }
 
-    if (!is_int($page)) {
+    if ($page <= 0) {
 
       throw new InvalidArgumentException('$page is not an integer');
     }
@@ -64,10 +64,7 @@ class API {
       $query['origin'] = $origin;
     }
 
-    $url =
-      $this->host . 'agents?' .
-      http_build_query($query);
-
+    $url = $this->host . 'agents?' . http_build_query($query);
     curl_setopt($this->c, CURLOPT_URL, $url);
 
     return $this;
@@ -95,17 +92,17 @@ class API {
         '$origin is not a valid value - ' . implode(self::VALID_ORIGIN, ', '));
     }
 
-    if ($updated_from && !is_int($updated_from)) {
+    if ($updated_from <= 0) {
 
       throw new InvalidArgumentException('$updated_from is not an integer UNIX_TIMESTAMP');
     }
 
-    if (!is_int($per_page)) {
+    if ($per_page <= 0) {
 
-      throw new InvalidArgumentException('$per_page is not an integer');
+      throw new InvalidArgumentException('$per_page is not an integer greater than 0');
     }
 
-    if (!is_int($page)) {
+    if ($page <= 0) {
 
       throw new InvalidArgumentException('$page is not an integer');
     }
@@ -114,6 +111,7 @@ class API {
       'per_page' => $per_page,
       'page' => $page
     ];
+
     if ($origin) {
       $query['origin'] = $origin;
     }
@@ -124,10 +122,7 @@ class API {
       $query['type'] = $type;
     }
 
-    $url =
-      $this->host . 'properties?' .
-      http_build_query($query);
-
+    $url = $this->host . 'properties?' . http_build_query($query);
     curl_setopt($this->c, CURLOPT_URL, $url);
 
     return $this;
