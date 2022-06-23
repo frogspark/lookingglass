@@ -90,7 +90,7 @@
         "tags",
         "send-trackbacks"
     ],
-    "active": true,
+    "active": false,
     "description": "The fields which will be used for the properties pages.",
-    "modified": 1628509694
+    "modified": 1655990026
 }
