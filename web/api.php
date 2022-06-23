@@ -115,10 +115,6 @@ try {
 
     foreach ($data->properties as $prop) {
 
-      echo '<pre>';
-      var_dump($prop);
-      echo '</pre>';
-
       $prop_id = 0;
 
       $q = new WP_Query([
@@ -172,11 +168,11 @@ try {
       update_field('bedrooms', $prop->bedrooms, $prop_id);
       update_field('description', $prop->description, $prop_id);
 
-//      foreach ($prop->images as $image) {
-//
-//        $image_id = media_sideload_image($image, 0, '', 'id');
-//        add_row('images', ['image' => $image_id], $prop_id);
-//      }
+      foreach ($prop->images as $image) {
+
+        $image_id = media_sideload_image($image, 0, '', 'id');
+        add_row('images', ['image' => $image_id], $prop_id);
+      }
 
       update_field('external_link', $prop->external_link, $prop_id);
       update_field('island', $prop->island, $prop_id);
