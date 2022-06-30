@@ -180,8 +180,6 @@ try {
       update_field('price', $prop->price, $prop_id);
       update_field('property_type', $prop->property_type, $prop_id);
       update_field('receptions', $prop->receptions, $prop_id);
-
-      break;
     }
   }
 
