@@ -1,9 +1,19 @@
-import $ from 'jquery';
-window.jQuery = $;
+// import $ from 'jquery';
+// window.jQuery = $;
+// require('bootstrap');
+// var _ = require('lodash');
+// import slick from 'slick-carousel';
+// import AOS from 'aos';
+
+const AOS = require('aos');
+const $ = require('jquery');
+const _ = require('lodash');
+
+require('@popperjs/core');
 require('bootstrap');
-var _ = require('lodash');
-import slick from 'slick-carousel';
-import AOS from 'aos';
+require('slick-carousel');
+// require('magnific-popup');
+// Uncomment as necessary
 
 $(document).ready(function(){
   // Full menu.

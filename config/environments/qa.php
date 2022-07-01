@@ -2,7 +2,7 @@
 use Roots\WPConfig\Config;
 
 /**
- * Production environment config
+ * QA environment config
  */
 Config::define( 'FORCE_SSL_ADMIN', true );
 Config::define( 'SCRIPT_DEBUG', false );

@@ -1,67 +1,81 @@
 {
-  "name": "frogspark/bedrock-boilerplate",
+  "name": "thedigitalmaze/bedrock-boilerplate-v2",
   "type": "project",
   "license": "MIT",
   "description": "WordPress boilerplate with modern development tools, easier configuration, and an improved folder structure",
   "homepage": "https://roots.io/bedrock/",
   "authors": [
     {
-      "name": "Scott Walkinshaw",
+      "name": "The Digital Maze",
       "email": "scott.walkinshaw@gmail.com",
-      "homepage": "https://github.com/swalkinshaw"
-    },
-    {
-      "name": "Ben Word",
-      "email": "ben@benword.com",
-      "homepage": "https://github.com/retlehs"
+      "homepage": "https://github.com/frogspark"
     }
   ],
   "keywords": [
-    "bedrock", "composer", "roots", "wordpress", "wp", "wp-config"
+    "bedrock",
+    "composer",
+    "roots",
+    "wordpress",
+    "wp",
+    "wp-config"
   ],
-  "support": {
-    "issues": "https://github.com/roots/bedrock/issues",
-    "forum": "https://discourse.roots.io/category/bedrock"
-  },
   "repositories": [
     {
       "type": "composer",
       "url": "https://wpackagist.org",
-      "only": ["wpackagist-plugin/*", "wpackagist-theme/*"]
+      "only": [
+        "wpackagist-plugin/*",
+        "wpackagist-theme/*"
+      ]
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "kinsta/kinsta-mu-plugins",
+        "type": "wordpress-muplugin",
+        "version": "2.3.3",
+        "dist": {
+          "url": "https://kinsta.com/kinsta-tools/kinsta-mu-plugins.zip",
+          "type": "zip"
+        }
+      }
     }
   ],
   "require": {
-    "php": ">=7.1",
+    "php": ">=7.4",
     "composer/installers": "^1.11",
     "vlucas/phpdotenv": "^5.3",
     "oscarotero/env": "^2.1",
-    "roots/bedrock-autoloader": "^1.0",
+    "roots/bedrock-autoloader": "^1.0.4",
     "roots/bedrock-disallow-indexing": "^2.0",
-    "roots/wordpress": "5.7.2",
+    "roots/wordpress": "5.9.3",
     "roots/wp-config": "1.0.0",
-    "roots/wp-password-bcrypt": "1.0.0",
-    "ext-curl": "*",
-    "ext-json": "*"
+    "roots/wp-password-bcrypt": "1.1.0"
   },
   "require-dev": {
-    "squizlabs/php_codesniffer": "^3.6.0",
     "roave/security-advisories": "dev-master"
   },
   "config": {
     "optimize-autoloader": true,
     "preferred-install": "dist",
     "allow-plugins": {
-      "roots/wordpress-core-installer": true,
-      "composer/installers": true
+      "composer/installers": true,
+      "roots/wordpress-core-installer": true
     }
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
   "extra": {
     "installer-paths": {
-      "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
-      "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
-      "web/app/themes/{$name}/": ["type:wordpress-theme"]
+      "web/app/mu-plugins/{$name}/": [
+        "type:wordpress-muplugin"
+      ],
+      "web/app/plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ],
+      "web/app/themes/{$name}/": [
+        "type:wordpress-theme"
+      ]
     },
     "wordpress-install-dir": "web/wp"
   },
