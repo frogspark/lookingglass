@@ -52,7 +52,8 @@
     "preferred-install": "dist",
     "allow-plugins": {
       "roots/wordpress-core-installer": true,
-      "composer/installers": true
+      "composer/installers": true,
+      "johnpbloch/wordpress-core-installer": true
     }
   },
   "minimum-stability": "dev",
