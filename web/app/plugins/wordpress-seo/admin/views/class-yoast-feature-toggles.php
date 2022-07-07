@@ -160,7 +160,7 @@ class Yoast_Feature_Toggles {
 					__( 'Allow us to track some data about your site to improve our plugin.', 'wordpress-seo' ),
 					'Yoast SEO'
 				),
-				'read_more_url'   => 'https://yoa.st/usage-tracking',
+				'read_more_url'   => 'https://yoa.st/usage-tracking-2',
 				'order'           => 95,
 			],
 			(object) [
@@ -180,6 +180,16 @@ class Yoast_Feature_Toggles {
 				'read_more_label' => __( 'Find out how a rich snippet can improve visibility and click-through-rate.', 'wordpress-seo' ),
 				'read_more_url'   => 'https://yoa.st/help-slack-share',
 				'order'           => 105,
+			],
+			(object) [
+				'name'            => __( 'IndexNow', 'wordpress-seo' ),
+				'premium'         => true,
+				'setting'         => 'enable_index_now',
+				'label'           => __( 'Automatically ping search engines like Bing and Yandex whenever you publish, update or delete a post.', 'wordpress-seo' ),
+				'read_more_label' => __( 'Find out how IndexNow can help your site.', 'wordpress-seo' ),
+				'read_more_url'   => 'https://yoa.st/index-now-read-more',
+				'premium_url'     => 'https://yoa.st/index-now-feature',
+				'order'           => 110,
 			],
 		];
 

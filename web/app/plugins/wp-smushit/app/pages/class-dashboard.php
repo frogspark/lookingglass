@@ -8,7 +8,7 @@
 
 namespace Smush\App\Pages;
 
-use Smush\App\Abstract_Page;
+use Smush\App\Abstract_Summary_Page;
 use Smush\App\Interface_Page;
 use Smush\Core\Settings;
 use WP_Smush;
@@ -20,12 +20,26 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Class Dashboard
  */
-class Dashboard extends Abstract_Page implements Interface_Page {
+class Dashboard extends Abstract_Summary_Page implements Interface_Page {
+
 	/**
 	 * Function triggered when the page is loaded before render any content.
 	 */
-	public function on_load() {
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_tutorials_scripts' ) );
+	public function on_load() {}
+
+	/**
+	 * Enqueue scripts.
+	 *
+	 * @since 3.9.0
+	 *
+	 * @param string $hook Hook from where the call is made.
+	 */
+	public function enqueue_scripts( $hook ) {
+		// Scripts for Configs.
+		$this->enqueue_configs_scripts();
+
+		// Scripts for Tutorials.
+		$this->enqueue_tutorials_scripts();
 	}
 
 	/**
@@ -169,20 +183,28 @@ class Dashboard extends Abstract_Page implements Interface_Page {
 
 		$core = WP_Smush::get_instance()->core();
 
-		$uncompressed_count = $core->total_count - $core->smushed_count - $core->skipped_count;
+		// Split human size to get format and size.
+		$human = explode( ' ', $core->stats['human'] );
 
 		$resize_count = $core->get_savings( 'resize', false, false, true );
 
+		list( $percent_optimized, $grade ) = $this->get_grade_data();
+
 		$args = array(
-			'cdn_status'      => WP_Smush::get_instance()->core()->mod->cdn->status(),
-			'is_cdn'          => $this->settings->get( 'cdn' ),
-			'is_lazy_load'    => $this->settings->get( 'lazy_load' ),
-			'is_local_webp'   => $this->settings->get( 'webp_mod' ),
-			'remaining'       => count( get_option( 'wp-smush-resmush-list', array() ) ) + max( $uncompressed_count, 0 ),
-			'resize_count'    => ! $resize_count ? 0 : $resize_count,
-			'upsell_url_cdn'  => $upsell_url_cdn,
-			'upsell_url_webp' => $upsell_url_webp,
-			'webp_configured' => WP_Smush::get_instance()->core()->mod->webp->is_configured(),
+			'human_format'      => empty( $human[1] ) ? 'B' : $human[1],
+			'human_size'        => empty( $human[0] ) ? '0' : round( (int) $human[0] ),
+			'cdn_status'        => WP_Smush::get_instance()->core()->mod->cdn->status(),
+			'is_cdn'            => $this->settings->get( 'cdn' ),
+			'is_lazy_load'      => $this->settings->get( 'lazy_load' ),
+			'is_local_webp'     => $this->settings->get( 'webp_mod' ),
+			'resize_count'      => ! $resize_count ? 0 : $resize_count,
+			'total_optimized'   => $core->stats['total_images'],
+			'upsell_url_cdn'    => $upsell_url_cdn,
+			'upsell_url_webp'   => $upsell_url_webp,
+			'webp_configured'   => true === WP_Smush::get_instance()->core()->mod->webp->is_configured(),
+			'percent_grade'     => $grade,
+			'percent_metric'    => 0.0 === (float) $percent_optimized ? 100 : $percent_optimized,
+			'percent_optimized' => $percent_optimized,
 		);
 
 		$this->view( 'dashboard/summary-meta-box', $args );
@@ -265,11 +287,9 @@ class Dashboard extends Abstract_Page implements Interface_Page {
 		$webp = WP_Smush::get_instance()->core()->mod->webp;
 
 		$args = array(
-			'htaccess_written' => $webp->is_htaccess_written(),
-			'is_configured'    => true === $webp->is_configured(),
-			'is_webp_active'   => $this->settings->get( 'webp_mod' ),
-			'server_type'      => $webp::get_server_type(),
-			'upsell_url'       => $upsell_url,
+			'is_configured'  => $webp->get_is_configured_with_error_message(),
+			'is_webp_active' => $this->settings->get( 'webp_mod' ),
+			'upsell_url'     => $upsell_url,
 		);
 
 		$this->view( 'dashboard/webp/meta-box', $args );
@@ -345,7 +365,7 @@ class Dashboard extends Abstract_Page implements Interface_Page {
 	 * @since 3.8.6
 	 */
 	public function lazy_load_meta_box() {
-		$settings = $this->settings->get_setting( WP_SMUSH_PREFIX . 'lazy_load' );
+		$settings = $this->settings->get_setting( 'wp-smush-lazy_load' );
 
 		$args = array(
 			'is_lazy_load' => $this->settings->get( 'lazy_load' ),

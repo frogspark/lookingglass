@@ -83,7 +83,7 @@
               </div>
             </div>
 
-            <?php// if(ADD IF STATEMENT CONDITION HERE): ?>
+            <?php // if(ADD IF STATEMENT CONDITION HERE): ?>
               <div aria-labelledby="nav-video-tab" class="tab-pane pt-10 fade" id="nav-video" role="tabpanel">
                 <div class="row">
                   <div class="col-12 col-lg-10 col-xl-8">
@@ -95,7 +95,7 @@
                   </div>
                 </div>
               </div>
-            <?php// endif; ?>
+            <?php // endif; ?>
 
             <div aria-labelledby="nav-area-tab" class="tab-pane pt-10 fade" id="nav-area" role="tabpanel">
               <div class="row">

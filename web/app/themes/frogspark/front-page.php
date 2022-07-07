@@ -79,26 +79,26 @@
                         id="pills-<?php if ( $x === 1 ): echo 'sales'; elseif ( $x === 2 ): echo 'rentals'; elseif ( $x === 3 ): echo 'commercial'; else: echo 'yachts'; endif; ?>"
                         role="tabpanel">
                       <div class="carousel-featured mb-8 pb-10 pb-lg-0 px-n4 slick-overflow">
-												<?php for ( $i = 1; $i <= 3; $i ++ ): ?>
+                          <?php if ($x === 1): $properties = get_field('featured_sales'); elseif ($x === 2): $properties = get_field('featured_rentals'); elseif ( $x === 3): $properties = get_field('featured_commercial'); else: $properties = get_field('featured_yachts'); endif; ?>
+                            <?php foreach( $properties as $property ):
+                                setup_postdata($property); ?>
                           <div class="px-4">
                             <div class="property">
                               <div class="gallery mb-4">
                                 <div class="carousel-gallery">
-																	<?php for ( $z = 1; $z <= 3; $z ++ ): ?>
-                                    <div>
-                                      <div class="bg-portrait"
-                                          style="background-image: url(<?php echo wp_get_upload_dir()[ 'baseurl' ]; ?>/2021/06/placeholder.jpg);"></div>
-                                    </div>
-																	<?php endfor; ?>
+                                    <?php while (have_rows('images', $property->ID)): the_row(); ?>
+                                        <div>
+                                            <div class="bg-portrait" style="background-image: url(<?php echo get_sub_field('image')['url']; ?>);"></div>
+                                        </div>
+                                    <?php endwhile; ?>
                                 </div>
                                 <a class="heart" href="/"></a>
-																<?php if ( $i === 2 ): echo '<span class="bg-secondary h5 note px-2 py-1 text-quinary">New listing</span>'; endif; ?>
                               </div>
                               <div class="row">
                                 <div class="col-12 col-lg-6 mb-2 mb-lg-0 text-center text-lg-start">
-                                  <p class="fw-semibold mb-1">3 bed apartment</p>
-                                  <p class="mb-1">Kingston</p>
-                                  <p class="mb-0">USD $575,000</p>
+                                  <p class="fw-semibold mb-1"><?php echo $property->post_title; ?></p>
+                                  <p class="mb-1"><?php echo get_field('island', $property->ID); ?></p>
+                                  <p class="mb-0">£<?php echo get_field('price', $property->ID); ?></p>
                                 </div>
                                 <div class="col-12 col-lg-6 d-flex flex-column justify-content-end">
                                   <p class="mb-0 text-center text-lg-end"><a class="btn-arrow-secondary" href="/">More details</a></p>
@@ -106,11 +106,13 @@
                               </div>
                             </div>
                           </div>
-												<?php endfor; ?>
+                          <?php endforeach;
+                          // Reset the global post object so that the rest of the page works correctly.
+                          wp_reset_postdata(); ?>
+
                       </div>
                       <p class="mb-0 mt-lg-16 pb-2 text-center"><a class="btn-secondary" href="/"><span>Show me more</span></a></p>
-                    </div>
-									<?php endfor; ?>
+                    </div><?php endfor; ?>
                 </div>
               </div>
             </div>

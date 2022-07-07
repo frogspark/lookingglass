@@ -10,7 +10,7 @@ $A2A_SHARE_SAVE_services = array(
 	"twitter" => array(
 		"name" => "Twitter",
 		"icon" => "twitter",
-		"color" => "55ACEE",
+		"color" => "1D9BF0",
 	),
 	"pinterest" => array(
 		"name" => "Pinterest",
@@ -257,11 +257,6 @@ $A2A_SHARE_SAVE_services = array(
 		"icon" => "mewe",
 		"color" => "007DA1",
 	),
-	"mix" => array(
-		"name" => "Mix",
-		"icon" => "mix",
-		"color" => "ff8226",
-	),
 	"mixi" => array(
 		"name" => "Mixi",
 		"icon" => "mixi",
@@ -376,6 +371,11 @@ $A2A_SHARE_SAVE_services = array(
 		"name" => "SMS",
 		"icon" => "sms",
 		"color" => "6CBE45",
+	),
+	"snapchat" => array(
+		"name" => "Snapchat",
+		"icon" => "snapchat",
+		"color" => "2A2A2A",
 	),
 	"stocktwits" => array(
 		"name" => "StockTwits",

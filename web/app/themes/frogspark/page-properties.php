@@ -10,7 +10,7 @@
         <div class="col-12" data-aos="fade-up" data-aos-delay="50">
           <div class="justify-content-center justify-content-lg-start row">
             <div class="col-12 col-md-10 col-lg-11 col-xl-7 offset-xl-1 text-center text-lg-start text-quinary">
-              <h1 class="mb-4 text-quinary"><?php the_title(); ?></h1>
+              <h1 class="mb-4 text-quinary" style="color: red !important;"><?php the_title(); ?></h1>
             </div>
           </div>
         </div>
@@ -86,7 +86,7 @@
                   <div class="row">
                     <div class="col-lg-6 mb-2 mb-lg-0 text-start">
                       <p class="fw-semibold mb-1">3 bed apartment</p>
-                      <p class="mb-1">Kingston</p>
+                      <p class="mb-1">Kingstonn</p>
                       <p class="mb-0">USD $575,000</p>
                     </div>
                     <div class="col-lg-6 d-flex flex-column justify-content-end">
@@ -143,7 +143,7 @@
                     <div class="row">
                       <div class="col-12 mb-2 mb-lg-0 text-center">
                         <p class="fw-semibold mb-1">3 bed apartment</p>
-                        <p class="mb-1">Kingston</p>
+                        <p class="mb-1">Kingstonn</p>
                         <p class="mb-0">USD $575,000</p>
                       </div>
                       <div class="col-12 d-flex flex-column justify-content-end">
@@ -177,7 +177,7 @@
                     <div class="mb-4 row">
                       <div class="col-lg-6 mb-2 mb-lg-0 text-start">
                         <p class="fw-semibold mb-1">3 bed apartment</p>
-                        <p class="mb-1">Kingston</p>
+                        <p class="mb-1">Kingstonn</p>
                         <p class="mb-0">USD $575,000</p>
                       </div>
                       <div class="col-lg-6 d-flex flex-column justify-content-start">
@@ -240,7 +240,7 @@
                     <div class="row">
                       <div class="col-12 mb-2 mb-lg-0 text-center">
                         <p class="fw-semibold mb-1">3 bed apartment</p>
-                        <p class="mb-1">Kingston</p>
+                        <p class="mb-1">Kingstonn</p>
                         <p class="mb-0">USD $575,000</p>
                       </div>
                       <div class="col-12 d-flex flex-column justify-content-end">
@@ -262,7 +262,7 @@
                 <div class="pb-1 pe-2 pt-1">
                   <img alt="3 bed apartment" class="mb-4" src="<?php echo wp_get_upload_dir()[ 'baseurl' ]; ?>/2021/06/placeholder.jpg" style="height: 64px; width: auto;">
                   <p class="fw-semibold mb-1">3 bed apartment</p>
-                  <p class="mb-1">Kingston</p>
+                  <p class="mb-1">Kingstonn</p>
                   <p class="mb-2">USD $575,000</p>
                   <p class="mb-0"><a class="btn-underline-secondary fw-semibold" href="/<?php echo $slug; ?>/test/">View property</a></p>
                 </div>

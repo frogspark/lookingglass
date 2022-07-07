@@ -3,7 +3,7 @@
 Plugin Name: Ninja Forms
 Plugin URI: http://ninjaforms.com/?utm_source=Ninja+Forms+Plugin&utm_medium=readme
 Description: Ninja Forms is a webform builder with unparalleled ease of use and features.
-Version: 3.5.7
+Version: 3.6.12
 Author: Saturday Drive
 Author URI: http://ninjaforms.com/?utm_source=Ninja+Forms+Plugin&utm_medium=Plugins+WP+Dashboard
 Text Domain: ninja-forms
@@ -55,7 +55,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
          * @since 3.0
          */
 
-        const VERSION = '3.5.7';
+        const VERSION = '3.6.12';
         
         /**
          * @since 3.4.0
@@ -272,6 +272,11 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                 spl_autoload_register( array( self::$instance, 'autoloader' ) );
 
                 /*
+                 * Plugin Settings
+                 */
+                self::$instance->settings = apply_filters( 'ninja_forms_settings', get_option( 'ninja_forms_settings' ) );
+
+                /*
                  * Admin Menus
                  */
                 self::$instance->menus[ 'forms' ]           = new NF_Admin_Menus_Forms();
@@ -398,11 +403,6 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                  * EOS Parser
                  */
                 self::$instance->_eos[ 'parser' ] = require_once 'includes/Libraries/EOS/Parser.php';
-
-                /*
-                 * Plugin Settings
-                 */
-                self::$instance->settings = apply_filters( 'ninja_forms_settings', get_option( 'ninja_forms_settings' ) );
 
                 /*
                  * Admin Notices System
@@ -564,6 +564,10 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                 $results = $wpdb->get_col($query);
                 $form_id = reset($results);
 
+                $page_template = get_page_template();
+                if( ! empty( $page_template ) )
+                    $template = $page_template;
+                
                 new NF_Display_PagePublicLink($form_id);
             }
             return $template;

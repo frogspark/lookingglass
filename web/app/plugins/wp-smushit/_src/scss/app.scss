@@ -24,7 +24,7 @@
 @import "~@wpmudev/shared-ui/scss/tags";
 @import "~@wpmudev/shared-ui/scss/forms";
 @import "~@wpmudev/shared-ui/scss/radio-checkbox";
-@import "~@wpmudev/shared-ui/scss/tabs";;
+@import "~@wpmudev/shared-ui/scss/tabs";
 @import "~@wpmudev/shared-ui/scss/sidenav";
 @import "~@wpmudev/shared-ui/scss/dropdowns";
 @import "~@wpmudev/shared-ui/scss/scores";
@@ -42,8 +42,10 @@
 // Upgrade page (since 3.2.3).
 @import "~@wpmudev/shared-ui/scss/upgrade-page";
 @import "~@wpmudev/shared-ui/scss/reviews";
-// Used on WebP page ( since 3.8.0 )
+// Used on WebP page (since 3.8.0).
 @import "~@wpmudev/shared-ui/scss/_code-snippet.scss";
+// Upsells (since 3.9.1).
+@import "~@wpmudev/shared-ui/scss/upsells";
 
 // App styles
 @import "modules/admin";

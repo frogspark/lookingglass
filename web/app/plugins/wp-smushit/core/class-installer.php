@@ -12,6 +12,7 @@
 
 namespace Smush\Core;
 
+use Smush\App\Abstract_Page;
 use WP_Smush;
 
 if ( ! defined( 'WPINC' ) ) {
@@ -36,6 +37,7 @@ class Installer {
 		}
 
 		Modules\CDN::unschedule_cron();
+		Settings::get_instance()->delete_setting( 'wp-smush-cdn_status' );
 
 		if ( is_multisite() && is_network_admin() ) {
 			/**
@@ -43,12 +45,14 @@ class Installer {
 			 *
 			 * @see https://incsub.atlassian.net/browse/SMUSH-350
 			 */
-			update_site_option( WP_SMUSH_PREFIX . 'networkwide', 1 );
+			update_site_option( 'wp-smush-networkwide', 1 );
 		}
+
+		delete_site_option( 'wp_smush_api_auth' );
 	}
 
 	/**
-	 * Check if a existing install or new.
+	 * Check if an existing install or new.
 	 *
 	 * @since 2.8.0  Moved to this class from wp-smush.php file.
 	 */
@@ -57,7 +61,7 @@ class Installer {
 			define( 'WP_SMUSH_ACTIVATING', true );
 		}
 
-		$version = get_site_option( WP_SMUSH_PREFIX . 'version' );
+		$version = get_site_option( 'wp-smush-version' );
 
 		if ( ! class_exists( '\\Smush\\Core\\Settings' ) ) {
 			require_once __DIR__ . '/class-settings.php';
@@ -85,7 +89,7 @@ class Installer {
 			self::directory_smush_table();
 
 			// Store the plugin version in db.
-			update_site_option( WP_SMUSH_PREFIX . 'version', WP_SMUSH_VERSION );
+			update_site_option( 'wp-smush-version', WP_SMUSH_VERSION );
 		}
 	}
 
@@ -95,12 +99,12 @@ class Installer {
 	 * @since 2.8.0
 	 */
 	public static function upgrade_settings() {
-		// Avoid to execute this over an over in same thread.
+		// Avoid executing this over an over in same thread.
 		if ( defined( 'WP_SMUSH_ACTIVATING' ) || ( defined( 'WP_SMUSH_UPGRADING' ) && WP_SMUSH_UPGRADING ) ) {
 			return;
 		}
 
-		$version = get_site_option( WP_SMUSH_PREFIX . 'version' );
+		$version = get_site_option( 'wp-smush-version' );
 
 		if ( false === $version ) {
 			self::smush_activated();
@@ -117,30 +121,47 @@ class Installer {
 
 			if ( version_compare( $version, '3.8.0', '<' ) ) {
 				// Delete the flag for hiding the BF modal because it was removed.
-				delete_site_option( WP_SMUSH_PREFIX . 'hide_blackfriday_modal' );
+				delete_site_option( 'wp-smush-hide_blackfriday_modal' );
 			}
 
 			if ( version_compare( $version, '3.8.3', '<' ) ) {
 				// Delete this unused setting, leftover from old smush.
-				delete_option( WP_SMUSH_PREFIX . 'transparent_png' );
-			}
-
-			if ( version_compare( $version, '3.8.4', '<' ) ) {
-				// Delete the flag to hide a removed tutorial element.
-				delete_option( WP_SMUSH_PREFIX . 'hide_tutorials_from_bulk_smush' );
-				delete_site_option( WP_SMUSH_PREFIX . 'hide_tutorials_from_bulk_smush' );
+				delete_option( 'wp-smush-transparent_png' );
 			}
 
 			if ( version_compare( $version, '3.8.6', '<' ) ) {
+				add_site_option( 'wp-smush-show_upgrade_modal', true );
+			}
+
+			if ( version_compare( $version, '3.9.0', '<' ) ) {
+				// Hide the Local WebP wizard if Local WebP is enabled.
+				if ( Settings::get_instance()->get( 'webp_mod' ) ) {
+					add_site_option( 'wp-smush-webp_hide_wizard', true );
+				}
+			}
+
+			if ( version_compare( $version, '3.9.1', '<' ) ) {
 				// Add the flag to display the release highlights modal.
-				add_site_option( WP_SMUSH_PREFIX . 'show_upgrade_modal', true );
+				add_site_option( 'wp-smush-show_upgrade_modal', true );
+			}
+
+			if ( version_compare( $version, '3.9.5', '<' ) ) {
+				delete_site_option( 'wp-smush-show-black-friday' );
+			}
+
+			if ( version_compare( $version, '3.9.10', '<' ) ) {
+				self::dir_smush_set_primary_key();
+			}
+
+			if ( version_compare( $version, '3.10.0', '<' ) ) {
+				self::upgrade_3_10_0();
 			}
 
 			// Create/upgrade directory smush table.
 			self::directory_smush_table();
 
 			// Store the latest plugin version in db.
-			update_site_option( WP_SMUSH_PREFIX . 'version', WP_SMUSH_VERSION );
+			update_site_option( 'wp-smush-version', WP_SMUSH_VERSION );
 		}
 	}
 
@@ -176,6 +197,28 @@ class Installer {
 	}
 
 	/**
+	 * Set primary key for directory smush table on upgrade to 3.9.10.
+	 *
+	 * @since 3.9.10
+	 */
+	private static function dir_smush_set_primary_key() {
+		global $wpdb;
+
+		// Only call it after creating table smush_dir_images. If the table doesn't exist, returns.
+		if ( ! Modules\Dir::table_exist() ) {
+			return;
+		}
+
+		// If the table is already set the primary key, return.
+		if ( $wpdb->query( $wpdb->prepare( "SHOW INDEXES FROM {$wpdb->base_prefix}smush_dir_images WHERE Key_name = %s;", 'PRIMARY' ) ) ) {
+			return;
+		}
+
+		// Set column ID as a primary key.
+		$wpdb->query( "ALTER TABLE {$wpdb->base_prefix}smush_dir_images ADD PRIMARY KEY (id);" );
+	}
+
+	/**
 	 * Check if table needs to be created and create if not exists.
 	 *
 	 * @since 3.8.6
@@ -198,10 +241,10 @@ class Installer {
 	 * @since 3.7.0
 	 */
 	private static function upgrade_3_7_0() {
-		delete_site_option( WP_SMUSH_PREFIX . 'run_recheck' );
+		delete_site_option( 'wp-smush-run_recheck' );
 
 		// Fix the "None" animation in lazy-load options.
-		$lazy = Settings::get_instance()->get_setting( WP_SMUSH_PREFIX . 'lazy_load' );
+		$lazy = Settings::get_instance()->get_setting( 'wp-smush-lazy_load' );
 
 		if ( ! $lazy || ! isset( $lazy['animation'] ) || ! isset( $lazy['animation']['selected'] ) ) {
 			return;
@@ -209,7 +252,36 @@ class Installer {
 
 		if ( '0' === $lazy['animation']['selected'] ) {
 			$lazy['animation']['selected'] = 'none';
-			Settings::get_instance()->set_setting( WP_SMUSH_PREFIX . 'lazy_load', $lazy );
+			Settings::get_instance()->set_setting( 'wp-smush-lazy_load', $lazy );
+		}
+	}
+
+	/**
+	 * Upgrade to 3.10.0
+	 *
+	 * @since 3.10.0
+	 *
+	 * @return void
+	 */
+	private static function upgrade_3_10_0() {
+		// Remove unused options.
+		delete_site_option( 'wp-smush-hide_pagespeed_suggestion' );
+		delete_site_option( 'wp-smush-hide_upgrade_notice' );
+
+		// Rename the default config.
+		$stored_configs = get_site_option( 'wp-smush-preset_configs', false );
+		if ( is_array( $stored_configs ) && isset( $stored_configs[0] ) && isset( $stored_configs[0]['name'] ) && 'Basic config' === $stored_configs[0]['name'] ) {
+			$stored_configs[0]['name'] = __( 'Default config', 'wp-smushit' );
+			update_site_option( 'wp-smush-preset_configs', $stored_configs );
+		}
+
+		// Show new features modal for free users.
+		if ( ! WP_Smush::is_pro() ) {
+			if ( is_multisite() && ! Abstract_Page::should_render( 'bulk' ) ) {
+				return;
+			}
+
+			add_site_option( 'wp-smush-show_upgrade_modal', true );
 		}
 	}
 }

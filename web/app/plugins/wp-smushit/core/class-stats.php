@@ -140,8 +140,8 @@ class Stats {
 	 * @return int|array
 	 */
 	public function get_savings( $type, $force_update = true, $format = false, $return_count = false ) {
-		$key       = WP_SMUSH_PREFIX . $type . '_savings';
-		$key_count = WP_SMUSH_PREFIX . 'resize_count';
+		$key       = 'wp-smush-' . $type . '_savings';
+		$key_count = 'wp-smush-resize_count';
 
 		if ( ! $force_update ) {
 			$savings = wp_cache_get( $key, 'wp-smush' );
@@ -232,8 +232,8 @@ class Stats {
 			$savings[ $type ]['bytes'] = size_format( $savings[ $type ]['bytes'], 1 );
 		}
 
-		wp_cache_set( WP_SMUSH_PREFIX . 'resize_savings', $savings['resize'], 'wp-smush' );
-		wp_cache_set( WP_SMUSH_PREFIX . 'pngjpg_savings', $savings['pngjpg'], 'wp-smush' );
+		wp_cache_set( 'wp-smush-resize_savings', $savings['resize'], 'wp-smush' );
+		wp_cache_set( 'wp-smush-pngjpg_savings', $savings['pngjpg'], 'wp-smush' );
 		wp_cache_set( $key_count, $count, 'wp-smush' );
 
 		return $return_count ? $count : $savings[ $type ];
@@ -258,11 +258,18 @@ class Stats {
 		// Remove the Filters added by WP Media Folder.
 		do_action( 'wp_smush_remove_filters' );
 
-		$mime = implode( "', '", Core::$mime_types );
-
 		global $wpdb;
 
-		$posts = $wpdb->get_col( "SELECT ID FROM {$wpdb->posts} WHERE post_type = 'attachment' AND post_mime_type IN ('$mime')" ); // Db call ok.
+		$posts = $wpdb->get_col(
+			$wpdb->prepare(
+				sprintf(
+					'SELECT ID FROM `%s` WHERE post_type = "attachment" AND post_mime_type IN (%s)',
+					$wpdb->posts,
+					implode( ',', array_fill( 0, count( Core::$mime_types ), '%s' ) )
+				),
+				Core::$mime_types
+			)
+		); // Db call ok.
 
 		// Add the attachments to cache.
 		wp_cache_set( 'media_attachments', $posts, 'wp-smush' );
@@ -339,7 +346,7 @@ class Stats {
 	public function get_smushed_attachments( $force_update = false ) {
 		// If not forced to update, try to get from cache.
 		if ( ! $force_update ) {
-			$smushed_count = wp_cache_get( WP_SMUSH_PREFIX . 'smushed_ids', 'wp-smush' );
+			$smushed_count = wp_cache_get( 'wp-smush-smushed_ids', 'wp-smush' );
 			// Return the cache value if cache is set.
 			if ( false !== $smushed_count && ! empty( $smushed_count ) ) {
 				return $smushed_count;
@@ -364,7 +371,7 @@ class Stats {
 		}
 
 		// Set in cache.
-		wp_cache_set( WP_SMUSH_PREFIX . 'smushed_ids', $posts, 'wp-smush' );
+		wp_cache_set( 'wp-smush-smushed_ids', $posts, 'wp-smush' );
 
 		return $posts;
 	}
@@ -377,7 +384,7 @@ class Stats {
 	 * @param integer $attachment_id ID of the smushed attachment.
 	 */
 	public static function add_to_smushed_list( $attachment_id ) {
-		$smushed_ids = wp_cache_get( WP_SMUSH_PREFIX . 'smushed_ids', 'wp-smush' );
+		$smushed_ids = wp_cache_get( 'wp-smush-smushed_ids', 'wp-smush' );
 
 		if ( ! empty( $smushed_ids ) ) {
 			$attachment_id = strval( $attachment_id );
@@ -386,7 +393,7 @@ class Stats {
 				$smushed_ids[] = $attachment_id;
 
 				// Set in cache.
-				wp_cache_set( WP_SMUSH_PREFIX . 'smushed_ids', $smushed_ids, 'wp-smush' );
+				wp_cache_set( 'wp-smush-smushed_ids', $smushed_ids, 'wp-smush' );
 			}
 		}
 	}
@@ -399,13 +406,13 @@ class Stats {
 	 * @param integer $attachment_id ID of the smushed attachment.
 	 */
 	public static function remove_from_smushed_list( $attachment_id ) {
-		$smushed_ids = wp_cache_get( WP_SMUSH_PREFIX . 'smushed_ids', 'wp-smush' );
+		$smushed_ids = wp_cache_get( 'wp-smush-smushed_ids', 'wp-smush' );
 
 		if ( ! empty( $smushed_ids ) ) {
 			$index = array_search( strval( $attachment_id ), $smushed_ids, true );
 			if ( false !== $index ) {
 				unset( $smushed_ids[ $index ] );
-				wp_cache_set( WP_SMUSH_PREFIX . 'smushed_ids', $smushed_ids, 'wp-smush' );
+				wp_cache_set( 'wp-smush-smushed_ids', $smushed_ids, 'wp-smush' );
 			}
 		}
 	}
@@ -452,6 +459,29 @@ class Stats {
 		}
 
 		return $attachments;
+	}
+
+	/**
+	 * Temporary remove Smush metadata.
+	 *
+	 * We use this in order to temporary remove the stats metadata,
+	 * e.g While generating thumbnail or wp_generate_ when disabled auto smush.
+	 *
+	 * Note, if member's site allows compression of the original file,
+	 * when we remove stats, we might lose a large amount of storage (stats) that we saved for the member's site.
+	 * => TODO: Delete stats or just update new stats with re-smush?
+	 *
+	 * @since 3.9.6
+	 *
+	 * @param int $attachment_id    Attachment ID.
+	 */
+	public function remove_stats( $attachment_id ) {
+		// Main stats.
+		delete_post_meta( $attachment_id, Modules\Smush::$smushed_meta_key );
+		// Lossy flag.
+		delete_post_meta( $attachment_id, 'wp-smush-lossy' );
+		// Finally, remove the attachment ID from cache.
+		self::remove_from_smushed_list( $attachment_id );
 	}
 
 	/**
@@ -572,7 +602,7 @@ class Stats {
 		// Loop over all the attachments to get the cumulative savings.
 		foreach ( $attachments as $attachment ) {
 			$smush_stats        = get_post_meta( $attachment, Modules\Smush::$smushed_meta_key, true );
-			$resize_savings     = get_post_meta( $attachment, WP_SMUSH_PREFIX . 'resize_savings', true );
+			$resize_savings     = get_post_meta( $attachment, 'wp-smush-resize_savings', true );
 			$conversion_savings = Helper::get_pngjpg_savings( $attachment );
 
 			if ( ! empty( $smush_stats['stats'] ) ) {
@@ -581,7 +611,13 @@ class Stats {
 				$stats['size_after']  += ! empty( $smush_stats['stats']['size_after'] ) ? $smush_stats['stats']['size_after'] : 0;
 			}
 
-			$stats['count_images']       += ! empty( $smush_stats['sizes'] ) && is_array( $smush_stats['sizes'] ) ? count( $smush_stats['sizes'] ) : 0;
+			$stats['count_images'] = 0;
+			if ( isset( $smush_stats['sizes'] ) && is_array( $smush_stats['sizes'] ) ) {
+				foreach ( $smush_stats['sizes'] as $image_stats ) {
+					$stats['count_images'] += $image_stats->size_before !== $image_stats->size_after ? 1 : 0;
+				}
+			}
+
 			$stats['count_supersmushed'] += ! empty( $smush_stats['stats'] ) && $smush_stats['stats']['lossy'] ? 1 : 0;
 
 			// Add resize saving stats.
@@ -679,9 +715,7 @@ class Stats {
 			$smush_stats['sizes']['full']->percent = round( $smush_stats['sizes']['full']->percent, 1 );
 		}
 
-		$smush_stats = $this->total_compression( $smush_stats );
-
-		return $smush_stats;
+		return $this->total_compression( $smush_stats );
 	}
 
 	/**
@@ -715,9 +749,7 @@ class Stats {
 			}
 		}
 
-		$stats = $this->total_compression( $stats );
-
-		return $stats;
+		return $this->total_compression( $stats );
 	}
 
 	/**
@@ -791,7 +823,7 @@ class Stats {
 				)
 			); // Db call ok; no-cache ok.
 
-			// If we didn' got any results.
+			// If we didn't got any results.
 			if ( ! $global_data ) {
 				break;
 			}
@@ -878,13 +910,13 @@ class Stats {
 			$smush_data['percent'] = ( $smush_data['bytes'] / $smush_data['size_before'] ) * 100;
 		}
 
-		// Round off precentage.
+		// Round off percentage.
 		$smush_data['percent'] = round( $smush_data['percent'], 1 );
 
-		// Human readable format.
-		$smush_data['human'] = size_format( 
+		// Human-readable format.
+		$smush_data['human'] = size_format(
 			$smush_data['bytes'],
-			( $smush_data['bytes'] >= 1024 ) ? 1 : 0 
+			( $smush_data['bytes'] >= 1024 ) ? 1 : 0
 		);
 
 		// Setup Smushed attachment IDs.

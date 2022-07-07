@@ -20,6 +20,13 @@ if ( ! defined( 'WPINC' ) ) {
 class Core extends Stats {
 
 	/**
+	 * Animated status.
+	 *
+	 * @var int
+	 */
+	const STATUS_ANIMATED = 2;
+
+	/**
 	 * S3 module
 	 *
 	 * @var Integrations\S3
@@ -169,13 +176,19 @@ class Core extends Stats {
 		add_action( 'init', array( $this, 'load_integrations' ) );
 
 		// Big image size threshold (WordPress 5.3+).
-		add_filter( 'big_image_size_threshold', array( $this, 'big_image_size_threshold' ), 10, 4 );
+		add_filter( 'big_image_size_threshold', array( $this, 'big_image_size_threshold' ), 10 );
 
 		/**
 		 * Load NextGen Gallery, instantiate the Async class. if hooked too late or early, auto Smush doesn't
 		 * work, also load after settings have been saved on init action.
 		 */
 		add_action( 'plugins_loaded', array( $this, 'load_libs' ), 90 );
+
+		/**
+		 * Maybe need to load some modules in REST API mode.
+		 * E.g. S3.
+		 */
+		add_action( 'rest_api_init', array( $this, 'load_libs_for_rest_api' ), 99 );
 	}
 
 	/**
@@ -194,25 +207,39 @@ class Core extends Stats {
 		$this->wp_smush_async();
 
 		if ( is_admin() ) {
-			$this->s3      = new Integrations\S3();
+			$this->s3 = new Integrations\S3();
+		}
+
+		/**
+		 * Load NextGen integration on admin or custom ajax request.
+		 *
+		 * @since 3.10.0
+		 */
+		if ( is_admin() || defined( 'NGG_AJAX_SLUG' ) && ! empty( $_REQUEST[ NGG_AJAX_SLUG ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$this->nextgen = new Integrations\Nextgen();
 		}
 
 		new Integrations\Gutenberg();
 		new Integrations\Composer();
+		new Integrations\Gravity_Forms();
 		new Integrations\Envira( $this->mod->cdn );
 		new Integrations\Avada( $this->mod->cdn );
+	}
+
+	/**
+	 * Load lib for REST API.
+	 */
+	public function load_libs_for_rest_api() {
+		// Load S3 if there is media REST API.
+		if ( ! Helper::is_non_rest_media() && ! $this->s3 ) {
+			$this->s3 = new Integrations\S3();
+		}
 	}
 
 	/**
 	 * Initialize the Smush Async class.
 	 */
 	private function wp_smush_async() {
-		// Don't load the Async task, if user not logged in or not in backend.
-		if ( ! is_admin() || ! is_user_logged_in() ) {
-			return;
-		}
-
 		// Check if Async is disabled.
 		if ( defined( 'WP_SMUSH_ASYNC' ) && ! WP_SMUSH_ASYNC ) {
 			return;
@@ -220,7 +247,11 @@ class Core extends Stats {
 
 		// Instantiate class.
 		new Modules\Async\Async();
-		new Modules\Async\Editor();
+
+		// Load the Editor Async task only if user logged in or in backend.
+		if ( is_admin() && is_user_logged_in() ) {
+			new Modules\Async\Editor();
+		}
 	}
 
 	/**
@@ -261,6 +292,7 @@ class Core extends Stats {
 
 		$wp_smush_msgs = array(
 			'nonce'                   => wp_create_nonce( 'wp-smush-ajax' ),
+			'webp_nonce'              => wp_create_nonce( 'wp-smush-webp-nonce' ),
 			'settingsUpdated'         => esc_html__( 'Your settings have been updated', 'wp-smushit' ),
 			'resmush'                 => esc_html__( 'Super-Smush', 'wp-smushit' ),
 			'smush_now'               => esc_html__( 'Smush Now', 'wp-smushit' ),
@@ -281,7 +313,6 @@ class Core extends Stats {
 			'sync_stats'              => esc_html__( 'Give us a moment while we sync the stats.', 'wp-smushit' ),
 			// Progress bar text.
 			'progress_smushed'        => esc_html__( 'images optimized', 'wp-smushit' ),
-			'add_dir'                 => esc_html__( 'Choose directory', 'wp-smushit' ),
 			'bulk_resume'             => esc_html__( 'Resume scan', 'wp-smushit' ),
 			'bulk_stop'               => esc_html__( 'Stop current bulk smush process.', 'wp-smushit' ),
 			// Errors.
@@ -299,50 +330,12 @@ class Core extends Stats {
 			),
 			// URLs.
 			'smush_url'               => network_admin_url( 'admin.php?page=smush' ),
+			'bulk_smush_url'          => network_admin_url( 'admin.php?page=smush-bulk' ),
 			'directory_url'           => network_admin_url( 'admin.php?page=smush-directory' ),
 			'localWebpURL'            => network_admin_url( 'admin.php?page=smush-webp' ),
 		);
 
 		wp_localize_script( $handle, 'wp_smush_msgs', $wp_smush_msgs );
-
-		wp_add_inline_script(
-			'smush-react-configs',
-			'wp.i18n.setLocaleData( ' . wp_json_encode( $this->get_locale_data() ) . ', "wp-smushit" );',
-			'before'
-		);
-
-		// Configs.
-		wp_localize_script(
-			'smush-react-configs',
-			'smushReact',
-			array(
-				'hideBranding' => apply_filters( 'wpmudev_branding_hide_branding', false ),
-				'isPro'        => WP_Smush::is_pro(),
-				'links'        => array(
-					'configsPage'  => network_admin_url( 'admin.php?page=smush-settings&view=configs' ),
-					'accordionImg' => WP_SMUSH_URL . 'app/assets/images/smush-config-icon@2x.png',
-					'hubConfigs'   => 'https://wpmudev.com/hub2/configs/my-configs',
-					'hubWelcome'   => 'https://wpmudev.com/hub-welcome/?utm_source=smush&utm_medium=plugin&utm_campaign=smush_hub_config',
-				),
-				'requestsData' => array(
-					'root'           => esc_url_raw( rest_url( 'wp-smush/v1/' . Configs::OPTION_NAME ) ),
-					'nonce'          => wp_create_nonce( 'wp_rest' ),
-					'apiKey'         => Helper::get_wpmudev_apikey(),
-					'hubBaseURL'     => defined( 'WPMUDEV_CUSTOM_API_SERVER' ) && WPMUDEV_CUSTOM_API_SERVER ? trailingslashit( WPMUDEV_CUSTOM_API_SERVER ) . 'api/hub/v1/package-configs' : null,
-					// Hardcoding these because the Free version doesn't have the WDP ID header in wp-smushit.php.
-					'pluginData'     => array(
-						'name' => 'Smush' . ( WP_Smush::is_pro() ? ' Pro' : '' ),
-						'id'   => '912164',
-					),
-					'pluginRequests' => array(
-						'nonce'        => wp_create_nonce( 'smush_handle_config' ),
-						'uploadAction' => 'smush_upload_config',
-						'createAction' => 'smush_save_config',
-						'applyAction'  => 'smush_apply_config',
-					),
-				),
-			)
-		);
 
 		// Load the stats on selected screens only.
 		if ( false !== strpos( $current_screen->id, 'page_smush' ) ) {
@@ -358,14 +351,9 @@ class Core extends Stats {
 				$this->setup_global_stats( true );
 			}
 
-			// Localize smushit_IDs variable, if there are fix number of IDs.
-			$this->unsmushed_attachments = ! empty( $_REQUEST['ids'] ) ? array_map( 'intval', explode( ',', $_REQUEST['ids'] ) ) : array();
-
-			if ( empty( $this->unsmushed_attachments ) ) {
-				// Get attachments if all the images are not smushed.
-				$this->unsmushed_attachments = $this->remaining_count > 0 ? $this->get_unsmushed_attachments() : array();
-				$this->unsmushed_attachments = ! empty( $this->unsmushed_attachments ) && is_array( $this->unsmushed_attachments ) ? array_values( $this->unsmushed_attachments ) : $this->unsmushed_attachments;
-			}
+			// Get attachments if all the images are not smushed.
+			$this->unsmushed_attachments = $this->remaining_count > 0 ? $this->get_unsmushed_attachments() : array();
+			$this->unsmushed_attachments = ! empty( $this->unsmushed_attachments ) && is_array( $this->unsmushed_attachments ) ? array_values( $this->unsmushed_attachments ) : $this->unsmushed_attachments;
 
 			// Array of all smushed, unsmushed and lossless IDs.
 			$data = array(
@@ -374,6 +362,7 @@ class Core extends Stats {
 				'count_total'        => $this->total_count - $this->skipped_count,
 				'count_images'       => $this->stats['total_images'],
 				'count_resize'       => $this->stats['resize_count'],
+				'count_skipped'      => $this->skipped_count,
 				'unsmushed'          => $this->unsmushed_attachments,
 				'resmush'            => $this->resmush_ids,
 				'size_before'        => $this->stats['size_before'],
@@ -416,34 +405,6 @@ class Core extends Stats {
 	}
 
 	/**
-	 * Gets the translated strings for javascript translations.
-	 *
-	 * @since 3.8.5
-	 *
-	 * @return array
-	 */
-	private function get_locale_data() {
-		$translations = get_translations_for_domain( 'wp-smushit' );
-
-		$locale = array(
-			'' => array(
-				'domain' => 'wp-smushit',
-				'lang'   => get_user_locale(),
-			),
-		);
-
-		if ( ! empty( $translations->headers['Plural-Forms'] ) ) {
-			$locale['']['plural_forms'] = $translations->headers['Plural-Forms'];
-		}
-
-		foreach ( $translations->entries as $msgid => $entry ) {
-			$locale[ $msgid ] = $entry->translations;
-		}
-
-		return $locale;
-	}
-
-	/**
 	 * Check bulk sent count, whether to allow further smushing or not
 	 *
 	 * @param bool   $reset  To hard reset the transient.
@@ -452,7 +413,7 @@ class Core extends Stats {
 	 * @return bool
 	 */
 	public static function check_bulk_limit( $reset = false, $key = 'bulk_sent_count' ) {
-		$transient_name = WP_SMUSH_PREFIX . $key;
+		$transient_name = 'wp-smush-' . $key;
 
 		// If we JUST need to reset the transient.
 		if ( $reset ) {
@@ -592,7 +553,7 @@ class Core extends Stats {
 	 * @param string $key  Database key.
 	 */
 	public static function update_smush_count( $key = 'bulk_sent_count' ) {
-		$transient_name = WP_SMUSH_PREFIX . $key;
+		$transient_name = 'wp-smush-' . $key;
 
 		$bulk_sent_count = get_transient( $transient_name );
 
@@ -611,24 +572,24 @@ class Core extends Stats {
 	 *
 	 * @since 3.3.2
 	 *
-	 * @param int    $threshold      The threshold value in pixels. Default 2560.
-	 * @param array  $imagesize      Indexed array of the image width and height (in that order).
-	 * @param string $file           Full path to the uploaded image file.
-	 * @param int    $attachment_id  Attachment post ID.
+	 * @param int $threshold  The threshold value in pixels. Default 2560.
 	 *
-	 * @return int  New threshold.
+	 * @return int|bool  New threshold. False if scaling is disabled.
 	 */
-	public function big_image_size_threshold( $threshold, $imagesize, $file, $attachment_id ) {
-		if ( ! Settings::get_instance()->get( 'resize' ) ) {
+	public function big_image_size_threshold( $threshold ) {
+		if ( Settings::get_instance()->get( 'no_scale' ) ) {
+			return false;
+		}
+
+		if ( ! $this->mod->resize->is_active() ) {
 			return $threshold;
 		}
 
-		$resize_sizes = Settings::get_instance()->get_setting( WP_SMUSH_PREFIX . 'resize_sizes' );
+		$resize_sizes = Settings::get_instance()->get_setting( 'wp-smush-resize_sizes' );
 		if ( ! $resize_sizes || ! is_array( $resize_sizes ) ) {
 			return $threshold;
 		}
 
 		return $resize_sizes['width'] > $resize_sizes['height'] ? $resize_sizes['width'] : $resize_sizes['height'];
 	}
-
 }

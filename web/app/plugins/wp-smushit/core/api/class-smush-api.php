@@ -8,7 +8,6 @@
 
 namespace Smush\Core\Api;
 
-use Exception;
 use WP_Error;
 
 if ( ! defined( 'WPINC' ) ) {
@@ -48,6 +47,10 @@ class Smush_API extends Abstract_API {
 	 * @return mixed|WP_Error
 	 */
 	public function check( $manual = false ) {
+		if ( isset( $_SERVER['WPMUDEV_HOSTING_ENV'] ) && 'staging' === $_SERVER['WPMUDEV_HOSTING_ENV'] ) {
+			return new WP_Error( '503', __( 'Unable to check status on staging.', 'wp-smushit' ) );
+		}
+
 		return $this->request->get(
 			"check/{$this->api_key}",
 			array(
