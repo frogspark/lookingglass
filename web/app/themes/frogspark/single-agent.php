@@ -144,7 +144,8 @@
             <div class="row">
               <div class="col-12 px-0">
                 <div class="carousel-featured mb-8 pb-10 pb-lg-14 px-n4 slick-overflow">
-									<?php for ( $i = 1; $i <= 6; $i ++ ): ?>
+                    <?php $query = array ( 'post_type' => 'property', 'posts_per_page' => 12, 'meta_query' => array( array('key' => 'agent', 'value' => $post->ID, 'compare' => '=') ) ); ?>
+                    <?php $posts = new WP_Query($query); ?>
                     <div class="px-4">
                       <div class="property">
                         <div class="gallery mb-4">

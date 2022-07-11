@@ -21,11 +21,13 @@
       <div class="justify-content-center row">
         <div class="col-12 col-md-10 col-lg-12 mb-8" data-aos="fade-up" data-aos-delay="50">
           <div class="carousel-sub pb-10">
-            <?php for ($x = 1; $x <= 12; $x++): ?>
+              <?php $count = 0; ?>
+              <?php while (have_rows('images')): the_row(); ?>
               <div>
-                <div class="<?php if ($x == 1): echo 'active'; endif; ?> bg-landscape property-sub" data-image="<?php echo wp_get_upload_dir()[ 'baseurl' ]; ?>/2021/06/placeholder.jpg" style="background-image: url(<?php echo wp_get_upload_dir()[ 'baseurl' ]; ?>/2021/06/placeholder.jpg);"></div>
+                <div class="<?php if ($count == 0): echo 'active'; endif; ?> bg-landscape property-sub" data-image="<?php echo wp_get_upload_dir()[ 'baseurl' ]; ?>/2021/06/placeholder.jpg" style="background-image: url(<?php echo wp_get_upload_dir()[ 'baseurl' ]; ?>/2021/06/placeholder.jpg);"></div>
               </div>
-            <?php endfor; ?>
+              <?php $count = $count + 1; ?>
+            <?php endwhile; ?>
           </div>
         </div>
       </div>
@@ -53,28 +55,29 @@
             <div aria-labelledby="nav-info-tab" class="active fade show pt-6 tab-pane" id="nav-info" role="tabpanel">
               <div class="row">
                 <div class="col-12 col-lg-10 col-xl-8">
-                  <h1 class="mb-2 text-secondary">3 bed apartment in Kingston</h1>
-                  <p class="h3">Large family home.</p>
-                  <p class="align-items-start align-items-lg-center d-flex flex-column flex-lg-row justify-content-center justify-content-lg-start fs-6 mb-8"><span class="fw-semibold me-lg-6">USD$575,000</span> <span class="fw-semibold">Listing #7564</span></p>
-                  <div class="mb-4 row">
-                    <?php for ($x = 1; $x <= 6; $x++): ?>
-                      <div class="col-12 col-md-6 col-lg-4 mb-4">
-                        <p class="mb-0"><i class="fas fa-house me-1 text-secondary"></i> 400sq/ft property</p>
-                      </div>
-                    <?php endfor; ?>
-                  </div>
-                  <div class="wysiwyg">
-                    <p class="fw-bold">Key Features</p>
-                    <ul>
-                      <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</li>
-                      <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</li>
-                      <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</li>
-                      <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</li>
-                    </ul>
-                    <p class="fw-bold">Description</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                  </div>
+
+<!--                  <h1 class="mb-2 text-secondary">3 bed apartment in Kingston</h1>-->
+<!--                  <p class="h3">Large family home.</p>-->
+<!--                  <p class="align-items-start align-items-lg-center d-flex flex-column flex-lg-row justify-content-center justify-content-lg-start fs-6 mb-8"><span class="fw-semibold me-lg-6">USD$575,000</span> <span class="fw-semibold">Listing #7564</span></p>-->
+<!--                  <div class="mb-4 row">-->
+<!--                    --><?php //for ($x = 1; $x <= 6; $x++): ?>
+<!--                      <div class="col-12 col-md-6 col-lg-4 mb-4">-->
+<!--                        <p class="mb-0"><i class="fas fa-house me-1 text-secondary"></i> 400sq/ft property</p>-->
+<!--                      </div>-->
+<!--                    --><?php //endfor; ?>
+<!--                  </div>-->
+<!--                  <div class="wysiwyg">-->
+<!--                    <p class="fw-bold">Key Features</p>-->
+<!--                    <ul>-->
+<!--                      <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</li>-->
+<!--                      <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</li>-->
+<!--                      <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</li>-->
+<!--                      <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</li>-->
+<!--                    </ul>-->
+<!--                    <p class="fw-bold">Description</p>-->
+<!--                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>-->
+<!--                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>-->
+<!--                  </div>-->
                 </div>
 
                 <div class="col-12 col-lg-2 col-xl-4 d-none d-lg-block">
